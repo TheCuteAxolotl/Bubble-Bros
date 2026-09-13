@@ -47,32 +47,32 @@ export default function EstimatePage() {
   }, [services, serviceId, vehicle, condition, pet, stains, paint]);
 
   return (
-    <main className="min-h-screen bg-[#0D0D0D] px-6 py-14 text-white">
+    <main className="min-h-screen bg-white px-6 py-14 text-[#0B0F19]">
       <div className="mx-auto max-w-5xl">
-        <p className="text-xs font-bold uppercase tracking-[.3em] text-[#5B8CFF]">Instant Estimate</p>
+        <p className="text-xs font-bold uppercase tracking-[.3em] text-[#000B3D]">Instant Estimate</p>
         <h1 className="mt-3 text-5xl font-semibold tracking-[-.05em]">Get a quick price range before you send a quote request.</h1>
-        <p className="mt-4 max-w-2xl text-white/45">This is only an estimate. For an exact price, send us the vehicle info and a few photos.</p>
+        <p className="mt-4 max-w-2xl text-black/50">This is only an estimate. For an exact price, send us the vehicle info and a few photos.</p>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_360px]">
-          <div className="rounded-[30px] border border-white/10 bg-[linear-gradient(145deg,rgba(74,85,104,.12),rgba(255,255,255,.025))] p-6">
+          <div className="rounded-[30px] border border-[#000B3D]/10 bg-[linear-gradient(145deg,#F8FAFD,#EEF2FA)] p-6">
             <div className="grid gap-5 md:grid-cols-2">
-              <label className="text-sm text-white/55">Service
-                <select value={serviceId} onChange={(event) => setServiceId(event.target.value)} className="mt-2 w-full rounded-2xl border border-white/10 bg-black px-4 py-3 focus:border-[#5B8CFF]/60 focus:outline-none">
+              <label className="text-sm text-black/60">Service
+                <select value={serviceId} onChange={(event) => setServiceId(event.target.value)} className="mt-2 w-full rounded-2xl border border-[#000B3D]/10 bg-white px-4 py-3 text-[#0B0F19] focus:border-[#000B3D]/60 focus:outline-none">
                   {services.map((service) => <option key={service.id} value={service.id}>{service.title}</option>)}
                 </select>
               </label>
-              <label className="text-sm text-white/55">Vehicle
-                <select value={vehicle} onChange={(event) => setVehicle(event.target.value)} className="mt-2 w-full rounded-2xl border border-white/10 bg-black px-4 py-3 focus:border-[#5B8CFF]/60 focus:outline-none">
+              <label className="text-sm text-black/60">Vehicle
+                <select value={vehicle} onChange={(event) => setVehicle(event.target.value)} className="mt-2 w-full rounded-2xl border border-[#000B3D]/10 bg-white px-4 py-3 text-[#0B0F19] focus:border-[#000B3D]/60 focus:outline-none">
                   <option value="sedan">Sedan / coupe</option><option value="suv">SUV / crossover</option><option value="truck">Truck / large SUV</option><option value="marine">Boat / marine</option>
                 </select>
               </label>
-              <label className="text-sm text-white/55">Overall condition
-                <select value={condition} onChange={(event) => setCondition(event.target.value)} className="mt-2 w-full rounded-2xl border border-white/10 bg-black px-4 py-3 focus:border-[#5B8CFF]/60 focus:outline-none">
+              <label className="text-sm text-black/60">Overall condition
+                <select value={condition} onChange={(event) => setCondition(event.target.value)} className="mt-2 w-full rounded-2xl border border-[#000B3D]/10 bg-white px-4 py-3 text-[#0B0F19] focus:border-[#000B3D]/60 focus:outline-none">
                   <option value="average">Average / maintained</option><option value="moderate">Moderately dirty</option><option value="heavy">Heavy condition</option>
                 </select>
               </label>
-              <label className="text-sm text-white/55">Paint / surface condition
-                <select value={paint} onChange={(event) => setPaint(event.target.value)} className="mt-2 w-full rounded-2xl border border-white/10 bg-black px-4 py-3 focus:border-[#5B8CFF]/60 focus:outline-none">
+              <label className="text-sm text-black/60">Paint / surface condition
+                <select value={paint} onChange={(event) => setPaint(event.target.value)} className="mt-2 w-full rounded-2xl border border-[#000B3D]/10 bg-white px-4 py-3 text-[#0B0F19] focus:border-[#000B3D]/60 focus:outline-none">
                   <option value="good">Good</option><option value="rough">Needs correction / oxidation help</option>
                 </select>
               </label>
@@ -83,15 +83,15 @@ export default function EstimatePage() {
             </div>
           </div>
 
-          <aside className="rounded-[30px] border border-[#5B8CFF]/20 bg-[#5B8CFF]/[.05] p-6">
+          <aside className="rounded-[30px] border border-[#000B3D]/20 bg-[#000B3D]/[.05] p-6">
             {result ? <>
-              <p className="text-xs uppercase tracking-[.25em] text-[#5B8CFF]">Estimated range</p>
+              <p className="text-xs uppercase tracking-[.25em] text-[#000B3D]">Estimated range</p>
               <p className="mt-3 text-4xl font-semibold">${result.lo}–${result.hi}</p>
-              <p className="mt-2 text-sm text-white/40">for {result.service.title}</p>
-              <p className="mt-6 text-sm leading-6 text-white/45">This range uses the service, vehicle or boat type, and condition you selected. We’ll confirm the real price before booking after we see photos or inspect it in person if needed.</p>
-              {vehicle === "marine" && <p className="mt-3 text-xs leading-5 text-white/32">Boat pricing can vary more because length, oxidation, waterline buildup, access, and hull condition can change the amount of work a lot.</p>}
-              <a href={`/quote?service=${result.service.id}`} className="mt-6 block rounded-full bg-[#5B8CFF] px-5 py-3 text-center font-semibold text-[#0D0D0D]">Get an Exact Quote</a>
-              <a href={`/contact?service=${encodeURIComponent(result.service.title)}`} className="mt-3 block rounded-full border border-white/15 bg-white/[.025] px-5 py-3 text-center text-sm">Request this service</a>
+              <p className="mt-2 text-sm text-black/45">for {result.service.title}</p>
+              <p className="mt-6 text-sm leading-6 text-black/50">This range uses the service, vehicle or boat type, and condition you selected. We’ll confirm the real price before booking after we see photos or inspect it in person if needed.</p>
+              {vehicle === "marine" && <p className="mt-3 text-xs leading-5 text-black/35">Boat pricing can vary more because length, oxidation, waterline buildup, access, and hull condition can change the amount of work a lot.</p>}
+              <a href={`/quote?service=${result.service.id}`} className="mt-6 block rounded-full bg-[#000B3D] px-5 py-3 text-center font-semibold text-[#0B0F19]">Get an Exact Quote</a>
+              <a href={`/contact?service=${encodeURIComponent(result.service.title)}`} className="mt-3 block rounded-full border border-[#000B3D]/15 bg-[#F7F9FC] px-5 py-3 text-center text-sm">Request this service</a>
             </> : <p>Choose a service.</p>}
           </aside>
         </div>

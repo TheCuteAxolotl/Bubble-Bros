@@ -76,39 +76,39 @@ export default function AdminSupportPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#080808] text-white">
+    <main className="min-h-screen bg-[#F7F9FC] text-[#0B0F19]">
       <div className="mx-auto max-w-[1500px] px-5 py-8 sm:px-8 lg:px-12">
-        <div className="flex flex-wrap items-end justify-between gap-4 border-b border-white/10 pb-6">
+        <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[#000B3D]/10 pb-6">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[.28em] text-[#5B8CFF]">Staff</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[.28em] text-[#000B3D]">Staff</p>
             <h1 className="mt-2 text-4xl font-semibold tracking-[-.04em]">Support inbox</h1>
-            <p className="mt-2 text-sm text-white/38">Reply to customer support chats and update ticket status.</p>
+            <p className="mt-2 text-sm text-black/40">Reply to customer support chats and update ticket status.</p>
           </div>
-          <a href="/admin/dashboard" className="rounded-full border border-white/15 px-5 py-2.5 text-sm text-white/65">Back to dashboard</a>
+          <a href="/admin/dashboard" className="rounded-full border border-[#000B3D]/15 px-5 py-2.5 text-sm text-black/70">Back to dashboard</a>
         </div>
 
         <div className="grid gap-5 py-6 lg:grid-cols-[340px_1fr]">
-          <aside className="space-y-2 rounded-[24px] border border-white/10 bg-white/[.025] p-3">
+          <aside className="space-y-2 rounded-[24px] border border-[#000B3D]/10 bg-[#F7F9FC] p-3">
             {tickets.length ? tickets.map((ticket) => (
-              <button key={ticket.id} onClick={() => setSelectedId(ticket.id)} className={`w-full rounded-2xl p-4 text-left transition ${selectedId === ticket.id ? "bg-white text-black" : "hover:bg-white/5"}`}>
-                <div className="flex justify-between gap-3"><span className="font-semibold">{ticket.name}</span><span className={`text-[10px] uppercase ${selectedId === ticket.id ? "text-black/45" : "text-white/30"}`}>{ticket.status}</span></div>
-                <p className={`mt-1 truncate text-sm ${selectedId === ticket.id ? "text-black/55" : "text-white/38"}`}>{ticket.subject}</p>
+              <button key={ticket.id} onClick={() => setSelectedId(ticket.id)} className={`w-full rounded-2xl p-4 text-left transition ${selectedId === ticket.id ? "bg-white text-black" : "hover:bg-[#F4F7FB]"}`}>
+                <div className="flex justify-between gap-3"><span className="font-semibold">{ticket.name}</span><span className={`text-[10px] uppercase ${selectedId === ticket.id ? "text-black/45" : "text-black/35"}`}>{ticket.status}</span></div>
+                <p className={`mt-1 truncate text-sm ${selectedId === ticket.id ? "text-black/55" : "text-black/40"}`}>{ticket.subject}</p>
               </button>
-            )) : <p className="p-5 text-sm text-white/35">No support requests yet.</p>}
+            )) : <p className="p-5 text-sm text-black/40">No support requests yet.</p>}
           </aside>
 
-          <section className="min-h-[620px] rounded-[24px] border border-white/10 bg-white/[.025] p-5 sm:p-7">
+          <section className="min-h-[620px] rounded-[24px] border border-[#000B3D]/10 bg-[#F7F9FC] p-5 sm:p-7">
             {selected ? <>
-              <div className="flex flex-wrap items-start justify-between gap-4 border-b border-white/8 pb-5">
-                <div><h2 className="text-2xl font-semibold">{selected.subject}</h2><p className="mt-2 text-sm text-white/42">{selected.name} · {selected.contactPreference}{selected.email ? ` · ${selected.email}` : ""}{selected.phone ? ` · ${selected.phone}` : ""}</p></div>
-                <div className="flex gap-2">{["open","waiting","closed"].map((status) => <button key={status} onClick={() => setStatus(status)} className={`rounded-full px-3 py-2 text-xs capitalize ${selected.status === status ? "bg-[#5B8CFF] text-[#0D0D0D]" : "border border-white/10 text-white/50"}`}>{status}</button>)}</div>
+              <div className="flex flex-wrap items-start justify-between gap-4 border-b border-[#000B3D]/10 pb-5">
+                <div><h2 className="text-2xl font-semibold">{selected.subject}</h2><p className="mt-2 text-sm text-black/45">{selected.name} · {selected.contactPreference}{selected.email ? ` · ${selected.email}` : ""}{selected.phone ? ` · ${selected.phone}` : ""}</p></div>
+                <div className="flex gap-2">{["open","waiting","closed"].map((status) => <button key={status} onClick={() => setStatus(status)} className={`rounded-full px-3 py-2 text-xs capitalize ${selected.status === status ? "bg-[#000B3D] text-[#0B0F19]" : "border border-[#000B3D]/10 text-black/55"}`}>{status}</button>)}</div>
               </div>
-              <div className="space-y-3 py-6">{selected.messages.map((item) => <div key={item.id} className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-6 ${item.sender === "team" ? "ml-auto bg-[#5B8CFF] text-[#0D0D0D]" : "bg-white/7 text-white/75"}`}>{item.body}</div>)}</div>
-              <form onSubmit={sendReply} className="mt-auto flex gap-2 border-t border-white/8 pt-5"><input value={reply} onChange={(e) => setReply(e.target.value)} placeholder="Reply to customer…" className="support-input"/><button className="rounded-full bg-white px-5 text-sm font-semibold text-black">Send</button></form>
-            </> : <div className="grid h-full place-items-center text-white/30">Choose a conversation.</div>}
+              <div className="space-y-3 py-6">{selected.messages.map((item) => <div key={item.id} className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-6 ${item.sender === "team" ? "ml-auto bg-[#000B3D] text-[#0B0F19]" : "bg-[#F2F5F9] text-black/75"}`}>{item.body}</div>)}</div>
+              <form onSubmit={sendReply} className="mt-auto flex gap-2 border-t border-[#000B3D]/10 pt-5"><input value={reply} onChange={(e) => setReply(e.target.value)} placeholder="Reply to customer…" className="support-input"/><button className="rounded-full bg-white px-5 text-sm font-semibold text-black">Send</button></form>
+            </> : <div className="grid h-full place-items-center text-black/35">Choose a conversation.</div>}
           </section>
         </div>
-        {message && <p className="rounded-2xl border border-white/10 bg-white/[.03] px-4 py-3 text-sm text-white/65">{message}</p>}
+        {message && <p className="rounded-2xl border border-[#000B3D]/10 bg-[#F5F7FB] px-4 py-3 text-sm text-black/70">{message}</p>}
       </div>
     </main>
   );

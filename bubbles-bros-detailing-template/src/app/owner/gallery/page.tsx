@@ -166,50 +166,50 @@ export default function OwnerGallery() {
   const visibleImages = filter === "all" ? images : images.filter((image) => (placementByValue.get(image.category)?.group || "Other") === filter);
 
   const PlacementSelect = ({ value, onChange }: { value: string; onChange: (value: string) => void }) => (
-    <select value={value} onChange={(e) => onChange(e.target.value)} className="w-full rounded-xl border border-neutral-800 bg-neutral-900 p-3 text-sm">
+    <select value={value} onChange={(e) => onChange(e.target.value)} className="w-full rounded-xl border border-[#000B3D]/10 bg-[#F7F9FC] p-3 text-sm">
       {groups.map((group) => <optgroup key={group} label={group}>{placements.filter((item) => item.group === group).map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}</optgroup>)}
       {!placementByValue.has(value) && <option value={value}>Legacy / custom placement: {value}</option>}
     </select>
   );
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
-      <header className="border-b border-neutral-800 bg-neutral-950">
+    <div className="min-h-screen bg-white text-[#0B0F19]">
+      <header className="border-b border-[#000B3D]/10 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-6">
-          <div><h1 className="text-2xl font-bold">Photos & Media</h1><p className="mt-1 text-sm text-neutral-400">Every placement is labeled by page → section → exact destination, so you know where each photo goes.</p></div>
-          <div className="flex gap-2"><a href="/owner/pricing-pages" className="rounded-lg border border-white/10 px-4 py-2 text-sm">Pricing Pages</a><a href="/owner/dashboard" className="rounded-lg bg-[#5B8CFF] px-4 py-2 text-sm font-medium text-[#0D0D0D]">Back</a></div>
+          <div><h1 className="text-2xl font-bold">Photos & Media</h1><p className="mt-1 text-sm text-neutral-600">Every placement is labeled by page → section → exact destination, so you know where each photo goes.</p></div>
+          <div className="flex gap-2"><a href="/owner/pricing-pages" className="rounded-lg border border-[#000B3D]/10 px-4 py-2 text-sm">Pricing Pages</a><a href="/owner/dashboard" className="rounded-lg bg-[#000B3D] px-4 py-2 text-sm font-medium text-[#0B0F19]">Back</a></div>
         </div>
       </header>
 
       <main className="mx-auto max-w-7xl px-6 py-10">
-        <div className="mb-6 rounded-2xl border border-[#5B8CFF]/15 bg-[#5B8CFF]/[.045] p-4 text-sm leading-6 text-white/60">
-          <strong className="text-white">Multiple photos are allowed in the same placement.</strong> Pricing-page package sections can hold several photos; the public page automatically turns them into a clean photo layout.
+        <div className="mb-6 rounded-2xl border border-[#000B3D]/15 bg-[#000B3D]/[.045] p-4 text-sm leading-6 text-black/65">
+          <strong className="text-[#0B0F19]">Multiple photos are allowed in the same placement.</strong> Pricing-page package sections can hold several photos; the public page automatically turns them into a clean photo layout.
         </div>
 
-        <form onSubmit={addImage} className="grid gap-4 rounded-3xl border border-neutral-800 bg-neutral-950 p-6 md:grid-cols-4">
+        <form onSubmit={addImage} className="grid gap-4 rounded-3xl border border-[#000B3D]/10 bg-white p-6 md:grid-cols-4">
           <div className="md:col-span-2">
             <label className="mb-2 block text-sm font-medium">Photo</label>
-            <input id="gallery-file" type="file" accept="image/*" onChange={(e) => setFile(e.target.files?.[0] || null)} className="w-full rounded-xl border border-neutral-800 bg-neutral-900 p-3 text-sm" required />
+            <input id="gallery-file" type="file" accept="image/*" onChange={(e) => setFile(e.target.files?.[0] || null)} className="w-full rounded-xl border border-[#000B3D]/10 bg-[#F7F9FC] p-3 text-sm" required />
             <p className="mt-2 text-xs text-neutral-500">Photos are automatically resized/compressed for the website.</p>
           </div>
-          <div><label className="mb-2 block text-sm font-medium">Photo label</label><input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="2026 Charger after correction" className="w-full rounded-xl border border-neutral-800 bg-neutral-900 p-3 text-sm" /></div>
+          <div><label className="mb-2 block text-sm font-medium">Photo label</label><input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="2026 Charger after correction" className="w-full rounded-xl border border-[#000B3D]/10 bg-[#F7F9FC] p-3 text-sm" /></div>
           <div><label className="mb-2 block text-sm font-medium">Where should this photo appear?</label><PlacementSelect value={category} onChange={setCategory} /><p className="mt-2 text-[11px] leading-4 text-neutral-500">Current destination: {placementByValue.get(category)?.label || category}</p></div>
-          <div className="md:col-span-4"><button disabled={saving} className="rounded-xl bg-[#5B8CFF] px-6 py-3 font-semibold text-[#0D0D0D] disabled:opacity-50">{saving ? "Processing photo…" : "Add Photo"}</button>{message && <span className="ml-4 text-sm text-neutral-300">{message}</span>}</div>
+          <div className="md:col-span-4"><button disabled={saving} className="rounded-xl bg-[#000B3D] px-6 py-3 font-semibold text-[#0B0F19] disabled:opacity-50">{saving ? "Processing photo…" : "Add Photo"}</button>{message && <span className="ml-4 text-sm text-neutral-700">{message}</span>}</div>
         </form>
 
-        <div className="mt-8 flex flex-wrap items-center gap-2"><button onClick={() => setFilter("all")} className={`rounded-full px-4 py-2 text-xs ${filter === "all" ? "bg-[#5B8CFF] text-[#0D0D0D]" : "border border-white/10 text-white/55"}`}>All Photos</button>{groups.map((group) => <button key={group} onClick={() => setFilter(group)} className={`rounded-full px-4 py-2 text-xs ${filter === group ? "bg-[#5B8CFF] text-[#0D0D0D]" : "border border-white/10 text-white/55"}`}>{group}</button>)}</div>
+        <div className="mt-8 flex flex-wrap items-center gap-2"><button onClick={() => setFilter("all")} className={`rounded-full px-4 py-2 text-xs ${filter === "all" ? "bg-[#000B3D] text-[#0B0F19]" : "border border-[#000B3D]/10 text-black/60"}`}>All Photos</button>{groups.map((group) => <button key={group} onClick={() => setFilter(group)} className={`rounded-full px-4 py-2 text-xs ${filter === group ? "bg-[#000B3D] text-[#0B0F19]" : "border border-[#000B3D]/10 text-black/60"}`}>{group}</button>)}</div>
 
-        {loading ? <p className="py-12 text-neutral-400">Loading…</p> : (
+        {loading ? <p className="py-12 text-neutral-600">Loading…</p> : (
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {visibleImages.map((image) => {
               const placement = placementByValue.get(image.category);
-              return <article key={image.id} className="overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-950">
+              return <article key={image.id} className="overflow-hidden rounded-3xl border border-[#000B3D]/10 bg-white">
                 <img src={image.url} alt={image.title} className="h-56 w-full object-cover" />
                 <div className="space-y-3 p-4">
-                  <div><p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#5B8CFF]">Current Placement</p><p className="mt-1 text-sm font-medium text-white">{placement?.label || image.category}</p></div>
-                  <input defaultValue={image.title} onBlur={(e) => { if (e.target.value !== image.title) updateImage(image, { title: e.target.value }).catch(() => setMessage("Rename failed.")); }} className="w-full rounded-lg border border-neutral-800 bg-neutral-900 px-3 py-2 text-sm" />
+                  <div><p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#000B3D]">Current Placement</p><p className="mt-1 text-sm font-medium text-[#0B0F19]">{placement?.label || image.category}</p></div>
+                  <input defaultValue={image.title} onBlur={(e) => { if (e.target.value !== image.title) updateImage(image, { title: e.target.value }).catch(() => setMessage("Rename failed.")); }} className="w-full rounded-lg border border-[#000B3D]/10 bg-[#F7F9FC] px-3 py-2 text-sm" />
                   <PlacementSelect value={image.category} onChange={(value) => updateImage(image, { category: value }).catch(() => setMessage("Update failed."))} />
-                  <button onClick={() => deleteImage(image.id)} className="w-full rounded-lg bg-red-900/70 px-3 py-2 text-sm font-medium text-red-100 hover:bg-red-900">Delete Photo</button>
+                  <button onClick={() => deleteImage(image.id)} className="w-full rounded-lg bg-red-100 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-100">Delete Photo</button>
                 </div>
               </article>;
             })}

@@ -32,7 +32,7 @@ export default function HeroBackdrop() {
 
   if (!image) {
     return (
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_30%,rgba(220,38,38,.22),transparent_28%),linear-gradient(120deg,#050505_15%,#0d0d0d_60%,#1a0808)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_30%,rgba(0,11,61,.13),transparent_30%),linear-gradient(120deg,#FFFFFF_15%,#F6F8FC_60%,#EEF2FA)]" />
     );
   }
 
@@ -42,10 +42,10 @@ export default function HeroBackdrop() {
         src={image.url}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover object-center"
+        className="absolute inset-0 h-full w-full object-cover object-center opacity-68"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,3,3,.96)_0%,rgba(3,3,3,.86)_37%,rgba(3,3,3,.47)_68%,rgba(3,3,3,.64)_100%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,.16)_0%,rgba(0,0,0,.04)_55%,rgba(0,0,0,.82)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,.99)_0%,rgba(255,255,255,.94)_40%,rgba(255,255,255,.66)_70%,rgba(255,255,255,.30)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,.10)_0%,rgba(255,255,255,.28)_55%,rgba(255,255,255,.76)_100%)]" />
     </>
   );
 }

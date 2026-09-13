@@ -23,7 +23,7 @@ type Vehicle = {
   customerEmail: string;
 };
 
-const input = "w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 outline-none focus:border-[#5B8CFF]/50";
+const input = "w-full rounded-2xl border border-[#000B3D]/10 bg-white px-4 py-3 outline-none focus:border-[#000B3D]/50";
 
 export default function WarrantyPage() {
   const [items, setItems] = useState<Warranty[]>([]);
@@ -89,18 +89,18 @@ export default function WarrantyPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#070707] px-6 py-10 text-white">
+    <main className="min-h-screen bg-white px-6 py-10 text-[#0B0F19]">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-wrap justify-between gap-4">
           <div>
-            <p className="text-xs uppercase tracking-[.28em] text-[#5B8CFF]">{isOwner ? "Owner" : "Staff"}</p>
+            <p className="text-xs uppercase tracking-[.28em] text-[#000B3D]">{isOwner ? "Owner" : "Staff"}</p>
             <h1 className="mt-2 text-4xl font-semibold">Ceramic warranty records</h1>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-white/40">Create and manage coating warranty records for customer vehicles without requiring Quote Chat access.</p>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-black/45">Create and manage coating warranty records for customer vehicles without requiring Quote Chat access.</p>
           </div>
-          <a href={isOwner ? "/owner/dashboard" : "/admin/dashboard"} className="h-fit rounded-full border border-white/15 px-5 py-3 text-sm">Back</a>
+          <a href={isOwner ? "/owner/dashboard" : "/admin/dashboard"} className="h-fit rounded-full border border-[#000B3D]/15 px-5 py-3 text-sm">Back</a>
         </div>
 
-        <form onSubmit={add} className="mt-8 grid gap-4 rounded-[28px] border border-white/10 bg-white/[.03] p-6 md:grid-cols-2">
+        <form onSubmit={add} className="mt-8 grid gap-4 rounded-[28px] border border-[#000B3D]/10 bg-[#F5F7FB] p-6 md:grid-cols-2">
           <select className={input} value={vehicleId} onChange={(event) => setVehicleId(event.target.value)} required>
             <option value="">Choose a customer vehicle</option>
             {vehicles.map((vehicle) => (
@@ -118,21 +118,21 @@ export default function WarrantyPage() {
           </select>
           <input type="date" className={input} value={date} onChange={(event) => setDate(event.target.value)} />
           <textarea className={`${input} md:col-span-2`} value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="Install notes / maintenance requirements" />
-          <button className="rounded-full bg-[#5B8CFF] px-6 py-3 font-semibold text-[#0D0D0D]">Create warranty record</button>
-          {msg && <p className="self-center text-sm text-white/50">{msg}</p>}
+          <button className="rounded-full bg-[#000B3D] px-6 py-3 font-semibold text-[#0B0F19]">Create warranty record</button>
+          {msg && <p className="self-center text-sm text-black/55">{msg}</p>}
         </form>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           {items.map((warranty) => (
-            <article key={warranty.id} className="rounded-[26px] border border-white/10 bg-white/[.025] p-6">
-              <p className="text-xs uppercase tracking-[.22em] text-[#5B8CFF]">{warranty.durationYears}-year protection</p>
+            <article key={warranty.id} className="rounded-[26px] border border-[#000B3D]/10 bg-[#F7F9FC] p-6">
+              <p className="text-xs uppercase tracking-[.22em] text-[#000B3D]">{warranty.durationYears}-year protection</p>
               <h2 className="mt-2 text-2xl font-semibold">{warranty.coatingName}</h2>
-              <p className="mt-2 text-white/45">{warranty.vehicle.year} {warranty.vehicle.make} {warranty.vehicle.model}</p>
-              <p className="mt-1 text-sm text-white/35">{warranty.user.name} · expires {new Date(warranty.expiresAt).toLocaleDateString()}</p>
-              <button onClick={() => remove(warranty.id)} className="mt-4 text-sm text-red-300">Delete record</button>
+              <p className="mt-2 text-black/50">{warranty.vehicle.year} {warranty.vehicle.make} {warranty.vehicle.model}</p>
+              <p className="mt-1 text-sm text-black/40">{warranty.user.name} · expires {new Date(warranty.expiresAt).toLocaleDateString()}</p>
+              <button onClick={() => remove(warranty.id)} className="mt-4 text-sm text-red-700">Delete record</button>
             </article>
           ))}
-          {!items.length && <p className="rounded-[26px] border border-dashed border-white/10 p-6 text-sm text-white/35">No ceramic warranty records yet.</p>}
+          {!items.length && <p className="rounded-[26px] border border-dashed border-[#000B3D]/10 p-6 text-sm text-black/40">No ceramic warranty records yet.</p>}
         </div>
       </div>
     </main>

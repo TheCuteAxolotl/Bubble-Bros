@@ -36,7 +36,7 @@ export default function SocialLinks({ light = false }: { light?: boolean }) {
           rel="noreferrer"
           aria-label={link.name}
           title={link.name}
-          className={`grid h-11 w-11 place-items-center rounded-full border transition hover:-translate-y-0.5 ${light ? "border-black/15 bg-black text-white hover:bg-[#5B8CFF] hover:text-[#0D0D0D]" : "border-white/15 bg-white/[.04] text-white hover:border-[#5B8CFF] hover:bg-[#5B8CFF] hover:text-[#0D0D0D]"}`}
+          className={`grid h-11 w-11 place-items-center rounded-full border transition hover:-translate-y-0.5 ${light ? "border-[#000B3D] bg-[#000B3D] text-white hover:opacity-85" : "border-[#000B3D]/15 bg-white text-[#000B3D] hover:border-[#000B3D] hover:bg-[#000B3D] hover:text-white"}`}
         >
           {link.icon}
         </a>

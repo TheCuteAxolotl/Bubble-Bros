@@ -18,7 +18,7 @@ import {
   parseBookingAvailabilityConfig,
 } from "@/lib/booking-availability";
 
-const input = "w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white outline-none focus:border-[#5B8CFF]/60";
+const input = "w-full rounded-2xl border border-[#000B3D]/10 bg-[#F3F6FA] px-4 py-3 text-[#0B0F19] outline-none focus:border-[#000B3D]/60";
 const DAY_LABELS: Record<BookingDayKey, string> = {
   sunday: "Sunday",
   monday: "Monday",
@@ -257,40 +257,40 @@ export default function BookingSettingsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#070707] text-white">
+    <main className="min-h-screen bg-white text-[#0B0F19]">
       <div className="mx-auto max-w-7xl px-6 py-10">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[.28em] text-[#5B8CFF]">Owner</p>
+            <p className="text-xs font-bold uppercase tracking-[.28em] text-[#000B3D]">Owner</p>
             <h1 className="mt-2 text-4xl font-semibold">Booking Settings</h1>
-            <p className="mt-2 max-w-3xl text-white/40">Set the days and times customers can book, block off dates, and manage booking add-ons and discount codes.</p>
+            <p className="mt-2 max-w-3xl text-black/45">Set the days and times customers can book, block off dates, and manage booking add-ons and discount codes.</p>
           </div>
           <div className="flex gap-2">
-            <a href="/owner/bookings" className="rounded-full border border-[#5B8CFF]/30 bg-[#5B8CFF]/10 px-5 py-3 text-sm text-[#5B8CFF]">View Bookings</a>
-            <a href="/owner/dashboard" className="rounded-full border border-white/15 px-5 py-3 text-sm">Back</a>
+            <a href="/owner/bookings" className="rounded-full border border-[#000B3D]/30 bg-[#000B3D]/10 px-5 py-3 text-sm text-[#000B3D]">View Bookings</a>
+            <a href="/owner/dashboard" className="rounded-full border border-[#000B3D]/15 px-5 py-3 text-sm">Back</a>
           </div>
         </div>
 
         {canManageAvailability && (
           <>
-            <section className="mt-8 rounded-[30px] border border-white/10 bg-white/[.025] p-6">
+            <section className="mt-8 rounded-[30px] border border-[#000B3D]/10 bg-[#F7F9FC] p-6">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[.22em] text-[#5B8CFF]">Weekly Availability</p>
+                <p className="text-xs font-bold uppercase tracking-[.22em] text-[#000B3D]">Weekly Availability</p>
                 <h2 className="mt-2 text-2xl font-semibold">Days and times customers can book</h2>
-                <p className="mt-2 max-w-3xl text-sm text-white/40">Turn a day off if you normally do not work that day. Add or remove times for each day. A time disappears from the customer booking form as soon as another active booking takes it.</p>
+                <p className="mt-2 max-w-3xl text-sm text-black/45">Turn a day off if you normally do not work that day. Add or remove times for each day. A time disappears from the customer booking form as soon as another active booking takes it.</p>
               </div>
 
               <div className="mt-6 grid gap-4 lg:grid-cols-2">
                 {BOOKING_DAY_KEYS.map((day) => {
                   const dayConfig = availability.weekly[day];
                   return (
-                    <article key={day} className={`rounded-2xl border p-4 ${dayConfig.enabled ? "border-white/10 bg-black/25" : "border-white/5 bg-black/10 opacity-70"}`}>
+                    <article key={day} className={`rounded-2xl border p-4 ${dayConfig.enabled ? "border-[#000B3D]/10 bg-[#F6F8FB]" : "border-white/5 bg-[#F8FAFD] opacity-70"}`}>
                       <div className="flex items-center justify-between gap-3">
                         <div>
                           <h3 className="font-semibold">{DAY_LABELS[day]}</h3>
-                          <p className="mt-1 text-xs text-white/35">{dayConfig.enabled ? `${dayConfig.slots.length} bookable time${dayConfig.slots.length === 1 ? "" : "s"}` : "Not available"}</p>
+                          <p className="mt-1 text-xs text-black/40">{dayConfig.enabled ? `${dayConfig.slots.length} bookable time${dayConfig.slots.length === 1 ? "" : "s"}` : "Not available"}</p>
                         </div>
-                        <label className="flex items-center gap-2 text-sm text-white/60">
+                        <label className="flex items-center gap-2 text-sm text-black/65">
                           <input type="checkbox" checked={dayConfig.enabled} onChange={(e) => updateWeeklyDay(day, { enabled: e.target.checked })} /> Available
                         </label>
                       </div>
@@ -300,11 +300,11 @@ export default function BookingSettingsPage() {
                           {dayConfig.slots.map((slot, index) => (
                             <div key={`${day}-${index}`} className="flex gap-2">
                               <input type="time" className={input} value={slot} onChange={(e) => updateWeeklySlot(day, index, e.target.value)} />
-                              <button type="button" onClick={() => removeWeeklySlot(day, index)} className="rounded-xl border border-red-500/25 px-3 text-sm text-red-300">Remove</button>
+                              <button type="button" onClick={() => removeWeeklySlot(day, index)} className="rounded-xl border border-red-500/25 px-3 text-sm text-red-700">Remove</button>
                             </div>
                           ))}
-                          {dayConfig.slots.length === 0 && <p className="text-xs text-amber-200">This day is on, but it has no times, so customers still cannot book it.</p>}
-                          <button type="button" onClick={() => addWeeklySlot(day)} className="rounded-full border border-white/10 px-4 py-2 text-xs text-white/60">+ Add time</button>
+                          {dayConfig.slots.length === 0 && <p className="text-xs text-amber-800">This day is on, but it has no times, so customers still cannot book it.</p>}
+                          <button type="button" onClick={() => addWeeklySlot(day)} className="rounded-full border border-[#000B3D]/10 px-4 py-2 text-xs text-black/65">+ Add time</button>
                         </div>
                       )}
                     </article>
@@ -313,43 +313,43 @@ export default function BookingSettingsPage() {
               </div>
             </section>
 
-            <section className="mt-8 rounded-[30px] border border-white/10 bg-white/[.025] p-6">
+            <section className="mt-8 rounded-[30px] border border-[#000B3D]/10 bg-[#F7F9FC] p-6">
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[.22em] text-[#5B8CFF]">Date Overrides</p>
+                  <p className="text-xs font-bold uppercase tracking-[.22em] text-[#000B3D]">Date Overrides</p>
                   <h2 className="mt-2 text-2xl font-semibold">Days off and special hours</h2>
-                  <p className="mt-2 max-w-3xl text-sm text-white/40">Use this for a specific day you are unavailable, a vacation day, or a day where your hours are different from your normal weekly schedule.</p>
+                  <p className="mt-2 max-w-3xl text-sm text-black/45">Use this for a specific day you are unavailable, a vacation day, or a day where your hours are different from your normal weekly schedule.</p>
                 </div>
-                <button type="button" onClick={addDateOverride} className="rounded-full border border-[#5B8CFF]/30 bg-[#5B8CFF]/8 px-5 py-3 text-sm font-semibold text-[#5B8CFF]">+ Add date</button>
+                <button type="button" onClick={addDateOverride} className="rounded-full border border-[#000B3D]/30 bg-[#000B3D]/8 px-5 py-3 text-sm font-semibold text-[#000B3D]">+ Add date</button>
               </div>
 
               <div className="mt-6 space-y-4">
                 {availability.overrides.map((item, index) => (
-                  <article key={`${item.date}-${index}`} className="rounded-2xl border border-white/10 bg-black/25 p-4">
+                  <article key={`${item.date}-${index}`} className="rounded-2xl border border-[#000B3D]/10 bg-[#F6F8FB] p-4">
                     <div className="grid gap-3 md:grid-cols-[220px_1fr_auto_auto] md:items-end">
-                      <label className="text-sm text-white/55">Date<input type="date" className={`${input} mt-2`} value={item.date} onChange={(e) => updateDateOverride(index, { date: e.target.value })} /></label>
-                      <label className="text-sm text-white/55">Note (optional)<input className={`${input} mt-2`} value={item.note || ""} onChange={(e) => updateDateOverride(index, { note: e.target.value })} placeholder="Vacation, class, personal day…" /></label>
-                      <label className="flex h-12 items-center gap-2 rounded-2xl border border-white/10 px-4 text-sm text-white/60"><input type="checkbox" checked={item.closed} onChange={(e) => updateDateOverride(index, { closed: e.target.checked })} /> Entire day off</label>
-                      <button type="button" onClick={() => removeDateOverride(index)} className="h-12 rounded-xl border border-red-500/25 px-4 text-sm text-red-300">Delete</button>
+                      <label className="text-sm text-black/60">Date<input type="date" className={`${input} mt-2`} value={item.date} onChange={(e) => updateDateOverride(index, { date: e.target.value })} /></label>
+                      <label className="text-sm text-black/60">Note (optional)<input className={`${input} mt-2`} value={item.note || ""} onChange={(e) => updateDateOverride(index, { note: e.target.value })} placeholder="Vacation, class, personal day…" /></label>
+                      <label className="flex h-12 items-center gap-2 rounded-2xl border border-[#000B3D]/10 px-4 text-sm text-black/65"><input type="checkbox" checked={item.closed} onChange={(e) => updateDateOverride(index, { closed: e.target.checked })} /> Entire day off</label>
+                      <button type="button" onClick={() => removeDateOverride(index)} className="h-12 rounded-xl border border-red-500/25 px-4 text-sm text-red-700">Delete</button>
                     </div>
 
                     {!item.closed && (
                       <div className="mt-4">
-                        <p className="text-xs text-white/40">Custom available times for this date</p>
+                        <p className="text-xs text-black/45">Custom available times for this date</p>
                         <div className="mt-2 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
                           {item.slots.map((slot, slotIndex) => (
                             <div key={`${index}-${slotIndex}`} className="flex gap-2">
                               <input type="time" className={input} value={slot} onChange={(e) => updateOverrideSlot(index, slotIndex, e.target.value)} />
-                              <button type="button" onClick={() => removeOverrideSlot(index, slotIndex)} className="rounded-xl border border-red-500/25 px-3 text-xs text-red-300">×</button>
+                              <button type="button" onClick={() => removeOverrideSlot(index, slotIndex)} className="rounded-xl border border-red-500/25 px-3 text-xs text-red-700">×</button>
                             </div>
                           ))}
                         </div>
-                        <button type="button" onClick={() => addOverrideSlot(index)} className="mt-3 rounded-full border border-white/10 px-4 py-2 text-xs text-white/60">+ Add time</button>
+                        <button type="button" onClick={() => addOverrideSlot(index)} className="mt-3 rounded-full border border-[#000B3D]/10 px-4 py-2 text-xs text-black/65">+ Add time</button>
                       </div>
                     )}
                   </article>
                 ))}
-                {availability.overrides.length === 0 && <p className="rounded-2xl border border-dashed border-white/10 p-6 text-sm text-white/35">No special dates yet. Your normal weekly schedule will be used.</p>}
+                {availability.overrides.length === 0 && <p className="rounded-2xl border border-dashed border-[#000B3D]/10 p-6 text-sm text-black/40">No special dates yet. Your normal weekly schedule will be used.</p>}
               </div>
             </section>
           </>
@@ -357,32 +357,32 @@ export default function BookingSettingsPage() {
 
         {canManagePricing && (
           <>
-            <section className="mt-8 rounded-[30px] border border-white/10 bg-white/[.025] p-6">
+            <section className="mt-8 rounded-[30px] border border-[#000B3D]/10 bg-[#F7F9FC] p-6">
               <div className="flex flex-wrap items-end justify-between gap-4">
-                <div><p className="text-xs font-bold uppercase tracking-[.22em] text-[#5B8CFF]">Car Detailing Add-Ons</p><h2 className="mt-2 text-2xl font-semibold">Booking add-ons</h2><p className="mt-2 text-sm text-white/40">These prices appear in the booking form and are added to the exact total.</p></div>
-                <label className="text-sm text-white/55">Headlight Restoration booked alone
+                <div><p className="text-xs font-bold uppercase tracking-[.22em] text-[#000B3D]">Car Detailing Add-Ons</p><h2 className="mt-2 text-2xl font-semibold">Booking add-ons</h2><p className="mt-2 text-sm text-black/45">These prices appear in the booking form and are added to the exact total.</p></div>
+                <label className="text-sm text-black/60">Headlight Restoration booked alone
                   <input type="number" min="0" step="1" className={`${input} mt-2 w-56`} value={pricing.headlightStandalonePrice} onChange={(e) => setPricing((current) => ({ ...current, headlightStandalonePrice: Number(e.target.value) }))} />
                 </label>
               </div>
 
               <div className="mt-6 grid gap-3">
                 {pricing.addOns.map((item, index) => (
-                  <div key={item.id} className="grid gap-3 rounded-2xl border border-white/10 bg-black/25 p-4 md:grid-cols-[1fr_150px_auto_auto] md:items-end">
-                    <label className="text-sm text-white/55">Add-on name<input className={`${input} mt-2`} value={item.name} onChange={(e) => updateAddOn(index, { name: e.target.value })} /></label>
-                    <label className="text-sm text-white/55">Price<input type="number" min="0" step="1" className={`${input} mt-2`} value={item.price} onChange={(e) => updateAddOn(index, { price: Number(e.target.value) })} /></label>
-                    <label className="flex h-12 items-center gap-2 text-sm text-white/60"><input type="checkbox" checked={item.active} onChange={(e) => updateAddOn(index, { active: e.target.checked })} /> Active</label>
-                    <button type="button" onClick={() => deleteAddOn(index)} className="h-12 rounded-xl border border-red-500/25 px-4 text-sm text-red-300">Delete</button>
+                  <div key={item.id} className="grid gap-3 rounded-2xl border border-[#000B3D]/10 bg-[#F6F8FB] p-4 md:grid-cols-[1fr_150px_auto_auto] md:items-end">
+                    <label className="text-sm text-black/60">Add-on name<input className={`${input} mt-2`} value={item.name} onChange={(e) => updateAddOn(index, { name: e.target.value })} /></label>
+                    <label className="text-sm text-black/60">Price<input type="number" min="0" step="1" className={`${input} mt-2`} value={item.price} onChange={(e) => updateAddOn(index, { price: Number(e.target.value) })} /></label>
+                    <label className="flex h-12 items-center gap-2 text-sm text-black/65"><input type="checkbox" checked={item.active} onChange={(e) => updateAddOn(index, { active: e.target.checked })} /> Active</label>
+                    <button type="button" onClick={() => deleteAddOn(index)} className="h-12 rounded-xl border border-red-500/25 px-4 text-sm text-red-700">Delete</button>
                   </div>
                 ))}
               </div>
-              <button type="button" onClick={addAddOn} className="mt-5 rounded-full border border-[#5B8CFF]/30 bg-[#5B8CFF]/8 px-5 py-3 text-sm font-semibold text-[#5B8CFF]">+ Add add-on</button>
+              <button type="button" onClick={addAddOn} className="mt-5 rounded-full border border-[#000B3D]/30 bg-[#000B3D]/8 px-5 py-3 text-sm font-semibold text-[#000B3D]">+ Add add-on</button>
             </section>
 
-            <section className="mt-8 rounded-[30px] border border-white/10 bg-white/[.025] p-6">
+            <section className="mt-8 rounded-[30px] border border-[#000B3D]/10 bg-[#F7F9FC] p-6">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[.22em] text-[#5B8CFF]">Discount Codes</p>
+                <p className="text-xs font-bold uppercase tracking-[.22em] text-[#000B3D]">Discount Codes</p>
                 <h2 className="mt-2 text-2xl font-semibold">Promo code controls</h2>
-                <p className="mt-2 max-w-3xl text-sm text-white/40">Set an optional total usage limit, restrict a code to one booking per customer, and choose an expiration date. Leave the usage limit or expiration blank for no limit.</p>
+                <p className="mt-2 max-w-3xl text-sm text-black/45">Set an optional total usage limit, restrict a code to one booking per customer, and choose an expiration date. Leave the usage limit or expiration blank for no limit.</p>
               </div>
               <div className="mt-6 grid gap-4">
                 {discounts.map((item, index) => {
@@ -390,41 +390,41 @@ export default function BookingSettingsPage() {
                   const limitReached = item.usageLimit !== null && usageCount >= item.usageLimit;
                   const expired = isDiscountExpired(item);
                   return (
-                    <article key={item.id} className="rounded-2xl border border-white/10 bg-black/25 p-4">
+                    <article key={item.id} className="rounded-2xl border border-[#000B3D]/10 bg-[#F6F8FB] p-4">
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <div className="flex flex-wrap items-center gap-2 text-xs">
-                          <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-white/60">Used {usageCount}{item.usageLimit !== null ? ` / ${item.usageLimit}` : " times"}</span>
-                          {item.onePerCustomer && <span className="rounded-full border border-blue-400/20 bg-blue-400/10 px-3 py-1.5 text-blue-200">1 per customer</span>}
-                          {item.expiresAt && <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-white/55">Expires {item.expiresAt}</span>}
-                          {expired && <span className="rounded-full border border-amber-400/25 bg-amber-400/10 px-3 py-1.5 text-amber-200">Expired</span>}
-                          {limitReached && <span className="rounded-full border border-amber-400/25 bg-amber-400/10 px-3 py-1.5 text-amber-200">Limit reached</span>}
+                          <span className="rounded-full border border-[#000B3D]/10 bg-[#F4F7FB] px-3 py-1.5 text-black/65">Used {usageCount}{item.usageLimit !== null ? ` / ${item.usageLimit}` : " times"}</span>
+                          {item.onePerCustomer && <span className="rounded-full border border-blue-400/20 bg-blue-400/10 px-3 py-1.5 text-blue-700">1 per customer</span>}
+                          {item.expiresAt && <span className="rounded-full border border-[#000B3D]/10 bg-[#F4F7FB] px-3 py-1.5 text-black/60">Expires {item.expiresAt}</span>}
+                          {expired && <span className="rounded-full border border-amber-400/25 bg-amber-400/10 px-3 py-1.5 text-amber-800">Expired</span>}
+                          {limitReached && <span className="rounded-full border border-amber-400/25 bg-amber-400/10 px-3 py-1.5 text-amber-800">Limit reached</span>}
                         </div>
-                        <button type="button" onClick={() => deleteDiscount(index)} className="rounded-xl border border-red-500/25 px-4 py-2 text-sm text-red-300">Delete</button>
+                        <button type="button" onClick={() => deleteDiscount(index)} className="rounded-xl border border-red-500/25 px-4 py-2 text-sm text-red-700">Delete</button>
                       </div>
 
                       <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-                        <label className="text-sm text-white/55">Code<input className={`${input} mt-2 uppercase`} value={item.code} onChange={(e) => updateDiscount(index, { code: normalizeDiscountCode(e.target.value) })} placeholder="SAVE10" /></label>
-                        <label className="text-sm text-white/55">Customer label<input className={`${input} mt-2`} value={item.label} onChange={(e) => updateDiscount(index, { label: e.target.value })} placeholder="10% off detailing" /></label>
-                        <label className="text-sm text-white/55">Discount type<select className={`${input} mt-2`} value={item.type} onChange={(e) => updateDiscount(index, { type: e.target.value as "percent" | "fixed" })}><option value="percent">Percent %</option><option value="fixed">Fixed $</option></select></label>
-                        <label className="text-sm text-white/55">Amount<input type="number" min="0" step="0.01" className={`${input} mt-2`} value={item.amount} onChange={(e) => updateDiscount(index, { amount: Number(e.target.value) })} /></label>
-                        <label className="text-sm text-white/55">Total usage limit<input type="number" min="1" step="1" className={`${input} mt-2`} value={item.usageLimit ?? ""} onChange={(e) => updateDiscount(index, { usageLimit: e.target.value ? Math.max(1, Math.floor(Number(e.target.value))) : null })} placeholder="Unlimited" /></label>
-                        <label className="text-sm text-white/55">Expiration date<input type="date" className={`${input} mt-2`} value={item.expiresAt || ""} onChange={(e) => updateDiscount(index, { expiresAt: e.target.value || null })} /></label>
-                        <label className="flex min-h-12 items-center gap-2 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm text-white/60"><input type="checkbox" checked={item.onePerCustomer} onChange={(e) => updateDiscount(index, { onePerCustomer: e.target.checked })} /> One use per customer</label>
-                        <label className="flex min-h-12 items-center gap-2 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm text-white/60"><input type="checkbox" checked={item.active} onChange={(e) => updateDiscount(index, { active: e.target.checked })} /> Active</label>
+                        <label className="text-sm text-black/60">Code<input className={`${input} mt-2 uppercase`} value={item.code} onChange={(e) => updateDiscount(index, { code: normalizeDiscountCode(e.target.value) })} placeholder="SAVE10" /></label>
+                        <label className="text-sm text-black/60">Customer label<input className={`${input} mt-2`} value={item.label} onChange={(e) => updateDiscount(index, { label: e.target.value })} placeholder="10% off detailing" /></label>
+                        <label className="text-sm text-black/60">Discount type<select className={`${input} mt-2`} value={item.type} onChange={(e) => updateDiscount(index, { type: e.target.value as "percent" | "fixed" })}><option value="percent">Percent %</option><option value="fixed">Fixed $</option></select></label>
+                        <label className="text-sm text-black/60">Amount<input type="number" min="0" step="0.01" className={`${input} mt-2`} value={item.amount} onChange={(e) => updateDiscount(index, { amount: Number(e.target.value) })} /></label>
+                        <label className="text-sm text-black/60">Total usage limit<input type="number" min="1" step="1" className={`${input} mt-2`} value={item.usageLimit ?? ""} onChange={(e) => updateDiscount(index, { usageLimit: e.target.value ? Math.max(1, Math.floor(Number(e.target.value))) : null })} placeholder="Unlimited" /></label>
+                        <label className="text-sm text-black/60">Expiration date<input type="date" className={`${input} mt-2`} value={item.expiresAt || ""} onChange={(e) => updateDiscount(index, { expiresAt: e.target.value || null })} /></label>
+                        <label className="flex min-h-12 items-center gap-2 rounded-2xl border border-[#000B3D]/10 bg-[#F6F8FB] px-4 text-sm text-black/65"><input type="checkbox" checked={item.onePerCustomer} onChange={(e) => updateDiscount(index, { onePerCustomer: e.target.checked })} /> One use per customer</label>
+                        <label className="flex min-h-12 items-center gap-2 rounded-2xl border border-[#000B3D]/10 bg-[#F6F8FB] px-4 text-sm text-black/65"><input type="checkbox" checked={item.active} onChange={(e) => updateDiscount(index, { active: e.target.checked })} /> Active</label>
                       </div>
                     </article>
                   );
                 })}
-                {discounts.length === 0 && <p className="rounded-2xl border border-dashed border-white/10 p-6 text-sm text-white/35">No discount codes yet.</p>}
+                {discounts.length === 0 && <p className="rounded-2xl border border-dashed border-[#000B3D]/10 p-6 text-sm text-black/40">No discount codes yet.</p>}
               </div>
-              <button type="button" onClick={addDiscount} className="mt-5 rounded-full border border-[#5B8CFF]/30 bg-[#5B8CFF]/8 px-5 py-3 text-sm font-semibold text-[#5B8CFF]">+ Create discount code</button>
+              <button type="button" onClick={addDiscount} className="mt-5 rounded-full border border-[#000B3D]/30 bg-[#000B3D]/8 px-5 py-3 text-sm font-semibold text-[#000B3D]">+ Create discount code</button>
             </section>
           </>
         )}
 
-        <div className="sticky bottom-4 z-20 mt-8 flex flex-wrap items-center gap-4 rounded-[22px] border border-[#5B8CFF]/20 bg-[#0D0D0D]/95 p-4 shadow-2xl backdrop-blur-xl">
-          <button type="button" onClick={save} disabled={saving} className="rounded-full bg-[#5B8CFF] px-7 py-3 font-semibold text-[#0D0D0D] disabled:opacity-50">{saving ? "Saving…" : "Save Booking Settings"}</button>
-          {message && <p className="text-sm text-white/55">{message}</p>}
+        <div className="sticky bottom-4 z-20 mt-8 flex flex-wrap items-center gap-4 rounded-[22px] border border-[#000B3D]/20 bg-white/95 p-4 shadow-2xl backdrop-blur-xl">
+          <button type="button" onClick={save} disabled={saving} className="rounded-full bg-[#000B3D] px-7 py-3 font-semibold text-[#0B0F19] disabled:opacity-50">{saving ? "Saving…" : "Save Booking Settings"}</button>
+          {message && <p className="text-sm text-black/60">{message}</p>}
         </div>
       </div>
     </main>

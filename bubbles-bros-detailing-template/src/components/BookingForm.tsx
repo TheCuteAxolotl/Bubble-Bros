@@ -112,7 +112,7 @@ const initialState: FormState = {
   policyAgreed: false,
 };
 
-const input = "mt-2 w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-white outline-none focus:border-[#5B8CFF]/60";
+const input = "mt-2 w-full rounded-2xl border border-[#000B3D]/10 bg-white px-4 py-3 text-[#0B0F19] outline-none focus:border-[#000B3D]/60";
 
 function vehicleTypeToClass(value: string): VehicleClass {
   const normalized = value.toLowerCase();
@@ -451,22 +451,22 @@ export default function BookingForm({ prefill, onClose, initialSiteContent }: { 
   const databaseServices = services.filter((service) => service.active && service.title.trim().toLowerCase() !== "headlight restoration");
 
   return (
-    <form onSubmit={submit} className="space-y-5 text-white">
+    <form onSubmit={submit} className="space-y-5 text-[#0B0F19]">
       <div>
-        <p className="text-xs font-semibold uppercase tracking-[.24em] text-[#5B8CFF]">{quoteLocked ? "Accepted quote" : packageSelection ? "Selected pricing package" : "Fixed-price booking"}</p>
+        <p className="text-xs font-semibold uppercase tracking-[.24em] text-[#000B3D]">{quoteLocked ? "Accepted quote" : packageSelection ? "Selected pricing package" : "Fixed-price booking"}</p>
         <h2 className="mt-2 text-2xl font-semibold">Request an appointment</h2>
-        <p className="mt-1 text-sm text-white/40">Pick the service, add any extras, use a discount code if you have one, and you’ll see the total before you submit.</p>
+        <p className="mt-1 text-sm text-black/45">Pick the service, add any extras, use a discount code if you have one, and you’ll see the total before you submit.</p>
       </div>
 
-      {setupMessage && <div className="rounded-2xl border border-amber-500/20 bg-amber-500/[.07] p-4 text-sm text-amber-100"><p>{setupMessage}</p><a href="/quote" className="mt-3 inline-block font-semibold text-[#5B8CFF]">Get an Exact Quote →</a></div>}
+      {setupMessage && <div className="rounded-2xl border border-amber-500/20 bg-amber-500/[.07] p-4 text-sm text-amber-800"><p>{setupMessage}</p><a href="/quote" className="mt-3 inline-block font-semibold text-[#000B3D]">Get an Exact Quote →</a></div>}
 
       {quoteLocked ? (
-        <div className="rounded-3xl border border-[#5B8CFF]/25 bg-[#5B8CFF]/[.055] p-5">
-          <p className="text-xs uppercase tracking-[.22em] text-[#5B8CFF]">Accepted quote</p>
-          <div className="mt-2 flex flex-wrap items-end justify-between gap-4"><div><p className="text-xl font-semibold">{form.selectedPackage}</p><p className="mt-1 text-xs text-white/35">Quote #{form.quoteThreadId.slice(-7)}</p></div><p className="text-3xl font-semibold">${Number(baseTotal || 0).toFixed(2)}</p></div>
+        <div className="rounded-3xl border border-[#000B3D]/25 bg-[#000B3D]/[.055] p-5">
+          <p className="text-xs uppercase tracking-[.22em] text-[#000B3D]">Accepted quote</p>
+          <div className="mt-2 flex flex-wrap items-end justify-between gap-4"><div><p className="text-xl font-semibold">{form.selectedPackage}</p><p className="mt-1 text-xs text-black/40">Quote #{form.quoteThreadId.slice(-7)}</p></div><p className="text-3xl font-semibold">${Number(baseTotal || 0).toFixed(2)}</p></div>
         </div>
       ) : (
-        <label className="block text-sm text-white/60">
+        <label className="block text-sm text-black/65">
           Service or package
           <select className={input} value={serviceChoiceValue} onChange={(event) => chooseBookingOption(event.target.value)} required>
             <option value="">Choose a service</option>
@@ -480,67 +480,67 @@ export default function BookingForm({ prefill, onClose, initialSiteContent }: { 
       )}
 
       {packageSelection && !quoteLocked && (
-        <div className="rounded-3xl border border-[#5B8CFF]/25 bg-[#5B8CFF]/[.055] p-5">
-          <div className="flex flex-wrap items-start justify-between gap-4"><div><p className="text-xs font-bold uppercase tracking-[.22em] text-[#5B8CFF]">Package selection</p><h3 className="mt-2 text-xl font-semibold">{packageSelection.packageName}</h3></div><p className="text-3xl font-semibold">${packageSelection.price.toFixed(2)}</p></div>
-          <div className="mt-4"><p className="text-xs uppercase tracking-[.18em] text-white/35">Vehicle size</p><div className="mt-2 grid gap-2 sm:grid-cols-3">{(Object.keys(VEHICLE_LABELS) as VehicleClass[]).map((key) => <button key={key} type="button" onClick={() => changePackageVehicleClass(key)} className={`rounded-xl border px-4 py-3 text-sm font-semibold ${packageSelection.vehicleClass === key ? "border-[#5B8CFF]/55 bg-[#5B8CFF]/10" : "border-white/10 bg-black/20 text-white/55"}`}>{VEHICLE_LABELS[key]} · ${Number(pricingConfigs[packageSelection.pricingPage].packages.find((item) => item.id === packageSelection.packageId)?.prices?.[key] || 0).toFixed(0)}</button>)}</div></div>
+        <div className="rounded-3xl border border-[#000B3D]/25 bg-[#000B3D]/[.055] p-5">
+          <div className="flex flex-wrap items-start justify-between gap-4"><div><p className="text-xs font-bold uppercase tracking-[.22em] text-[#000B3D]">Package selection</p><h3 className="mt-2 text-xl font-semibold">{packageSelection.packageName}</h3></div><p className="text-3xl font-semibold">${packageSelection.price.toFixed(2)}</p></div>
+          <div className="mt-4"><p className="text-xs uppercase tracking-[.18em] text-black/40">Vehicle size</p><div className="mt-2 grid gap-2 sm:grid-cols-3">{(Object.keys(VEHICLE_LABELS) as VehicleClass[]).map((key) => <button key={key} type="button" onClick={() => changePackageVehicleClass(key)} className={`rounded-xl border px-4 py-3 text-sm font-semibold ${packageSelection.vehicleClass === key ? "border-[#000B3D]/55 bg-[#000B3D]/10" : "border-[#000B3D]/10 bg-[#F7F9FC] text-black/60"}`}>{VEHICLE_LABELS[key]} · ${Number(pricingConfigs[packageSelection.pricingPage].packages.find((item) => item.id === packageSelection.packageId)?.prices?.[key] || 0).toFixed(0)}</button>)}</div></div>
         </div>
       )}
 
-      {vehicles.length > 0 && !quoteLocked && <label className="block text-sm text-white/60">Saved vehicle<select className={input} value={form.vehicleId} onChange={(event) => chooseVehicle(event.target.value)}><option value="">Enter vehicle manually</option>{vehicles.map((vehicle) => <option key={vehicle.id} value={vehicle.id}>{vehicle.nickname || `${vehicle.year} ${vehicle.make} ${vehicle.model}`}</option>)}</select></label>}
+      {vehicles.length > 0 && !quoteLocked && <label className="block text-sm text-black/65">Saved vehicle<select className={input} value={form.vehicleId} onChange={(event) => chooseVehicle(event.target.value)}><option value="">Enter vehicle manually</option>{vehicles.map((vehicle) => <option key={vehicle.id} value={vehicle.id}>{vehicle.nickname || `${vehicle.year} ${vehicle.make} ${vehicle.model}`}</option>)}</select></label>}
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="text-sm text-white/60">Name<input className={input} value={form.name} onChange={(event) => set("name", event.target.value)} required /></label>
-        <label className="text-sm text-white/60">Phone<input className={input} value={form.phone} onChange={(event) => set("phone", event.target.value)} required /></label>
-        <label className="text-sm text-white/60 sm:col-span-2">Email<input type="email" className={input} value={form.email} onChange={(event) => set("email", event.target.value)} required /></label>
+        <label className="text-sm text-black/65">Name<input className={input} value={form.name} onChange={(event) => set("name", event.target.value)} required /></label>
+        <label className="text-sm text-black/65">Phone<input className={input} value={form.phone} onChange={(event) => set("phone", event.target.value)} required /></label>
+        <label className="text-sm text-black/65 sm:col-span-2">Email<input type="email" className={input} value={form.email} onChange={(event) => set("email", event.target.value)} required /></label>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">
-        <label className="text-sm text-white/60">Year<input className={input} value={form.vehicleYear} onChange={(event) => set("vehicleYear", event.target.value)} required /></label>
-        <label className="text-sm text-white/60">Make<input className={input} value={form.vehicleMake} onChange={(event) => set("vehicleMake", event.target.value)} required /></label>
-        <label className="text-sm text-white/60">Model<input className={input} value={form.vehicleModel} onChange={(event) => set("vehicleModel", event.target.value)} required /></label>
+        <label className="text-sm text-black/65">Year<input className={input} value={form.vehicleYear} onChange={(event) => set("vehicleYear", event.target.value)} required /></label>
+        <label className="text-sm text-black/65">Make<input className={input} value={form.vehicleMake} onChange={(event) => set("vehicleMake", event.target.value)} required /></label>
+        <label className="text-sm text-black/65">Model<input className={input} value={form.vehicleModel} onChange={(event) => set("vehicleModel", event.target.value)} required /></label>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="text-sm text-white/60"><p>Preferred date</p><BookingDatePicker value={form.preferredDate} onChange={(value) => { set("preferredDate", value); set("preferredTime", ""); }} /></div>
-        <label className="text-sm text-white/60">Available time<select className={input} value={form.preferredTime} onChange={(event) => set("preferredTime", event.target.value)} required><option value="">Choose a time</option>{slots.map((slot) => <option key={slot}>{slot}</option>)}</select>{form.preferredDate && slots.length === 0 && <span className="mt-2 block text-xs text-[#5B8CFF]">No standard times available. Try another date or message us.</span>}</label>
+        <div className="text-sm text-black/65"><p>Preferred date</p><BookingDatePicker value={form.preferredDate} onChange={(value) => { set("preferredDate", value); set("preferredTime", ""); }} /></div>
+        <label className="text-sm text-black/65">Available time<select className={input} value={form.preferredTime} onChange={(event) => set("preferredTime", event.target.value)} required><option value="">Choose a time</option>{slots.map((slot) => <option key={slot}>{slot}</option>)}</select>{form.preferredDate && slots.length === 0 && <span className="mt-2 block text-xs text-[#000B3D]">No standard times available. Try another date or message us.</span>}</label>
       </div>
 
       {allowCarAddOns && (
-        <section className="rounded-[26px] border border-white/10 bg-white/[.025] p-5">
-          <div><p className="text-sm font-semibold">Car Detailing Add-Ons</p><p className="mt-1 text-xs text-white/35">Add-ons are added to the total as you select them. Headlight Restoration is ${bookingPricing.addOns.find((item) => item.id === "headlight-restoration")?.price.toFixed(0) || "80"} with a detail, or ${bookingPricing.headlightStandalonePrice.toFixed(0)} by itself.</p></div>
-          <div className="mt-4 grid gap-2 sm:grid-cols-2">{activeAddOns.map((item) => <label key={item.id} className={`flex cursor-pointer items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-sm transition ${form.addOns.includes(item.id) ? "border-[#5B8CFF]/35 bg-[#5B8CFF]/8 text-white" : "border-white/10 bg-black/20 text-white/55"}`}><span className="flex items-center gap-3"><input type="checkbox" checked={form.addOns.includes(item.id)} onChange={() => toggleAddOn(item.id)} />{item.name}</span><strong className="text-[#5B8CFF]">+${item.price.toFixed(2)}</strong></label>)}</div>
+        <section className="rounded-[26px] border border-[#000B3D]/10 bg-[#F7F9FC] p-5">
+          <div><p className="text-sm font-semibold">Car Detailing Add-Ons</p><p className="mt-1 text-xs text-black/40">Add-ons are added to the total as you select them. Headlight Restoration is ${bookingPricing.addOns.find((item) => item.id === "headlight-restoration")?.price.toFixed(0) || "80"} with a detail, or ${bookingPricing.headlightStandalonePrice.toFixed(0)} by itself.</p></div>
+          <div className="mt-4 grid gap-2 sm:grid-cols-2">{activeAddOns.map((item) => <label key={item.id} className={`flex cursor-pointer items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-sm transition ${form.addOns.includes(item.id) ? "border-[#000B3D]/35 bg-[#000B3D]/8 text-[#0B0F19]" : "border-[#000B3D]/10 bg-[#F7F9FC] text-black/60"}`}><span className="flex items-center gap-3"><input type="checkbox" checked={form.addOns.includes(item.id)} onChange={() => toggleAddOn(item.id)} />{item.name}</span><strong className="text-[#000B3D]">+${item.price.toFixed(2)}</strong></label>)}</div>
         </section>
       )}
 
       {baseTotal != null && (
-        <section className="rounded-[26px] border border-white/10 bg-black/35 p-5">
+        <section className="rounded-[26px] border border-[#000B3D]/10 bg-[#F4F7FB] p-5">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
-            <label className="flex-1 text-sm text-white/60">Discount code<input className={`${input} uppercase`} value={discountInput} onChange={(e) => setDiscountInput(e.target.value)} placeholder="Enter code" /></label>
-            <button type="button" onClick={applyDiscount} disabled={discountLoading} className="rounded-2xl border border-[#5B8CFF]/35 bg-[#5B8CFF]/8 px-5 py-3 text-sm font-semibold text-[#5B8CFF] disabled:opacity-50">{discountLoading ? "Checking…" : "Apply Code"}</button>
-            {appliedDiscount && <button type="button" onClick={() => { setAppliedDiscount(null); setDiscountInput(""); setDiscountMessage(""); }} className="rounded-2xl border border-white/10 px-5 py-3 text-sm text-white/55">Remove</button>}
+            <label className="flex-1 text-sm text-black/65">Discount code<input className={`${input} uppercase`} value={discountInput} onChange={(e) => setDiscountInput(e.target.value)} placeholder="Enter code" /></label>
+            <button type="button" onClick={applyDiscount} disabled={discountLoading} className="rounded-2xl border border-[#000B3D]/35 bg-[#000B3D]/8 px-5 py-3 text-sm font-semibold text-[#000B3D] disabled:opacity-50">{discountLoading ? "Checking…" : "Apply Code"}</button>
+            {appliedDiscount && <button type="button" onClick={() => { setAppliedDiscount(null); setDiscountInput(""); setDiscountMessage(""); }} className="rounded-2xl border border-[#000B3D]/10 px-5 py-3 text-sm text-black/60">Remove</button>}
           </div>
-          {discountMessage && <p className={`mt-2 text-xs ${appliedDiscount ? "text-green-300" : "text-red-300"}`}>{discountMessage}</p>}
+          {discountMessage && <p className={`mt-2 text-xs ${appliedDiscount ? "text-green-700" : "text-red-700"}`}>{discountMessage}</p>}
 
-          <div className="mt-5 space-y-2 border-t border-white/10 pt-5 text-sm">
-            <div className="flex justify-between text-white/55"><span>Service / package</span><span>${Number(baseTotal).toFixed(2)}</span></div>
-            {selectedAddOns.map((item) => <div key={item.id} className="flex justify-between text-white/50"><span>{item.name}</span><span>+${item.price.toFixed(2)}</span></div>)}
-            {addOnTotal > 0 && <div className="flex justify-between text-white/65"><span>Add-ons subtotal</span><span>+${addOnTotal.toFixed(2)}</span></div>}
-            {discountAmount > 0 && <div className="flex justify-between text-green-300"><span>Discount {appliedDiscount?.code ? `(${appliedDiscount.code})` : ""}</span><span>−${discountAmount.toFixed(2)}</span></div>}
-            <div className="mt-3 flex items-end justify-between border-t border-white/10 pt-4"><div><p className="text-[10px] uppercase tracking-[.18em] text-white/30">Exact booking total</p><p className="mt-1 text-xs text-white/35">We check it again when you submit</p></div><p className="text-3xl font-semibold">${Number(bookingTotal || 0).toFixed(2)}</p></div>
+          <div className="mt-5 space-y-2 border-t border-[#000B3D]/10 pt-5 text-sm">
+            <div className="flex justify-between text-black/60"><span>Service / package</span><span>${Number(baseTotal).toFixed(2)}</span></div>
+            {selectedAddOns.map((item) => <div key={item.id} className="flex justify-between text-black/55"><span>{item.name}</span><span>+${item.price.toFixed(2)}</span></div>)}
+            {addOnTotal > 0 && <div className="flex justify-between text-black/70"><span>Add-ons subtotal</span><span>+${addOnTotal.toFixed(2)}</span></div>}
+            {discountAmount > 0 && <div className="flex justify-between text-green-700"><span>Discount {appliedDiscount?.code ? `(${appliedDiscount.code})` : ""}</span><span>−${discountAmount.toFixed(2)}</span></div>}
+            <div className="mt-3 flex items-end justify-between border-t border-[#000B3D]/10 pt-4"><div><p className="text-[10px] uppercase tracking-[.18em] text-black/35">Exact booking total</p><p className="mt-1 text-xs text-black/40">We check it again when you submit</p></div><p className="text-3xl font-semibold">${Number(bookingTotal || 0).toFixed(2)}</p></div>
           </div>
         </section>
       )}
 
-      <label className="block text-sm text-white/60">Notes<textarea className={`${input} min-h-28`} value={form.serviceNotes} onChange={(event) => set("serviceNotes", event.target.value)} placeholder="Anything we should know?" /></label>
+      <label className="block text-sm text-black/65">Notes<textarea className={`${input} min-h-28`} value={form.serviceNotes} onChange={(event) => set("serviceNotes", event.target.value)} placeholder="Anything we should know?" /></label>
 
-      <label className="flex items-start gap-3 text-sm text-white/55"><input type="checkbox" checked={form.policyAgreed} onChange={(event) => set("policyAgreed", event.target.checked)} className="mt-1" /><span>I understand this is a booking request with the displayed total and Bubbles & Bros. will confirm availability. I agree to the <a href="/terms-and-conditions" target="_blank" rel="noreferrer" className="text-[#5B8CFF]">Terms and Conditions</a> and acknowledge the <a href="/privacy-policy" target="_blank" rel="noreferrer" className="text-[#5B8CFF]">Privacy Policy</a>.</span></label>
+      <label className="flex items-start gap-3 text-sm text-black/60"><input type="checkbox" checked={form.policyAgreed} onChange={(event) => set("policyAgreed", event.target.checked)} className="mt-1" /><span>I understand this is a booking request with the displayed total and Bubbles & Bros. will confirm availability. I agree to the <a href="/terms-and-conditions" target="_blank" rel="noreferrer" className="text-[#000B3D]">Terms and Conditions</a> and acknowledge the <a href="/privacy-policy" target="_blank" rel="noreferrer" className="text-[#000B3D]">Privacy Policy</a>.</span></label>
 
 
-      {status !== "idle" && <div className={`rounded-2xl border p-4 text-sm ${status === "success" ? "border-green-800 bg-green-950/30 text-green-200" : "border-red-800 bg-red-950/30 text-red-200"}`}><p>{message}</p>{status === "success" && chatUrl && <a href={chatUrl} className="mt-3 inline-flex rounded-full bg-white px-4 py-2 text-xs font-semibold text-black">Open booking chat</a>}</div>}
+      {status !== "idle" && <div className={`rounded-2xl border p-4 text-sm ${status === "success" ? "border-green-200 bg-green-50 text-green-700" : "border-red-200 bg-red-50 text-red-700"}`}><p>{message}</p>{status === "success" && chatUrl && <a href={chatUrl} className="mt-3 inline-flex rounded-full bg-white px-4 py-2 text-xs font-semibold text-black">Open booking chat</a>}</div>}
 
       <div className="flex gap-3">
-        <button disabled={status === "submitting" || status === "success" || quote?.status === "booked" || !form.policyAgreed || !form.preferredDate || !form.preferredTime || bookingTotal == null || !baseTotal || Boolean(setupMessage)} className="rounded-full bg-[#5B8CFF] px-6 py-3 font-semibold text-[#0D0D0D] disabled:cursor-not-allowed disabled:opacity-50">{status === "submitting" ? "Sending…" : status === "success" ? "Booking submitted" : bookingTotal != null ? `Submit $${bookingTotal.toFixed(2)} booking` : "Choose a service"}</button>
-        {onClose && <button type="button" onClick={onClose} className="rounded-full border border-white/15 px-6 py-3">Close</button>}
+        <button disabled={status === "submitting" || status === "success" || quote?.status === "booked" || !form.policyAgreed || !form.preferredDate || !form.preferredTime || bookingTotal == null || !baseTotal || Boolean(setupMessage)} className="rounded-full bg-[#000B3D] px-6 py-3 font-semibold text-[#0B0F19] disabled:cursor-not-allowed disabled:opacity-50">{status === "submitting" ? "Sending…" : status === "success" ? "Booking submitted" : bookingTotal != null ? `Submit $${bookingTotal.toFixed(2)} booking` : "Choose a service"}</button>
+        {onClose && <button type="button" onClick={onClose} className="rounded-full border border-[#000B3D]/15 px-6 py-3">Close</button>}
       </div>
     </form>
   );

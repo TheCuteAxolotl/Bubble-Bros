@@ -12,15 +12,15 @@ const effectiveDate = "September 12, 2026";
 
 export default function TermsAndConditionsPage() {
   return (
-    <section className="bg-[#070707] px-5 py-20 text-white sm:px-8 lg:px-10">
+    <section className="bg-white px-5 py-20 text-[#0B0F19] sm:px-8 lg:px-10">
       <div className="mx-auto max-w-4xl">
-        <p className="text-xs font-semibold uppercase tracking-[.28em] text-[#5B8CFF]">Legal</p>
+        <p className="text-xs font-semibold uppercase tracking-[.28em] text-[#000B3D]">Legal</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-[-.04em] sm:text-5xl">Terms and Conditions</h1>
-        <p className="mt-4 text-sm text-white/45">Effective {effectiveDate}</p>
+        <p className="mt-4 text-sm text-black/50">Effective {effectiveDate}</p>
 
-        <div className="mt-10 space-y-10 text-[15px] leading-7 text-white/68">
+        <div className="mt-10 space-y-10 text-[15px] leading-7 text-black/70">
           <section>
-            <h2 className="text-xl font-semibold text-white">Agreement to these terms</h2>
+            <h2 className="text-xl font-semibold text-[#0B0F19]">Agreement to these terms</h2>
             <p className="mt-3">
               These Terms and Conditions apply when you use your deployed site or request services from Bubbles & Bros. By
               using the website or submitting a service request, you agree to these terms. If you do not agree, please do not use
@@ -29,7 +29,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-white">Quotes and estimates</h2>
+            <h2 className="text-xl font-semibold text-[#0B0F19]">Quotes and estimates</h2>
             <p className="mt-3">
               Website estimates are informational and may change after the vehicle and requested work are reviewed. A final quote is
               the specific price presented by Bubbles & Bros. for the described work. If the condition, requested work, or scope
@@ -38,7 +38,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-white">Bookings and availability</h2>
+            <h2 className="text-xl font-semibold text-[#0B0F19]">Bookings and availability</h2>
             <p className="mt-3">
               Submitting a booking request does not guarantee an appointment until Bubbles & Bros. confirms it. Customers are
               responsible for providing accurate contact, vehicle, address, and scheduling information and for ensuring reasonable
@@ -47,7 +47,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-white">Vehicle condition and personal property</h2>
+            <h2 className="text-xl font-semibold text-[#0B0F19]">Vehicle condition and personal property</h2>
             <p className="mt-3">
               Please disclose known damage, sensitive aftermarket equipment, electrical problems, loose trim, fragile components,
               or other conditions that could affect the service. Remove valuable or important personal property before service.
@@ -57,7 +57,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-white">Results</h2>
+            <h2 className="text-xl font-semibold text-[#0B0F19]">Results</h2>
             <p className="mt-3">
               Detailing, stain removal, odor treatment, paint correction, oxidation correction, scratch reduction, and similar
               services improve appearance but do not guarantee complete removal of every defect. Results depend on material,
@@ -66,7 +66,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-white">Payments and additional work</h2>
+            <h2 className="text-xl font-semibold text-[#0B0F19]">Payments and additional work</h2>
             <p className="mt-3">
               The customer is responsible for the agreed price for completed services. Additional work that changes the agreed scope
               or price will be discussed before it is performed whenever reasonably possible. Applicable taxes, fees, or approved
@@ -76,7 +76,7 @@ export default function TermsAndConditionsPage() {
 
           {SMS_FEATURE_ENABLED && (
           <section>
-            <h2 className="text-xl font-semibold text-white">SMS terms</h2>
+            <h2 className="text-xl font-semibold text-[#0B0F19]">SMS terms</h2>
             <p className="mt-3">
               SMS is optional. If you check the SMS consent box on our website, you agree to receive transactional and customer-care
               text messages from Bubbles & Bros. regarding quotes, bookings, appointment updates, reminders, and related service
@@ -85,13 +85,13 @@ export default function TermsAndConditionsPage() {
             </p>
             <p className="mt-3">
               For information about how we handle your information, see our{" "}
-              <a className="text-[#5B8CFF] hover:text-[#5B8CFF]" href="/privacy-policy">Privacy Policy</a>.
+              <a className="text-[#000B3D] hover:text-[#000B3D]" href="/privacy-policy">Privacy Policy</a>.
             </p>
           </section>
           )}
 
           <section>
-            <h2 className="text-xl font-semibold text-white">Website accounts and acceptable use</h2>
+            <h2 className="text-xl font-semibold text-[#0B0F19]">Website accounts and acceptable use</h2>
             <p className="mt-3">
               You are responsible for keeping your account credentials secure and for activity performed through your account. You
               may not misuse the website, attempt unauthorized access, interfere with its operation, upload unlawful content, or use
@@ -100,7 +100,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-white">Changes</h2>
+            <h2 className="text-xl font-semibold text-[#0B0F19]">Changes</h2>
             <p className="mt-3">
               We may update these Terms and Conditions as our website, services, or legal requirements change. The effective date at
               the top of this page will show when these terms were last updated.
@@ -108,13 +108,13 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-white">Contact</h2>
+            <h2 className="text-xl font-semibold text-[#0B0F19]">Contact</h2>
             <p className="mt-3">
               Questions about these Terms and Conditions can be sent to{" "}
-              <a className="text-[#5B8CFF] hover:text-[#5B8CFF]" href={`mailto:${BUSINESS_EMAIL}`}>
+              <a className="text-[#000B3D] hover:text-[#000B3D]" href={`mailto:${BUSINESS_EMAIL}`}>
                 {BUSINESS_EMAIL}
               </a>
-              {PHONE_FEATURE_ENABLED && BUSINESS_PHONE ? (<> or by calling <a className="text-[#5B8CFF] hover:text-[#5B8CFF]" href={`tel:${BUSINESS_PHONE}`}>{BUSINESS_PHONE_DISPLAY}</a></>) : "."}
+              {PHONE_FEATURE_ENABLED && BUSINESS_PHONE ? (<> or by calling <a className="text-[#000B3D] hover:text-[#000B3D]" href={`tel:${BUSINESS_PHONE}`}>{BUSINESS_PHONE_DISPLAY}</a></>) : "."}
             </p>
           </section>
         </div>

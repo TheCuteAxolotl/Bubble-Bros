@@ -104,38 +104,38 @@ export default function BookingDatePicker({ value, onChange }: { value: string; 
         type="button"
         onClick={() => setOpen((current) => !current)}
         aria-expanded={open}
-        className={`flex w-full items-center justify-between rounded-2xl border bg-black/50 px-4 py-3 text-left text-base outline-none transition ${
-          open ? "border-[#5B8CFF]/60" : "border-white/10 hover:border-white/20"
+        className={`flex w-full items-center justify-between rounded-2xl border bg-white px-4 py-3 text-left text-base outline-none transition ${
+          open ? "border-[#000B3D]/60" : "border-[#000B3D]/10 hover:border-[#000B3D]/20"
         }`}
       >
-        <span className={value ? "text-white" : "text-white/45"}>{dateLabel(value)}</span>
-        <span aria-hidden="true" className="text-white/45">▾</span>
+        <span className={value ? "text-[#0B0F19]" : "text-black/50"}>{dateLabel(value)}</span>
+        <span aria-hidden="true" className="text-black/50">▾</span>
       </button>
 
       {open && (
-        <div className="mt-3 rounded-[24px] border border-white/10 bg-[#151515] p-4 shadow-2xl shadow-black/40 sm:p-5">
+        <div className="mt-3 rounded-[24px] border border-[#000B3D]/10 bg-white p-4 shadow-2xl shadow-black/40 sm:p-5">
           <div className="flex items-center justify-between gap-3">
             <button
               type="button"
               onClick={() => canGoBack && setVisibleMonth((current) => shiftMonth(current, -1))}
               disabled={!canGoBack}
-              className="grid h-11 w-11 place-items-center rounded-full border border-white/10 text-2xl text-white transition hover:border-white/25 disabled:cursor-not-allowed disabled:opacity-20"
+              className="grid h-11 w-11 place-items-center rounded-full border border-[#000B3D]/10 text-2xl text-[#0B0F19] transition hover:border-[#000B3D]/25 disabled:cursor-not-allowed disabled:opacity-20"
               aria-label="Previous month"
             >
               ‹
             </button>
-            <p className="text-base font-semibold text-white sm:text-lg">{monthLabel(visibleMonth)}</p>
+            <p className="text-base font-semibold text-[#0B0F19] sm:text-lg">{monthLabel(visibleMonth)}</p>
             <button
               type="button"
               onClick={() => setVisibleMonth((current) => shiftMonth(current, 1))}
-              className="grid h-11 w-11 place-items-center rounded-full border border-white/10 text-2xl text-white transition hover:border-white/25"
+              className="grid h-11 w-11 place-items-center rounded-full border border-[#000B3D]/10 text-2xl text-[#0B0F19] transition hover:border-[#000B3D]/25"
               aria-label="Next month"
             >
               ›
             </button>
           </div>
 
-          <div className="mt-4 grid grid-cols-7 gap-1 text-center text-[11px] font-semibold uppercase tracking-[.08em] text-white/35 sm:gap-2">
+          <div className="mt-4 grid grid-cols-7 gap-1 text-center text-[11px] font-semibold uppercase tracking-[.08em] text-black/40 sm:gap-2">
             {WEEKDAYS.map((weekday) => <div key={weekday} className="py-1">{weekday}</div>)}
           </div>
 
@@ -157,11 +157,11 @@ export default function BookingDatePicker({ value, onChange }: { value: string; 
                   }}
                   className={`relative aspect-square min-h-10 rounded-xl text-sm font-semibold transition sm:min-h-11 ${
                     selected
-                      ? "bg-[#5B8CFF] text-black"
+                      ? "bg-[#000B3D] text-black"
                       : unavailable
-                        ? "cursor-not-allowed bg-white/[.025] text-white/20"
-                        : "bg-white/[.04] text-white hover:bg-white/[.09]"
-                  } ${today && !selected ? "ring-1 ring-[#5B8CFF]/50" : ""}`}
+                        ? "cursor-not-allowed bg-[#F7F9FC] text-black/25"
+                        : "bg-[#F3F6FA] text-[#0B0F19] hover:bg-white/[.09]"
+                  } ${today && !selected ? "ring-1 ring-[#000B3D]/50" : ""}`}
                   aria-label={`${dateLabel(cell.date)}${unavailable ? ", unavailable" : `, ${state?.remaining || 0} time slots available`}`}
                   title={unavailable ? "Unavailable" : `${state?.remaining || 0} time slot${state?.remaining === 1 ? "" : "s"} available`}
                 >
@@ -171,10 +171,10 @@ export default function BookingDatePicker({ value, onChange }: { value: string; 
             })}
           </div>
 
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-4 text-xs text-white/40">
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-[#000B3D]/10 pt-4 text-xs text-black/45">
             <div className="flex flex-wrap items-center gap-4">
               <span className="flex items-center gap-2"><span className="h-3 w-3 rounded bg-white/[.08]" />Available</span>
-              <span className="flex items-center gap-2"><span className="h-3 w-3 rounded bg-white/[.025] ring-1 ring-white/10" />Unavailable / booked</span>
+              <span className="flex items-center gap-2"><span className="h-3 w-3 rounded bg-[#F7F9FC] ring-1 ring-white/10" />Unavailable / booked</span>
             </div>
             {loading && <span>Checking availability…</span>}
             {!loading && error && <span className="text-[#FF5A5A]">{error}</span>}

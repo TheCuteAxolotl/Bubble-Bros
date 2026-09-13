@@ -86,40 +86,40 @@ export default function AdminBookings() {
 
   const visible = bookings.filter((b) => filter === "all" || b.status === filter);
 
-  if (loading) return <div className="min-h-screen bg-[#050505] p-12 text-white">Loading bookings…</div>;
+  if (loading) return <div className="min-h-screen bg-white p-12 text-[#0B0F19]">Loading bookings…</div>;
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
-      <header className="border-b border-neutral-800 bg-neutral-950">
+    <div className="min-h-screen bg-white text-[#0B0F19]">
+      <header className="border-b border-[#000B3D]/10 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
-          <div><p className="text-[10px] font-semibold uppercase tracking-[.25em] text-[#5B8CFF]">Staff</p><h1 className="mt-1 text-2xl font-bold">Bookings</h1><p className="text-sm text-neutral-400">Customer requests, exact totals, status controls, and booking conversations.</p></div>
-          <a href="/admin/dashboard" className="rounded-lg bg-[#5B8CFF] px-4 py-2 text-sm font-medium text-[#0D0D0D]">Back</a>
+          <div><p className="text-[10px] font-semibold uppercase tracking-[.25em] text-[#000B3D]">Staff</p><h1 className="mt-1 text-2xl font-bold">Bookings</h1><p className="text-sm text-neutral-600">Customer requests, exact totals, status controls, and booking conversations.</p></div>
+          <a href="/admin/dashboard" className="rounded-lg bg-[#000B3D] px-4 py-2 text-sm font-medium text-[#0B0F19]">Back</a>
         </div>
       </header>
       <main className="mx-auto max-w-7xl px-6 py-10">
-        <div className="mb-8 flex flex-wrap gap-2">{["all","pending","confirmed","completed","cancelled"].map((s)=><button key={s} onClick={()=>setFilter(s)} className={`rounded-lg px-4 py-2 text-sm font-medium ${filter===s?"bg-[#5B8CFF] text-[#0D0D0D]":"bg-neutral-800"}`}>{s[0].toUpperCase()+s.slice(1)}</button>)}</div>
-        {message && <p className="mb-6 rounded-xl border border-red-800 bg-red-950/30 p-4 text-red-200">{message}</p>}
+        <div className="mb-8 flex flex-wrap gap-2">{["all","pending","confirmed","completed","cancelled"].map((s)=><button key={s} onClick={()=>setFilter(s)} className={`rounded-lg px-4 py-2 text-sm font-medium ${filter===s?"bg-[#000B3D] text-[#0B0F19]":"bg-[#EEF2F7]"}`}>{s[0].toUpperCase()+s.slice(1)}</button>)}</div>
+        {message && <p className="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 text-red-700">{message}</p>}
         <div className="space-y-5">
           {visible.map((b)=>(
-            <article key={b.id} className="rounded-3xl border border-neutral-800 bg-neutral-950 p-6">
+            <article key={b.id} className="rounded-3xl border border-[#000B3D]/10 bg-white p-6">
               <div className="flex flex-col gap-5 lg:flex-row lg:justify-between">
                 <div>
-                  <div className="flex flex-wrap items-center gap-3"><h2 className="text-xl font-semibold">{b.serviceName}</h2><span className="rounded-full border border-neutral-700 px-3 py-1 text-xs uppercase text-neutral-300">{b.status}</span></div>
-                  <div className="mt-4 grid gap-2 text-sm text-neutral-300 sm:grid-cols-2">
-                    <p><strong className="text-white">Customer:</strong> {b.customerName}</p>
-                    <p><strong className="text-white">Phone:</strong> <a href={`tel:${b.customerPhone}`} className="underline">{b.customerPhone}</a></p>
-                    <p><strong className="text-white">Email:</strong> <a href={`mailto:${b.customerEmail}`} className="underline">{b.customerEmail}</a></p>
-                    <p><strong className="text-white">Vehicle:</strong> {b.vehicleYear} {b.vehicleMake} {b.vehicleModel} {b.vehicleTrim || ""}</p>
-                    <p><strong className="text-white">Method:</strong> {b.serviceMethod}</p>
-                    <p><strong className="text-white">Preferred:</strong> {b.preferredDate || "Not specified"}{b.preferredTime ? ` · ${b.preferredTime}` : ""}</p>
-                    <p><strong className="text-white">Booking total:</strong> <span className="font-semibold text-emerald-300">{b.quotedPrice != null ? `$${b.quotedPrice.toFixed(2)}` : "Legacy booking"}</span></p>
+                  <div className="flex flex-wrap items-center gap-3"><h2 className="text-xl font-semibold">{b.serviceName}</h2><span className="rounded-full border border-[#000B3D]/15 px-3 py-1 text-xs uppercase text-neutral-700">{b.status}</span></div>
+                  <div className="mt-4 grid gap-2 text-sm text-neutral-700 sm:grid-cols-2">
+                    <p><strong className="text-[#0B0F19]">Customer:</strong> {b.customerName}</p>
+                    <p><strong className="text-[#0B0F19]">Phone:</strong> <a href={`tel:${b.customerPhone}`} className="underline">{b.customerPhone}</a></p>
+                    <p><strong className="text-[#0B0F19]">Email:</strong> <a href={`mailto:${b.customerEmail}`} className="underline">{b.customerEmail}</a></p>
+                    <p><strong className="text-[#0B0F19]">Vehicle:</strong> {b.vehicleYear} {b.vehicleMake} {b.vehicleModel} {b.vehicleTrim || ""}</p>
+                    <p><strong className="text-[#0B0F19]">Method:</strong> {b.serviceMethod}</p>
+                    <p><strong className="text-[#0B0F19]">Preferred:</strong> {b.preferredDate || "Not specified"}{b.preferredTime ? ` · ${b.preferredTime}` : ""}</p>
+                    <p><strong className="text-[#0B0F19]">Booking total:</strong> <span className="font-semibold text-emerald-700">{b.quotedPrice != null ? `$${b.quotedPrice.toFixed(2)}` : "Legacy booking"}</span></p>
                   </div>
-                  {b.notes && <pre className="mt-4 whitespace-pre-wrap rounded-2xl bg-neutral-900 p-4 text-xs leading-6 text-neutral-300">{b.notes}</pre>}
+                  {b.notes && <pre className="mt-4 whitespace-pre-wrap rounded-2xl bg-[#F7F9FC] p-4 text-xs leading-6 text-neutral-700">{b.notes}</pre>}
                 </div>
                 <div className="flex min-w-48 flex-col gap-2">
                   <a
                     href={`/booking-chat/${b.id}`}
-                    className="rounded-lg border border-[#5B8CFF]/30 bg-[#5B8CFF]/10 px-4 py-2 text-center text-sm font-semibold text-[#5B8CFF] transition hover:bg-[#5B8CFF]/18"
+                    className="rounded-lg border border-[#000B3D]/30 bg-[#000B3D]/10 px-4 py-2 text-center text-sm font-semibold text-[#000B3D] transition hover:bg-[#000B3D]/18"
                   >
                     Message customer
                   </a>
@@ -128,14 +128,14 @@ export default function AdminBookings() {
                       <button
                         onClick={() => sendArrivalUpdate(b, "on_the_way")}
                         disabled={arrivalSendingId === b.id}
-                        className="rounded-lg border border-amber-400/30 bg-amber-400/10 px-4 py-2 text-sm font-semibold text-amber-200 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="rounded-lg border border-amber-400/30 bg-amber-400/10 px-4 py-2 text-sm font-semibold text-amber-800 disabled:cursor-not-allowed disabled:opacity-50"
                       >
                         {arrivalSendingId === b.id ? "Sending…" : "On my way SMS"}
                       </button>
                       <button
                         onClick={() => sendArrivalUpdate(b, "eta")}
                         disabled={arrivalSendingId === b.id}
-                        className="rounded-lg border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white/80 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="rounded-lg border border-[#000B3D]/15 bg-[#F4F7FB] px-4 py-2 text-sm font-semibold text-black/80 disabled:cursor-not-allowed disabled:opacity-50"
                       >
                         Send arrival time
                       </button>
@@ -148,7 +148,7 @@ export default function AdminBookings() {
               </div>
             </article>
           ))}
-          {!visible.length && <p className="rounded-3xl border border-neutral-800 bg-neutral-950 p-8 text-neutral-400">No bookings in this view.</p>}
+          {!visible.length && <p className="rounded-3xl border border-[#000B3D]/10 bg-white p-8 text-neutral-600">No bookings in this view.</p>}
         </div>
       </main>
     </div>

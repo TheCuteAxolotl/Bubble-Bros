@@ -22,7 +22,7 @@ export default function PricingMediaStrip({ category, className = "" }: { catego
   return (
     <div className={`grid gap-3 ${images.length === 1 ? "grid-cols-1" : "grid-cols-2 lg:grid-cols-4"} ${className}`}>
       {images.slice(0, 4).map((image, index) => (
-        <figure key={image.id} className={`${index === 0 && images.length > 2 ? "col-span-2 row-span-2" : ""} overflow-hidden rounded-[24px] border border-white/10 bg-white/[.02]`}>
+        <figure key={image.id} className={`${index === 0 && images.length > 2 ? "col-span-2 row-span-2" : ""} overflow-hidden rounded-[24px] border border-[#000B3D]/10 bg-[#F7F9FC]`}>
           <img src={image.url} alt={image.title} className="h-full min-h-44 w-full object-cover transition duration-500 hover:scale-[1.02]" />
         </figure>
       ))}

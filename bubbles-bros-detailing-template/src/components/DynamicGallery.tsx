@@ -28,12 +28,12 @@ export default function DynamicGallery({ limit }: { limit?: number }) {
   );
 
   if (loading) {
-    return <div className="h-72 animate-pulse rounded-[24px] bg-white/5" />;
+    return <div className="h-72 animate-pulse rounded-[24px] bg-[#F4F7FB]" />;
   }
 
   if (!visible.length) {
     return (
-      <div className="rounded-[24px] border border-dashed border-white/15 p-8 text-sm text-white/35">
+      <div className="rounded-[24px] border border-dashed border-[#000B3D]/15 p-8 text-sm text-black/40">
         Gallery photos will show here after they’re added from the Owner Dashboard.
       </div>
     );
@@ -55,10 +55,10 @@ export default function DynamicGallery({ limit }: { limit?: number }) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-5">
-            <p className="text-[10px] uppercase tracking-[.22em] text-[#5B8CFF]">
+            <p className="text-[10px] uppercase tracking-[.22em] text-[#FFFFFF]/75">
               {img.category.replaceAll("-", " ")}
             </p>
-            <h3 className="mt-1 text-lg font-semibold text-white">{img.title}</h3>
+            <h3 className="mt-1 text-lg font-semibold text-[#FFFFFF]">{img.title}</h3>
           </div>
         </article>
       ))}

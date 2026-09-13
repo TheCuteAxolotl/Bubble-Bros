@@ -48,42 +48,42 @@ export default function ServiceCards({ limit, variant = "dark" }: Props) {
 
   if (loading) {
     return (
-      <div className="grid gap-px overflow-hidden rounded-[24px] bg-white/10 lg:grid-cols-3">
-        {[0, 1, 2].map((index) => <div key={index} className="h-96 animate-pulse bg-[#111]" />)}
+      <div className="grid gap-px overflow-hidden rounded-[24px] bg-[#EEF2F7] lg:grid-cols-3">
+        {[0, 1, 2].map((index) => <div key={index} className="h-96 animate-pulse bg-[#EEF2FA]" />)}
       </div>
     );
   }
 
   if (!services.length) {
     return (
-      <div className={`rounded-[24px] border p-8 ${light ? "border-black/10 bg-black/[.03]" : "border-white/10 bg-white/[.03]"}`}>
+      <div className={`rounded-[24px] border p-8 ${light ? "border-black/10 bg-black/[.03]" : "border-[#000B3D]/10 bg-[#F5F7FB]"}`}>
         <p className="text-lg font-semibold">We’re updating the service menu.</p>
-        <a href="/quote" className="mt-5 inline-block text-sm text-[#5B8CFF]">Get an Exact Quote →</a>
+        <a href="/quote" className="mt-5 inline-block text-sm text-[#000B3D]">Get an Exact Quote →</a>
       </div>
     );
   }
 
   return (
-    <div className={`grid gap-px overflow-hidden rounded-[28px] ${light ? "bg-black/10" : "bg-white/10"} lg:grid-cols-3`}>
+    <div className={`grid gap-px overflow-hidden rounded-[28px] ${light ? "bg-[#F8FAFD]" : "bg-[#EEF2F7]"} lg:grid-cols-3`}>
       {services.map((service, index) => {
         const fixed = service.pricingType === "fixed" && service.price > 0;
         return (
-          <article key={service.id} className={`group flex min-h-[430px] flex-col p-7 sm:p-8 ${light ? "bg-[#FFFFFF] text-black" : "bg-[#111318] text-white"}`}>
+          <article key={service.id} className={`group flex min-h-[430px] flex-col p-7 sm:p-8 ${light ? "bg-[#FFFFFF] text-black" : "bg-[#F5F7FB] text-[#0B0F19]"}`}>
             <div className="flex items-center justify-between gap-3">
-              <span className="text-[10px] font-semibold uppercase tracking-[.23em] text-[#5B8CFF]">Service 0{index + 1}</span>
-              <span className={`text-xs ${light ? "text-black/35" : "text-white/35"}`}>{priceLabel(service)}</span>
+              <span className="text-[10px] font-semibold uppercase tracking-[.23em] text-[#000B3D]">Service 0{index + 1}</span>
+              <span className={`text-xs ${light ? "text-black/35" : "text-black/40"}`}>{priceLabel(service)}</span>
             </div>
             <h3 className="mt-10 text-3xl font-semibold tracking-[-.045em]">{service.title}</h3>
-            <div className={`my-6 h-px ${light ? "bg-black/10" : "bg-white/10"}`} />
+            <div className={`my-6 h-px ${light ? "bg-[#F8FAFD]" : "bg-[#EEF2F7]"}`} />
             <ul className="flex-1 space-y-3">
               {lines(service.description).slice(0, 7).map((item, itemIndex) => (
-                <li key={itemIndex} className={`flex gap-3 text-sm leading-6 ${light ? "text-black/50" : "text-white/43"}`}>
-                  <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-[#5B8CFF]" />
+                <li key={itemIndex} className={`flex gap-3 text-sm leading-6 ${light ? "text-black/50" : "text-black/45"}`}>
+                  <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-[#000B3D]" />
                   {item}
                 </li>
               ))}
             </ul>
-            <div className={`mt-8 flex items-center justify-between gap-3 border-t pt-5 ${light ? "border-black/10" : "border-white/10"}`}>
+            <div className={`mt-8 flex items-center justify-between gap-3 border-t pt-5 ${light ? "border-black/10" : "border-[#000B3D]/10"}`}>
               <a
                 href={fixed ? `/contact?service=${encodeURIComponent(service.id)}` : `/quote?service=${encodeURIComponent(service.id)}`}
                 className="text-sm font-semibold"
@@ -91,7 +91,7 @@ export default function ServiceCards({ limit, variant = "dark" }: Props) {
                 {fixed ? `Book · $${service.price.toFixed(0)}` : "Get exact quote"}
               </a>
               {!fixed && service.pricingType !== "quote" && (
-                <a href={`/estimate?service=${encodeURIComponent(service.id)}`} className="text-xs text-[#5B8CFF]">Estimate →</a>
+                <a href={`/estimate?service=${encodeURIComponent(service.id)}`} className="text-xs text-[#000B3D]">Estimate →</a>
               )}
             </div>
           </article>

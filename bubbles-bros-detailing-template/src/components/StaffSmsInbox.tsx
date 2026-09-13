@@ -181,25 +181,25 @@ export default function StaffSmsInbox({
   const backHref = role === "owner" ? "/owner/dashboard" : "/admin/dashboard";
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white">
-      <header className="border-b border-white/10 bg-neutral-950">
+    <main className="min-h-screen bg-white text-[#0B0F19]">
+      <header className="border-b border-[#000B3D]/10 bg-white">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-6">
           <div>
             <div className="flex items-center gap-3">
               <h1 className="text-2xl font-bold">SMS Inbox</h1>
               {data.totalUnread > 0 && (
-                <span className="rounded-full bg-[#5B8CFF] px-2.5 py-1 text-xs font-bold text-[#0D0D0D]">
+                <span className="rounded-full bg-[#000B3D] px-2.5 py-1 text-xs font-bold text-[#0B0F19]">
                   {data.totalUnread} unread
                 </span>
               )}
             </div>
-            <p className="mt-1 text-sm text-white/40">
+            <p className="mt-1 text-sm text-black/45">
               Customer text replies are matched to their latest active booking and appear here.
             </p>
           </div>
           <a
             href={backHref}
-            className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-white/75 hover:text-white"
+            className="rounded-full border border-[#000B3D]/15 px-5 py-2.5 text-sm font-semibold text-black/75 hover:text-[#0B0F19]"
           >
             Back
           </a>
@@ -214,22 +214,22 @@ export default function StaffSmsInbox({
                 <span className={`h-2.5 w-2.5 rounded-full ${connection?.healthy ? "bg-emerald-400" : "bg-amber-400"}`} />
                 <h2 className="font-semibold">Incoming SMS connection</h2>
               </div>
-              <p className="mt-1 text-sm text-white/55">
+              <p className="mt-1 text-sm text-black/60">
                 {connection?.healthy
                   ? "Twilio is configured to send customer replies directly to this website."
                   : connection?.error || "Incoming webhook is not connected to the site yet. Message-history sync will still try to recover replies."}
               </p>
               {connection?.expectedUrl && (
-                <p className="mt-2 break-all text-xs text-white/35">Webhook: {connection.expectedUrl}</p>
+                <p className="mt-2 break-all text-xs text-black/40">Webhook: {connection.expectedUrl}</p>
               )}
-              {syncNote && <p className="mt-2 text-xs text-white/60">{syncNote}</p>}
+              {syncNote && <p className="mt-2 text-xs text-black/65">{syncNote}</p>}
             </div>
             <div className="flex flex-wrap gap-2">
               <button
                 type="button"
                 onClick={() => syncReplies(false)}
                 disabled={syncing}
-                className="rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white/80 hover:text-white disabled:opacity-50"
+                className="rounded-full border border-[#000B3D]/15 px-4 py-2 text-sm font-semibold text-black/80 hover:text-[#0B0F19] disabled:opacity-50"
               >
                 {syncing ? "Syncing…" : "Sync Replies"}
               </button>
@@ -238,7 +238,7 @@ export default function StaffSmsInbox({
                   type="button"
                   onClick={repairConnection}
                   disabled={repairing}
-                  className="rounded-full bg-[#5B8CFF] px-4 py-2 text-sm font-bold text-[#0D0D0D] disabled:opacity-50"
+                  className="rounded-full bg-[#000B3D] px-4 py-2 text-sm font-bold text-[#0B0F19] disabled:opacity-50"
                 >
                   {repairing ? "Connecting…" : "Repair SMS Connection"}
                 </button>
@@ -247,23 +247,23 @@ export default function StaffSmsInbox({
           </div>
         </div>
 
-        <div className="rounded-3xl border border-white/10 bg-white/[.025] p-4">
+        <div className="rounded-3xl border border-[#000B3D]/10 bg-[#F7F9FC] p-4">
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search customer, phone, vehicle, or message…"
-            className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-sm outline-none focus:border-[#5B8CFF]/60"
+            className="w-full rounded-2xl border border-[#000B3D]/10 bg-[#F3F6FA] px-4 py-3 text-sm outline-none focus:border-[#000B3D]/60"
           />
         </div>
 
         {error && (
-          <p className="mt-5 rounded-2xl border border-red-500/20 bg-red-500/[.06] p-4 text-sm text-red-200">
+          <p className="mt-5 rounded-2xl border border-red-500/20 bg-red-500/[.06] p-4 text-sm text-red-700">
             {error}
           </p>
         )}
 
         {loading ? (
-          <div className="grid min-h-72 place-items-center text-white/40">Loading messages…</div>
+          <div className="grid min-h-72 place-items-center text-black/45">Loading messages…</div>
         ) : (
           <div className="mt-5 space-y-3">
             {visible.map((row) => {
@@ -282,10 +282,10 @@ export default function StaffSmsInbox({
                 <a
                   key={row.conversationId}
                   href={`/booking-chat/${booking.id}`}
-                  className={`block rounded-3xl border p-5 transition hover:border-[#5B8CFF]/45 ${
+                  className={`block rounded-3xl border p-5 transition hover:border-[#000B3D]/45 ${
                     row.unreadCount > 0
-                      ? "border-[#5B8CFF]/35 bg-[#5B8CFF]/[.06]"
-                      : "border-white/10 bg-white/[.025]"
+                      ? "border-[#000B3D]/35 bg-[#000B3D]/[.06]"
+                      : "border-[#000B3D]/10 bg-[#F7F9FC]"
                   }`}
                 >
                   <div className="flex flex-wrap items-start justify-between gap-4">
@@ -293,21 +293,21 @@ export default function StaffSmsInbox({
                       <div className="flex flex-wrap items-center gap-2">
                         <h2 className="font-semibold">{booking.customerName}</h2>
                         {row.unreadCount > 0 && (
-                          <span className="rounded-full bg-[#5B8CFF] px-2 py-0.5 text-[10px] font-bold text-[#0D0D0D]">
+                          <span className="rounded-full bg-[#000B3D] px-2 py-0.5 text-[10px] font-bold text-[#0B0F19]">
                             {row.unreadCount} new
                           </span>
                         )}
-                        <span className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] uppercase text-white/45">
+                        <span className="rounded-full border border-[#000B3D]/10 px-2 py-0.5 text-[10px] uppercase text-black/50">
                           {booking.status}
                         </span>
                       </div>
-                      <p className="mt-1 text-xs text-white/35">
+                      <p className="mt-1 text-xs text-black/40">
                         {booking.customerPhone} · {booking.serviceName} · {vehicle}
                       </p>
-                      <p className="mt-3 line-clamp-2 text-sm leading-6 text-white/70">
+                      <p className="mt-3 line-clamp-2 text-sm leading-6 text-black/70">
                         {latest ? (
                           <>
-                            <span className="font-semibold text-white/50">
+                            <span className="font-semibold text-black/55">
                               {latest.sender === "customer" ? booking.customerName : "Bubbles & Bros."}:
                             </span>{" "}
                             {latest.body}
@@ -318,10 +318,10 @@ export default function StaffSmsInbox({
                       </p>
                     </div>
 
-                    <div className="shrink-0 text-right text-[11px] text-white/30">
+                    <div className="shrink-0 text-right text-[11px] text-black/35">
                       {latest && <p>{new Date(latest.createdAt).toLocaleString()}</p>}
                       {latest?.channel === "sms" && (
-                        <span className="mt-2 inline-block rounded-full border border-white/10 px-2 py-1 uppercase tracking-[.12em]">
+                        <span className="mt-2 inline-block rounded-full border border-[#000B3D]/10 px-2 py-1 uppercase tracking-[.12em]">
                           SMS
                         </span>
                       )}
@@ -332,7 +332,7 @@ export default function StaffSmsInbox({
             })}
 
             {!visible.length && (
-              <div className="rounded-3xl border border-white/10 bg-white/[.025] p-10 text-center text-white/40">
+              <div className="rounded-3xl border border-[#000B3D]/10 bg-[#F7F9FC] p-10 text-center text-black/45">
                 {query ? "No messages match that search." : "No customer text conversations yet."}
               </div>
             )}
@@ -343,7 +343,7 @@ export default function StaffSmsInbox({
           <section className="mt-10">
             <div className="mb-3">
               <h2 className="text-lg font-semibold">Unmatched SMS replies</h2>
-              <p className="mt-1 text-sm text-white/40">
+              <p className="mt-1 text-sm text-black/45">
                 These replies reached Twilio, but the sender phone number did not match a booking. They are kept here instead of being dropped.
               </p>
             </div>
@@ -352,9 +352,9 @@ export default function StaffSmsInbox({
                 <div key={message.id} className="rounded-3xl border border-amber-500/20 bg-amber-500/[.04] p-5">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <p className="font-semibold">{message.fromPhone}</p>
-                    <time className="text-xs text-white/35">{new Date(message.createdAt).toLocaleString()}</time>
+                    <time className="text-xs text-black/40">{new Date(message.createdAt).toLocaleString()}</time>
                   </div>
-                  <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-white/75">{message.body}</p>
+                  <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-black/75">{message.body}</p>
                 </div>
               ))}
             </div>

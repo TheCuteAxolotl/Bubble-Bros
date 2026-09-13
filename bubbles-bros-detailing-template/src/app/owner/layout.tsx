@@ -74,10 +74,10 @@ export default function OwnerLayout({ children }: { children: ReactNode }) {
 
   if (state !== "allowed") {
     return (
-      <main className="grid min-h-screen place-items-center bg-[#050505] px-6 text-white">
+      <main className="grid min-h-screen place-items-center bg-white px-6 text-[#0B0F19]">
         <div className="text-center">
-          <div className="mx-auto h-10 w-10 animate-spin rounded-full border-2 border-white/15 border-b-[#5B8CFF]" />
-          <p className="mt-4 text-sm text-white/45">Checking dashboard access…</p>
+          <div className="mx-auto h-10 w-10 animate-spin rounded-full border-2 border-[#000B3D]/15 border-b-[#000B3D]" />
+          <p className="mt-4 text-sm text-black/50">Checking dashboard access…</p>
         </div>
       </main>
     );

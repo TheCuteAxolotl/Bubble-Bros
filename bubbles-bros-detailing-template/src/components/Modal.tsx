@@ -35,12 +35,12 @@ export default function Modal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 sm:px-6">
-      <div className="absolute inset-0 bg-black/70" onClick={onClose} />
-      <div className="relative z-10 w-full max-w-3xl overflow-hidden rounded-[2rem] border border-neutral-800 bg-neutral-900 shadow-2xl">
+      <div className="absolute inset-0 bg-[rgba(0,0,0,.70)]" onClick={onClose} />
+      <div className="relative z-10 w-full max-w-3xl overflow-hidden rounded-[2rem] border border-[#000B3D]/10 bg-[#F7F9FC] shadow-2xl">
         <button
           aria-label="Close"
           onClick={onClose}
-          className="absolute right-4 top-4 z-20 rounded-full bg-black/70 px-3 py-2 text-sm text-white transition hover:bg-black"
+          className="absolute right-4 top-4 z-20 rounded-full bg-[rgba(0,0,0,.72)] px-3 py-2 text-sm text-[#FFFFFF] transition hover:bg-black"
         >
           ✕
         </button>

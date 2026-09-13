@@ -127,10 +127,10 @@ export default function BookingChatPage() {
 
   if (loading || accessKey === null) {
     return (
-      <main className="grid min-h-screen place-items-center bg-[#050505] text-white">
+      <main className="grid min-h-screen place-items-center bg-white text-[#0B0F19]">
         <div className="text-center">
-          <div className="mx-auto h-10 w-10 animate-spin rounded-full border-2 border-white/10 border-t-[#5B8CFF]" />
-          <p className="mt-4 text-sm text-white/40">Loading booking conversation…</p>
+          <div className="mx-auto h-10 w-10 animate-spin rounded-full border-2 border-[#000B3D]/10 border-t-[#000B3D]" />
+          <p className="mt-4 text-sm text-black/45">Loading booking conversation…</p>
         </div>
       </main>
     );
@@ -138,12 +138,12 @@ export default function BookingChatPage() {
 
   if (!data) {
     return (
-      <main className="grid min-h-screen place-items-center bg-[#050505] px-5 text-white">
-        <div className="max-w-md rounded-3xl border border-white/10 bg-white/[.025] p-8 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[.24em] text-[#5B8CFF]">Booking chat</p>
+      <main className="grid min-h-screen place-items-center bg-white px-5 text-[#0B0F19]">
+        <div className="max-w-md rounded-3xl border border-[#000B3D]/10 bg-[#F7F9FC] p-8 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[.24em] text-[#000B3D]">Booking chat</p>
           <h1 className="mt-3 text-2xl font-semibold">Conversation unavailable</h1>
-          <p className="mt-3 text-sm leading-6 text-white/45">{error || "This booking chat could not be opened."}</p>
-          <a href="/login" className="mt-6 inline-block rounded-full bg-[#5B8CFF] px-5 py-3 text-sm font-semibold text-[#0D0D0D]">Sign in</a>
+          <p className="mt-3 text-sm leading-6 text-black/50">{error || "This booking chat could not be opened."}</p>
+          <a href="/login" className="mt-6 inline-block rounded-full bg-[#000B3D] px-5 py-3 text-sm font-semibold text-[#0B0F19]">Sign in</a>
         </div>
       </main>
     );
@@ -165,38 +165,38 @@ export default function BookingChatPage() {
     data.lastCustomerSeenAt && Date.now() - new Date(data.lastCustomerSeenAt).getTime() < 90_000;
 
   return (
-    <main className="min-h-screen bg-[#050505] px-5 py-8 text-white sm:px-8">
+    <main className="min-h-screen bg-white px-5 py-8 text-[#0B0F19] sm:px-8">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[.26em] text-[#5B8CFF]">Booking conversation</p>
+            <p className="text-xs font-semibold uppercase tracking-[.26em] text-[#000B3D]">Booking conversation</p>
             <h1 className="mt-2 text-3xl font-semibold tracking-[-.03em] sm:text-4xl">{booking.serviceName}</h1>
-            <p className="mt-2 text-sm text-white/40">
+            <p className="mt-2 text-sm text-black/45">
               {staff ? `${booking.customerName} · ${booking.customerEmail}` : "Message Bubbles & Bros. about this appointment."}
             </p>
           </div>
-          <a href={backHref} className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white/70 hover:text-white">
+          <a href={backHref} className="rounded-full border border-[#000B3D]/15 px-5 py-3 text-sm font-semibold text-black/70 hover:text-[#0B0F19]">
             Back
           </a>
         </div>
 
         <div className="mt-7 grid gap-5 lg:grid-cols-[1fr_320px]">
-          <section className="flex min-h-[650px] flex-col rounded-[28px] border border-white/10 bg-white/[.025] p-5 sm:p-6">
-            <div className="border-b border-white/10 pb-4">
+          <section className="flex min-h-[650px] flex-col rounded-[28px] border border-[#000B3D]/10 bg-[#F7F9FC] p-5 sm:p-6">
+            <div className="border-b border-[#000B3D]/10 pb-4">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <p className="font-semibold">{vehicle}</p>
-                  <p className="mt-1 text-xs text-white/35">
+                  <p className="mt-1 text-xs text-black/40">
                     Booking #{booking.id.slice(-7)} · {booking.preferredDate || "Date not specified"}
                     {booking.preferredTime ? ` · ${booking.preferredTime}` : ""}
                   </p>
                   {staff && (
-                    <p className="mt-1 text-xs text-white/25">
+                    <p className="mt-1 text-xs text-black/30">
                       Customer presence: {recentlyActive ? "currently/recently active" : "offline"}
                     </p>
                   )}
                 </div>
-                <span className="rounded-full border border-white/10 px-3 py-1.5 text-xs uppercase text-white/55">{booking.status}</span>
+                <span className="rounded-full border border-[#000B3D]/10 px-3 py-1.5 text-xs uppercase text-black/60">{booking.status}</span>
               </div>
             </div>
 
@@ -205,7 +205,7 @@ export default function BookingChatPage() {
                 data.messages.map((message) => {
                   if (message.sender === "system") {
                     return (
-                      <p key={message.id} className="py-1 text-center text-[10px] uppercase tracking-[.16em] text-white/25">
+                      <p key={message.id} className="py-1 text-center text-[10px] uppercase tracking-[.16em] text-black/30">
                         {message.body}
                       </p>
                     );
@@ -215,7 +215,7 @@ export default function BookingChatPage() {
                   return (
                     <div
                       key={message.id}
-                      className={`max-w-[86%] rounded-2xl px-4 py-3 ${mine ? "ml-auto bg-[#5B8CFF] text-[#0D0D0D]" : "bg-white/8"}`}
+                      className={`max-w-[86%] rounded-2xl px-4 py-3 ${mine ? "ml-auto bg-[#000B3D] text-[#0B0F19]" : "bg-[#F1F4F8]"}`}
                     >
                       <p className="whitespace-pre-wrap text-sm leading-6">{message.body}</p>
                       <div className="mt-2 flex items-center gap-2 text-[10px] opacity-45">
@@ -231,7 +231,7 @@ export default function BookingChatPage() {
                 <div className="grid min-h-80 place-items-center text-center">
                   <div>
                     <p className="text-lg font-semibold">No messages yet.</p>
-                    <p className="mt-2 text-sm text-white/35">
+                    <p className="mt-2 text-sm text-black/40">
                       {staff ? "Send the customer a message about their appointment." : "Ask a question about your booking here."}
                     </p>
                   </div>
@@ -240,65 +240,65 @@ export default function BookingChatPage() {
               <div ref={bottomRef} />
             </div>
 
-            {error && <p className="mb-3 rounded-2xl border border-red-500/20 bg-red-500/[.06] p-3 text-sm text-red-200">{error}</p>}
-            {notice && <p className="mb-3 rounded-2xl border border-emerald-500/20 bg-emerald-500/[.06] p-3 text-sm text-emerald-200">{notice}</p>}
+            {error && <p className="mb-3 rounded-2xl border border-red-500/20 bg-red-500/[.06] p-3 text-sm text-red-700">{error}</p>}
+            {notice && <p className="mb-3 rounded-2xl border border-emerald-500/20 bg-emerald-500/[.06] p-3 text-sm text-emerald-700">{notice}</p>}
 
-            <form onSubmit={send} className="flex gap-2 border-t border-white/10 pt-4">
+            <form onSubmit={send} className="flex gap-2 border-t border-[#000B3D]/10 pt-4">
               <textarea
                 value={reply}
                 onChange={(event) => setReply(event.target.value)}
                 placeholder={staff ? "Text customer…" : "Message Bubbles & Bros.…"}
                 maxLength={3000}
-                className="min-h-12 flex-1 resize-none rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white outline-none focus:border-[#5B8CFF]/60"
+                className="min-h-12 flex-1 resize-none rounded-2xl border border-[#000B3D]/10 bg-white px-4 py-3 text-sm text-[#0B0F19] outline-none focus:border-[#000B3D]/60"
               />
               <button
                 disabled={sending || !reply.trim()}
-                className="self-end rounded-full bg-[#5B8CFF] px-5 py-3 text-sm font-semibold text-[#0D0D0D] disabled:cursor-not-allowed disabled:opacity-50"
+                className="self-end rounded-full bg-[#000B3D] px-5 py-3 text-sm font-semibold text-[#0B0F19] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {sending ? "Sending…" : "Send"}
               </button>
             </form>
           </section>
 
-          <aside className="h-fit rounded-[28px] border border-white/10 bg-white/[.025] p-5">
-            <p className="text-xs font-semibold uppercase tracking-[.22em] text-[#5B8CFF]">Booking details</p>
+          <aside className="h-fit rounded-[28px] border border-[#000B3D]/10 bg-[#F7F9FC] p-5">
+            <p className="text-xs font-semibold uppercase tracking-[.22em] text-[#000B3D]">Booking details</p>
             <div className="mt-5 space-y-4 text-sm">
               <div>
-                <p className="text-xs text-white/30">Total</p>
-                <p className="mt-1 text-3xl font-semibold text-emerald-300">
+                <p className="text-xs text-black/35">Total</p>
+                <p className="mt-1 text-3xl font-semibold text-emerald-700">
                   {booking.quotedPrice != null ? `$${booking.quotedPrice.toFixed(2)}` : "—"}
                 </p>
               </div>
               <div>
-                <p className="text-xs text-white/30">Vehicle</p>
-                <p className="mt-1 text-white/75">{vehicle}</p>
+                <p className="text-xs text-black/35">Vehicle</p>
+                <p className="mt-1 text-black/75">{vehicle}</p>
               </div>
               <div>
-                <p className="text-xs text-white/30">Preferred appointment</p>
-                <p className="mt-1 text-white/75">
+                <p className="text-xs text-black/35">Preferred appointment</p>
+                <p className="mt-1 text-black/75">
                   {booking.preferredDate || "Not specified"}{booking.preferredTime ? ` · ${booking.preferredTime}` : ""}
                 </p>
               </div>
               <div>
-                <p className="text-xs text-white/30">Service method</p>
-                <p className="mt-1 capitalize text-white/75">{booking.serviceMethod || "Not specified"}</p>
+                <p className="text-xs text-black/35">Service method</p>
+                <p className="mt-1 capitalize text-black/75">{booking.serviceMethod || "Not specified"}</p>
               </div>
               {staff && (
                 <>
                   <div>
-                    <p className="text-xs text-white/30">Phone</p>
-                    <a href={`tel:${booking.customerPhone}`} className="mt-1 block text-white/75 underline">{booking.customerPhone}</a>
+                    <p className="text-xs text-black/35">Phone</p>
+                    <a href={`tel:${booking.customerPhone}`} className="mt-1 block text-black/75 underline">{booking.customerPhone}</a>
                   </div>
                   <div>
-                    <p className="text-xs text-white/30">Email</p>
-                    <a href={`mailto:${booking.customerEmail}`} className="mt-1 block break-all text-white/75 underline">{booking.customerEmail}</a>
+                    <p className="text-xs text-black/35">Email</p>
+                    <a href={`mailto:${booking.customerEmail}`} className="mt-1 block break-all text-black/75 underline">{booking.customerEmail}</a>
                   </div>
                 </>
               )}
             </div>
 
             {!staff && authRole === "guest" && (
-              <p className="mt-6 rounded-2xl border border-white/10 bg-black/25 p-4 text-xs leading-5 text-white/40">
+              <p className="mt-6 rounded-2xl border border-[#000B3D]/10 bg-[#F6F8FB] p-4 text-xs leading-5 text-black/45">
                 This is your secure booking-chat link. Keep it private so only you can access this conversation.
               </p>
             )}

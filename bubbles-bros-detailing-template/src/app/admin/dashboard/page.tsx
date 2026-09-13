@@ -64,37 +64,37 @@ export default function AdminDashboard() {
     return true;
   }), [smsUnread]);
 
-  if (!user) return <div className="min-h-screen bg-[#050505] p-12 text-white">Loading staff dashboard…</div>;
+  if (!user) return <div className="min-h-screen bg-white p-12 text-[#0B0F19]">Loading staff dashboard…</div>;
 
   const visible = cards.filter((card) => permissions.includes(card.permission));
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white">
+    <main className="min-h-screen bg-white text-[#0B0F19]">
       <div className="mx-auto max-w-6xl px-6 py-12">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[.28em] text-[#5B8CFF]">Staff</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[.28em] text-[#000B3D]">Staff</p>
             <h1 className="mt-2 text-4xl font-semibold">Staff Dashboard</h1>
-            <p className="mt-2 text-sm text-white/45">Signed in as {user.email}. The panels below reflect the access the owner has assigned to this account.</p>
+            <p className="mt-2 text-sm text-black/50">Signed in as {user.email}. The panels below reflect the access the owner has assigned to this account.</p>
           </div>
-          <a href="/account" className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-white/70 transition hover:border-white/30 hover:text-white">Account</a>
+          <a href="/account" className="rounded-full border border-[#000B3D]/15 px-5 py-2.5 text-sm font-semibold text-black/70 transition hover:border-[#000B3D]/30 hover:text-[#0B0F19]">Account</a>
         </div>
 
         <div className="mt-8 grid gap-5 sm:grid-cols-2">
           {visible.map((card) => (
-            <a key={card.href} href={card.href} className="relative rounded-3xl border border-white/10 bg-white/[.025] p-8 transition hover:border-[#5B8CFF]/45">
+            <a key={card.href} href={card.href} className="relative rounded-3xl border border-[#000B3D]/10 bg-[#F7F9FC] p-8 transition hover:border-[#000B3D]/45">
               {(card.badge || 0) > 0 && (
-                <span className="absolute right-5 top-5 rounded-full bg-[#5B8CFF] px-2.5 py-1 text-xs font-bold text-[#0D0D0D]">{card.badge}</span>
+                <span className="absolute right-5 top-5 rounded-full bg-[#000B3D] px-2.5 py-1 text-xs font-bold text-[#0B0F19]">{card.badge}</span>
               )}
               <p className="text-3xl">{card.icon}</p>
               <h2 className="mt-5 text-2xl font-semibold">{card.title}</h2>
-              <p className="mt-2 text-sm leading-6 text-white/40">{card.description}</p>
+              <p className="mt-2 text-sm leading-6 text-black/45">{card.description}</p>
             </a>
           ))}
         </div>
 
         {!visible.length && (
-          <div className="mt-8 rounded-3xl border border-dashed border-white/10 p-8 text-sm text-white/40">
+          <div className="mt-8 rounded-3xl border border-dashed border-[#000B3D]/10 p-8 text-sm text-black/45">
             This account does not currently have access to any staff panels. Ask the owner to assign a role or dashboard permission.
           </div>
         )}

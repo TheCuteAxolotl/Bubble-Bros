@@ -58,9 +58,9 @@ export default function OwnerSettings() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#050505] text-white flex items-center justify-center">
+      <div className="min-h-screen bg-white text-[#0B0F19] flex items-center justify-center">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#5B8CFF]"></div>
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#000B3D]"></div>
           <p className="mt-4">Loading...</p>
         </div>
       </div>
@@ -72,15 +72,15 @@ export default function OwnerSettings() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
+    <div className="min-h-screen bg-white text-[#0B0F19]">
       {/* Header */}
-      <header className="border-b border-neutral-800 bg-neutral-950">
+      <header className="border-b border-[#000B3D]/10 bg-white">
         <div className="mx-auto max-w-7xl px-6 py-6 flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold">Settings</h1>
-            <p className="text-sm text-neutral-400">Manage your account</p>
+            <p className="text-sm text-neutral-600">Manage your account</p>
           </div>
-          <a href="/owner/dashboard" className="px-4 py-2 rounded-lg bg-[#5B8CFF] hover:bg-[#5B8CFF] text-[#0D0D0D] transition text-sm font-medium">
+          <a href="/owner/dashboard" className="px-4 py-2 rounded-lg bg-[#000B3D] hover:bg-[#000B3D] text-[#0B0F19] transition text-sm font-medium">
             Back
           </a>
         </div>
@@ -88,14 +88,14 @@ export default function OwnerSettings() {
 
       {/* Main Content */}
       <main className="mx-auto max-w-2xl px-6 py-12">
-        <div className="rounded-3xl border border-neutral-800 bg-neutral-950 p-8">
+        <div className="rounded-3xl border border-[#000B3D]/10 bg-white p-8">
           <h2 className="text-2xl font-semibold mb-6">Account Settings</h2>
 
           {message && (
             <div className={`mb-6 p-4 rounded-lg border ${
               message.includes("success")
-                ? "bg-green-900/30 border-green-700 text-green-200"
-                : "bg-red-900/30 border-red-700 text-red-200"
+                ? "bg-green-50 border-green-300 text-green-700"
+                : "bg-red-50 border-red-700 text-red-700"
             }`}>
               {message}
             </div>
@@ -108,7 +108,7 @@ export default function OwnerSettings() {
                 type="email"
                 value={user.email}
                 disabled
-                className="w-full px-4 py-3 rounded-lg bg-neutral-900 border border-neutral-700 text-neutral-400"
+                className="w-full px-4 py-3 rounded-lg bg-[#F7F9FC] border border-[#000B3D]/15 text-neutral-600"
               />
               <p className="text-xs text-neutral-500 mt-1">Email cannot be changed</p>
             </div>
@@ -119,28 +119,28 @@ export default function OwnerSettings() {
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500 focus:outline-none focus:border-[#5B8CFF]/60"
+                className="w-full px-4 py-3 rounded-lg bg-[#F7F9FC] border border-[#000B3D]/10 text-[#0B0F19] placeholder-neutral-500 focus:outline-none focus:border-[#000B3D]/60"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-[#5B8CFF] hover:bg-[#5B8CFF] text-[#0D0D0D] py-3 rounded-lg font-semibold transition"
+              className="w-full bg-[#000B3D] hover:bg-[#000B3D] text-[#0B0F19] py-3 rounded-lg font-semibold transition"
             >
               Save Changes
             </button>
           </form>
         </div>
 
-        <div className="mt-8 rounded-3xl border border-neutral-800 bg-neutral-950 p-8">
+        <div className="mt-8 rounded-3xl border border-[#000B3D]/10 bg-white p-8">
           <h2 className="text-2xl font-semibold mb-6">Account Info</h2>
           <div className="space-y-4">
             <div>
-              <p className="text-sm text-neutral-400">Account Type</p>
+              <p className="text-sm text-neutral-600">Account Type</p>
               <p className="text-lg font-semibold capitalize">{user.role}</p>
             </div>
             <div>
-              <p className="text-sm text-neutral-400">Member Since</p>
+              <p className="text-sm text-neutral-600">Member Since</p>
               <p className="text-lg font-semibold">
                 {user.id ? "Your account is active" : "Unknown"}
               </p>

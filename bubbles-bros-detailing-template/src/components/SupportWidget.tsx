@@ -248,7 +248,7 @@ export default function SupportWidget() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="support-launcher fixed bottom-5 right-5 z-[70] rounded-full border border-black/10 bg-[#5B8CFF] px-5 py-3 text-sm font-semibold text-[#0D0D0D] shadow-[0_18px_50px_rgba(0,0,0,.22)] transition hover:-translate-y-0.5"
+          className="support-launcher fixed bottom-5 right-5 z-[70] rounded-full border border-black/10 bg-[#000B3D] px-5 py-3 text-sm font-semibold text-[#0B0F19] shadow-[0_18px_50px_rgba(0,11,61,.16)] transition hover:-translate-y-0.5"
         >
           Need help?
         </button>
@@ -256,15 +256,15 @@ export default function SupportWidget() {
 
       {open && (
         <div
-          className="fixed inset-0 z-[80] flex items-end justify-end bg-black/35 p-3 backdrop-blur-sm sm:p-5"
+          className="fixed inset-0 z-[80] flex items-end justify-end bg-[rgba(0,11,61,.18)] p-3 backdrop-blur-sm sm:p-5"
           onMouseDown={(event) => {
             if (event.currentTarget === event.target) setOpen(false);
           }}
         >
-          <section className="flex max-h-[84vh] w-full max-w-[460px] flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#0a0a0a] text-white shadow-2xl">
-            <div className="flex items-start justify-between border-b border-white/10 px-5 py-5">
+          <section className="flex max-h-[84vh] w-full max-w-[460px] flex-col overflow-hidden rounded-[28px] border border-[#000B3D]/10 bg-white text-[#0B0F19] shadow-2xl">
+            <div className="flex items-start justify-between border-b border-[#000B3D]/10 px-5 py-5">
               <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[.26em] text-[#5B8CFF]">
+                <p className="text-[10px] font-semibold uppercase tracking-[.26em] text-[#000B3D]">
                   Bubbles & Bros. Support
                 </p>
                 <h2 className="mt-2 text-xl font-semibold">
@@ -275,19 +275,19 @@ export default function SupportWidget() {
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-white/55 hover:text-white"
+                className="rounded-full border border-[#000B3D]/10 px-3 py-1.5 text-xs text-black/60 hover:text-[#0B0F19]"
               >
                 Close
               </button>
             </div>
 
             {!authChecked ? (
-              <div className="p-6 text-sm text-white/45">Checking account…</div>
+              <div className="p-6 text-sm text-black/50">Checking account…</div>
             ) : !user ? (
               <div className="space-y-5 p-6">
                 <div>
                   <h3 className="text-lg font-semibold">Login required</h3>
-                  <p className="mt-2 text-sm leading-6 text-white/45">
+                  <p className="mt-2 text-sm leading-6 text-black/50">
                     Support chats are private and connected to your Bubbles & Bros. account.
                     Log in or create an account to start or view a support conversation.
                   </p>
@@ -296,13 +296,13 @@ export default function SupportWidget() {
                 <div className="grid gap-2 sm:grid-cols-2">
                   <a
                     href="/login"
-                    className="rounded-full bg-[#5B8CFF] px-5 py-3 text-center text-sm font-semibold text-[#0D0D0D] hover:bg-[#5B8CFF]"
+                    className="rounded-full bg-[#000B3D] px-5 py-3 text-center text-sm font-semibold text-[#0B0F19] hover:bg-[#000B3D]"
                   >
                     Login
                   </a>
                   <a
                     href="/register"
-                    className="rounded-full border border-white/15 px-5 py-3 text-center text-sm font-semibold text-white/75 hover:border-white/30 hover:text-white"
+                    className="rounded-full border border-[#000B3D]/15 px-5 py-3 text-center text-sm font-semibold text-black/75 hover:border-[#000B3D]/30 hover:text-[#0B0F19]"
                   >
                     Create account
                   </a>
@@ -311,22 +311,22 @@ export default function SupportWidget() {
             ) : user.staffAccess ? (
               <div className="space-y-4 p-6">
                 <h3 className="text-lg font-semibold">Staff account</h3>
-                <p className="text-sm leading-6 text-white/45">
+                <p className="text-sm leading-6 text-black/50">
                   Customer support conversations are managed from the staff support inbox.
                 </p>
                 <a
                   href={user.role === "owner" ? "/owner/support" : user.permissions?.includes("support") ? "/admin/support" : "/admin/dashboard"}
-                  className="block rounded-full bg-[#5B8CFF] px-5 py-3 text-center text-sm font-semibold text-[#0D0D0D] hover:bg-[#5B8CFF]"
+                  className="block rounded-full bg-[#000B3D] px-5 py-3 text-center text-sm font-semibold text-[#0B0F19] hover:bg-[#000B3D]"
                 >
                   {user.role === "owner" || user.permissions?.includes("support") ? "Open Support Inbox" : "Open Staff Dashboard"}
                 </a>
               </div>
             ) : creatingNew ? (
               <form onSubmit={createTicket} className="space-y-4 overflow-y-auto p-5">
-                <div className="rounded-2xl border border-white/8 bg-white/[.03] p-4">
-                  <p className="text-xs text-white/35">Signed in as</p>
+                <div className="rounded-2xl border border-[#000B3D]/10 bg-[#F5F7FB] p-4">
+                  <p className="text-xs text-black/40">Signed in as</p>
                   <p className="mt-1 text-sm font-semibold">{user.name}</p>
-                  <p className="mt-1 text-xs text-white/40">{user.email}</p>
+                  <p className="mt-1 text-xs text-black/45">{user.email}</p>
                 </div>
 
                 <input
@@ -345,7 +345,7 @@ export default function SupportWidget() {
                 />
 
                 <div>
-                  <label className="mb-2 block text-xs text-white/45">
+                  <label className="mb-2 block text-xs text-black/50">
                     How should Bubbles & Bros. reply?
                   </label>
                   <select name="contactPreference" className="support-input">
@@ -362,11 +362,11 @@ export default function SupportWidget() {
                   className="support-input"
                 />
 
-                {error && <p className="text-sm text-[#5B8CFF]">{error}</p>}
+                {error && <p className="text-sm text-[#000B3D]">{error}</p>}
 
                 <button
                   disabled={sending}
-                  className="w-full rounded-full bg-[#5B8CFF] px-5 py-3 text-sm font-semibold text-[#0D0D0D] hover:bg-[#5B8CFF] disabled:opacity-50"
+                  className="w-full rounded-full bg-[#000B3D] px-5 py-3 text-sm font-semibold text-[#0B0F19] hover:bg-[#000B3D] disabled:opacity-50"
                 >
                   {sending ? "Sending…" : "Start support chat"}
                 </button>
@@ -379,7 +379,7 @@ export default function SupportWidget() {
                       setSelectedId(tickets[0].id);
                       setError("");
                     }}
-                    className="w-full text-center text-xs text-white/40 hover:text-white/70"
+                    className="w-full text-center text-xs text-black/45 hover:text-black/70"
                   >
                     Back to my support chats
                   </button>
@@ -387,17 +387,17 @@ export default function SupportWidget() {
               </form>
             ) : (
               <div className="flex min-h-0 flex-1 flex-col">
-                <div className="border-b border-white/8 p-4">
+                <div className="border-b border-[#000B3D]/10 p-4">
                   <div className="flex items-center justify-between gap-3">
                     <div className="min-w-0">
-                      <p className="text-xs text-white/35">Your private support chats</p>
+                      <p className="text-xs text-black/40">Your private support chats</p>
                       <select
                         value={selectedId}
                         onChange={(event) => setSelectedId(event.target.value)}
-                        className="mt-2 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none"
+                        className="mt-2 w-full rounded-xl border border-[#000B3D]/10 bg-[#F4F7FB] px-3 py-2 text-sm text-[#0B0F19] outline-none"
                       >
                         {tickets.map((ticket) => (
-                          <option key={ticket.id} value={ticket.id} className="bg-[#111]">
+                          <option key={ticket.id} value={ticket.id} className="bg-white">
                             {ticket.subject} · {ticket.status}
                           </option>
                         ))}
@@ -410,7 +410,7 @@ export default function SupportWidget() {
                         setCreatingNew(true);
                         setError("");
                       }}
-                      className="shrink-0 rounded-full border border-white/12 px-3 py-2 text-xs text-white/60 hover:text-white"
+                      className="shrink-0 rounded-full border border-[#000B3D]/10 px-3 py-2 text-xs text-black/65 hover:text-[#0B0F19]"
                     >
                       New chat
                     </button>
@@ -425,8 +425,8 @@ export default function SupportWidget() {
                           key={item.id}
                           className={`max-w-[86%] rounded-2xl px-4 py-3 text-sm leading-6 ${
                             item.sender === "team"
-                              ? "bg-[#5B8CFF] text-[#0D0D0D]"
-                              : "ml-auto bg-white/8 text-white/80"
+                              ? "bg-[#000B3D] text-[#0B0F19]"
+                              : "ml-auto bg-[#F1F4F8] text-black/80"
                           }`}
                         >
                           <p>{item.body}</p>
@@ -438,7 +438,7 @@ export default function SupportWidget() {
                       <div ref={endRef} />
                     </div>
 
-                    <form onSubmit={sendMessage} className="border-t border-white/10 p-4">
+                    <form onSubmit={sendMessage} className="border-t border-[#000B3D]/10 p-4">
                       <div className="flex gap-2">
                         <input
                           value={message}
@@ -448,16 +448,16 @@ export default function SupportWidget() {
                         />
                         <button
                           disabled={sending}
-                          className="rounded-full bg-white px-4 text-sm font-semibold text-[#0D0D0D] disabled:opacity-50"
+                          className="rounded-full bg-[#000B3D] px-4 text-sm font-semibold text-white disabled:opacity-50"
                         >
                           Send
                         </button>
                       </div>
-                      {error && <p className="mt-2 text-xs text-[#5B8CFF]">{error}</p>}
+                      {error && <p className="mt-2 text-xs text-[#000B3D]">{error}</p>}
                     </form>
                   </>
                 ) : (
-                  <div className="grid min-h-[300px] place-items-center p-6 text-center text-sm text-white/35">
+                  <div className="grid min-h-[300px] place-items-center p-6 text-center text-sm text-black/40">
                     No support chats yet.
                   </div>
                 )}

@@ -51,7 +51,7 @@ export default function SitePhoto({
   if (!image) {
     return (
       <div
-        className={`bg-[linear-gradient(135deg,#111,#090909_55%,#1a0909)] ${className}`}
+        className={`bg-[linear-gradient(135deg,#FFFFFF,#F5F7FB_55%,#EEF2FA)] ${className}`}
         aria-hidden="true"
       />
     );

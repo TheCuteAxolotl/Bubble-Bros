@@ -20,7 +20,7 @@ type Thread = {
   messages: Msg[];
 };
 
-const input = "w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 outline-none focus:border-[#5B8CFF]/55";
+const input = "w-full rounded-2xl border border-[#000B3D]/10 bg-[#F3F6FA] px-4 py-3 outline-none focus:border-[#000B3D]/55";
 
 export default function StaffQuoteInbox({ backHref, canDelete = false }: { backHref: string; canDelete?: boolean }) {
   const [threads, setThreads] = useState<Thread[]>([]);
@@ -145,28 +145,28 @@ export default function StaffQuoteInbox({ backHref, canDelete = false }: { backH
   };
 
   if (!authorized) {
-    return <main className="min-h-screen bg-[#070707] p-10 text-white">Checking quote access…</main>;
+    return <main className="min-h-screen bg-white p-10 text-[#0B0F19]">Checking quote access…</main>;
   }
 
   return (
-    <main className="min-h-screen bg-[#070707] px-5 py-8 text-white">
+    <main className="min-h-screen bg-white px-5 py-8 text-[#0B0F19]">
       <div className="mx-auto max-w-[1500px]">
         <div className="flex justify-between gap-4">
           <div>
-            <p className="text-xs uppercase tracking-[.28em] text-[#5B8CFF]">Sales inbox</p>
+            <p className="text-xs uppercase tracking-[.28em] text-[#000B3D]">Sales inbox</p>
             <h1 className="mt-2 text-4xl font-semibold">Specialist quote chats</h1>
-            <p className="mt-2 text-white/40">Reply, send exact quotes, close conversations, and follow accepted quotes into bookings.</p>
+            <p className="mt-2 text-black/45">Reply, send exact quotes, close conversations, and follow accepted quotes into bookings.</p>
           </div>
-          <a href={backHref} className="h-fit rounded-full border border-white/15 px-5 py-3 text-sm">Back</a>
+          <a href={backHref} className="h-fit rounded-full border border-[#000B3D]/15 px-5 py-3 text-sm">Back</a>
         </div>
 
         <div className="mt-7 grid gap-5 lg:grid-cols-[340px_1fr]">
-          <aside className="rounded-[26px] border border-white/10 bg-white/[.025] p-3">
+          <aside className="rounded-[26px] border border-[#000B3D]/10 bg-[#F7F9FC] p-3">
             {threads.map((thread) => (
               <button
                 key={thread.id}
                 onClick={() => setSelectedId(thread.id)}
-                className={`mb-2 w-full rounded-2xl p-4 text-left ${thread.id === selectedId ? "bg-white text-black" : "hover:bg-white/5"}`}
+                className={`mb-2 w-full rounded-2xl p-4 text-left ${thread.id === selectedId ? "bg-white text-black" : "hover:bg-[#F4F7FB]"}`}
               >
                 <div className="flex justify-between gap-2">
                   <span className="font-semibold">{thread.user?.name || thread.guestName || "Guest quote"}</span>
@@ -176,47 +176,47 @@ export default function StaffQuoteInbox({ backHref, canDelete = false }: { backH
                 {thread.quotedPrice && <p className="mt-1 text-xs font-semibold opacity-70">${thread.quotedPrice.toFixed(2)}</p>}
               </button>
             ))}
-            {!threads.length && <p className="p-5 text-sm text-white/35">No quote chats yet.</p>}
+            {!threads.length && <p className="p-5 text-sm text-black/40">No quote chats yet.</p>}
           </aside>
 
-          <section className="min-h-[690px] rounded-[26px] border border-white/10 bg-white/[.025] p-5">
+          <section className="min-h-[690px] rounded-[26px] border border-[#000B3D]/10 bg-[#F7F9FC] p-5">
             {active ? (
               <div className="grid gap-5 xl:grid-cols-[1fr_320px]">
                 <div>
-                  <div className="border-b border-white/10 pb-4">
+                  <div className="border-b border-[#000B3D]/10 pb-4">
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       <div>
                         <h2 className="text-2xl font-semibold">{active.subject}</h2>
-                        <p className="mt-1 text-sm text-white/40">
+                        <p className="mt-1 text-sm text-black/45">
                           {active.user?.name || active.guestName || "Guest customer"} · {active.user?.email || active.guestEmail || "No email"}
                           {active.vehicle ? ` · ${active.vehicle.year} ${active.vehicle.make} ${active.vehicle.model}` : active.guestVehicle ? ` · ${active.guestVehicle}` : ""}
                         </p>
-                        <p className="mt-1 text-xs text-white/25">
+                        <p className="mt-1 text-xs text-black/30">
                           {active.user ? `Customer presence: ${active.lastCustomerSeenAt && Date.now() - new Date(active.lastCustomerSeenAt).getTime() < 90000 ? "currently/recently active" : "offline"}` : `Guest lead${active.guestPhone ? ` · ${active.guestPhone}` : ""}`}
                         </p>
                         {!active.user && (active.guestPhone || active.guestEmail) && (
                           <div className="mt-3 flex flex-wrap gap-2">
-                            {active.guestPhone && <a href={`tel:${active.guestPhone}`} className="rounded-full border border-white/12 px-3 py-1.5 text-xs text-white/60 hover:border-[#5B8CFF]/40 hover:text-white">Call</a>}
-                            {active.guestPhone && <a href={`sms:${active.guestPhone}`} className="rounded-full border border-white/12 px-3 py-1.5 text-xs text-white/60 hover:border-[#5B8CFF]/40 hover:text-white">Text</a>}
-                            {active.guestEmail && <a href={`mailto:${active.guestEmail}`} className="rounded-full border border-white/12 px-3 py-1.5 text-xs text-white/60 hover:border-[#5B8CFF]/40 hover:text-white">Email</a>}
+                            {active.guestPhone && <a href={`tel:${active.guestPhone}`} className="rounded-full border border-[#000B3D]/10 px-3 py-1.5 text-xs text-black/65 hover:border-[#000B3D]/40 hover:text-[#0B0F19]">Call</a>}
+                            {active.guestPhone && <a href={`sms:${active.guestPhone}`} className="rounded-full border border-[#000B3D]/10 px-3 py-1.5 text-xs text-black/65 hover:border-[#000B3D]/40 hover:text-[#0B0F19]">Text</a>}
+                            {active.guestEmail && <a href={`mailto:${active.guestEmail}`} className="rounded-full border border-[#000B3D]/10 px-3 py-1.5 text-xs text-black/65 hover:border-[#000B3D]/40 hover:text-[#0B0F19]">Email</a>}
                           </div>
                         )}
                       </div>
-                      <span className="rounded-full border border-white/10 px-3 py-1.5 text-xs uppercase text-white/50">{active.status}</span>
+                      <span className="rounded-full border border-[#000B3D]/10 px-3 py-1.5 text-xs uppercase text-black/55">{active.status}</span>
                     </div>
 
                     {active.status === "accepted" && active.quotedPrice && (
-                      <p className="mt-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/[.06] p-4 text-sm text-emerald-200">
+                      <p className="mt-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/[.06] p-4 text-sm text-emerald-700">
                         Customer accepted ${active.quotedPrice.toFixed(2)}. Their chat now shows a Book Now button with this exact total.
                       </p>
                     )}
                     {active.status === "booked" && (
-                      <p className="mt-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/[.06] p-4 text-sm text-emerald-200">
+                      <p className="mt-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/[.06] p-4 text-sm text-emerald-700">
                         This accepted quote has been converted into a booking. Manage it from Bookings.
                       </p>
                     )}
                     {active.status === "closed" && (
-                      <p className="mt-4 rounded-2xl border border-white/10 bg-white/[.03] p-4 text-sm text-white/50">
+                      <p className="mt-4 rounded-2xl border border-[#000B3D]/10 bg-[#F5F7FB] p-4 text-sm text-black/55">
                         Closed. The customer can read the history but cannot send new messages.
                       </p>
                     )}
@@ -225,10 +225,10 @@ export default function StaffQuoteInbox({ backHref, canDelete = false }: { backH
                   <div className="space-y-3 py-5">
                     {active.messages.map((message) => {
                       if (message.sender === "system") {
-                        return <p key={message.id} className="text-center text-[10px] uppercase tracking-[.16em] text-white/20">{message.body}</p>;
+                        return <p key={message.id} className="text-center text-[10px] uppercase tracking-[.16em] text-black/25">{message.body}</p>;
                       }
                       return (
-                        <div key={message.id} className={`max-w-[85%] rounded-2xl px-4 py-3 ${message.sender === "team" ? "ml-auto bg-[#5B8CFF] text-[#0D0D0D]" : "bg-white/8"}`}>
+                        <div key={message.id} className={`max-w-[85%] rounded-2xl px-4 py-3 ${message.sender === "team" ? "ml-auto bg-[#000B3D] text-[#0B0F19]" : "bg-[#F1F4F8]"}`}>
                           <p className="text-sm leading-6">{message.body}</p>
                           {message.attachmentsJson && (
                             <div className="mt-3 grid grid-cols-2 gap-2">
@@ -243,24 +243,24 @@ export default function StaffQuoteInbox({ backHref, canDelete = false }: { backH
                   </div>
 
                   {readOnly ? (
-                    <div className="border-t border-white/10 pt-4 text-sm text-white/35">
+                    <div className="border-t border-[#000B3D]/10 pt-4 text-sm text-black/40">
                       {active.status === "booked" ? "Booked conversations are locked." : "Reopen the conversation before sending another message."}
                     </div>
                   ) : (
-                    <form onSubmit={send} className="flex gap-2 border-t border-white/10 pt-4">
+                    <form onSubmit={send} className="flex gap-2 border-t border-[#000B3D]/10 pt-4">
                       <input className={input} value={reply} onChange={(event) => setReply(event.target.value)} placeholder="Reply to customer…" />
-                      <button className="rounded-full bg-[#5B8CFF] px-5 text-[#0D0D0D]">Send</button>
+                      <button className="rounded-full bg-[#000B3D] px-5 text-[#0B0F19]">Send</button>
                     </form>
                   )}
                 </div>
 
-                <aside className="rounded-2xl border border-white/10 bg-black/30 p-4">
-                  <p className="text-xs uppercase tracking-[.22em] text-[#5B8CFF]">Final quote</p>
-                  <label className="mt-4 block text-xs text-white/45">
+                <aside className="rounded-2xl border border-[#000B3D]/10 bg-[#F5F7FB] p-4">
+                  <p className="text-xs uppercase tracking-[.22em] text-[#000B3D]">Final quote</p>
+                  <label className="mt-4 block text-xs text-black/50">
                     Exact price
                     <input type="number" min="1" step="0.01" className={`${input} mt-2`} value={price} onChange={(event) => setPrice(event.target.value)} placeholder="275" />
                   </label>
-                  <label className="mt-4 block text-xs text-white/45">
+                  <label className="mt-4 block text-xs text-black/50">
                     Quote notes
                     <textarea className={`${input} mt-2 min-h-28`} value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="Full interior + exterior detail…" />
                   </label>
@@ -268,17 +268,17 @@ export default function StaffQuoteInbox({ backHref, canDelete = false }: { backH
                   <button
                     onClick={saveQuote}
                     disabled={active.status === "closed" || active.status === "booked"}
-                    className="mt-4 w-full rounded-full bg-[#5B8CFF] px-5 py-3 font-semibold text-[#0D0D0D] disabled:cursor-not-allowed disabled:opacity-40"
+                    className="mt-4 w-full rounded-full bg-[#000B3D] px-5 py-3 font-semibold text-[#0B0F19] disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     {active.status === "accepted" ? "Send revised quote" : "Send / update quote"}
                   </button>
 
                   {active.status === "closed" ? (
-                    <button onClick={() => setConversation("reopen")} className="mt-2 w-full rounded-full border border-white/15 px-5 py-3 text-sm">
+                    <button onClick={() => setConversation("reopen")} className="mt-2 w-full rounded-full border border-[#000B3D]/15 px-5 py-3 text-sm">
                       Reopen conversation
                     </button>
                   ) : active.status !== "booked" ? (
-                    <button onClick={() => setConversation("close")} className="mt-2 w-full rounded-full border border-white/15 px-5 py-3 text-sm">
+                    <button onClick={() => setConversation("close")} className="mt-2 w-full rounded-full border border-[#000B3D]/15 px-5 py-3 text-sm">
                       Close conversation
                     </button>
                   ) : null}
@@ -287,17 +287,17 @@ export default function StaffQuoteInbox({ backHref, canDelete = false }: { backH
                     <button
                       onClick={deleteChat}
                       disabled={deleting}
-                      className="mt-5 w-full rounded-full border border-red-500/35 bg-red-950/20 px-5 py-3 text-sm font-semibold text-red-300 disabled:opacity-40"
+                      className="mt-5 w-full rounded-full border border-red-500/35 bg-red-50 px-5 py-3 text-sm font-semibold text-red-700 disabled:opacity-40"
                     >
                       {deleting ? "Deleting…" : "Delete quote chat permanently"}
                     </button>
                   )}
 
-                  {msg && <p className="mt-3 text-xs leading-5 text-white/45">{msg}</p>}
+                  {msg && <p className="mt-3 text-xs leading-5 text-black/50">{msg}</p>}
                 </aside>
               </div>
             ) : (
-              <div className="grid min-h-[600px] place-items-center text-white/30">Choose a conversation.</div>
+              <div className="grid min-h-[600px] place-items-center text-black/35">Choose a conversation.</div>
             )}
           </section>
         </div>

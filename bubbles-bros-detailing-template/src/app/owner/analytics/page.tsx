@@ -50,25 +50,25 @@ export default async function Analytics() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#070707] px-6 py-10 text-white">
+    <main className="min-h-screen bg-white px-6 py-10 text-[#0B0F19]">
       <div className="mx-auto max-w-7xl">
         <div className="flex justify-between gap-5">
           <div>
-            <p className="text-xs uppercase tracking-[.28em] text-[#5B8CFF]">{access.role === "owner" ? "Owner" : "Staff"}</p>
+            <p className="text-xs uppercase tracking-[.28em] text-[#000B3D]">{access.role === "owner" ? "Owner" : "Staff"}</p>
             <h1 className="mt-2 text-4xl font-semibold">Analytics</h1>
-            <p className="mt-2 text-white/40">Bookings, leads, customers, and exact booking totals.</p>
+            <p className="mt-2 text-black/45">Bookings, leads, customers, and exact booking totals.</p>
           </div>
-          <a href={access.role === "owner" ? "/owner/dashboard" : "/admin/dashboard"} className="h-fit rounded-full border border-white/15 px-5 py-3 text-sm">Back</a>
+          <a href={access.role === "owner" ? "/owner/dashboard" : "/admin/dashboard"} className="h-fit rounded-full border border-[#000B3D]/15 px-5 py-3 text-sm">Back</a>
         </div>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map(([key, value]) => (
-            <div key={String(key)} className="rounded-[26px] border border-white/10 bg-white/[.03] p-6">
-              <p className="text-sm text-white/40">{key}</p>
+            <div key={String(key)} className="rounded-[26px] border border-[#000B3D]/10 bg-[#F5F7FB] p-6">
+              <p className="text-sm text-black/45">{key}</p>
               <p className="mt-3 text-4xl font-semibold">{value}</p>
             </div>
           ))}
         </div>
-        <p className="mt-6 text-xs text-white/25">
+        <p className="mt-6 text-xs text-black/30">
           Booking values use the exact total saved with each new booking. Payment processing is separate.
         </p>
       </div>

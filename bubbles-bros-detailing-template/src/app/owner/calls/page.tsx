@@ -229,15 +229,15 @@ export default function OwnerCallsPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white">
-      <header className="border-b border-white/10 bg-neutral-950">
+    <main className="min-h-screen bg-white text-[#0B0F19]">
+      <header className="border-b border-[#000B3D]/10 bg-white">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-6">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[.28em] text-[#5B8CFF]">Bubbles & Bros. Phone</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[.28em] text-[#000B3D]">Bubbles & Bros. Phone</p>
             <h1 className="mt-1 text-2xl font-bold">Business Calls</h1>
-            <p className="mt-1 text-sm text-white/40">Forward calls, screen them before connecting, save Bubbles & Bros. voicemail, keep call history, and block unwanted callers.</p>
+            <p className="mt-1 text-sm text-black/45">Forward calls, screen them before connecting, save Bubbles & Bros. voicemail, keep call history, and block unwanted callers.</p>
           </div>
-          <a href={isOwner ? "/owner/dashboard" : "/admin/dashboard"} className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-white/75 hover:text-white">Back</a>
+          <a href={isOwner ? "/owner/dashboard" : "/admin/dashboard"} className="rounded-full border border-[#000B3D]/15 px-5 py-2.5 text-sm font-semibold text-black/75 hover:text-[#0B0F19]">Back</a>
         </div>
       </header>
 
@@ -249,14 +249,14 @@ export default function OwnerCallsPage() {
                 <span className={`h-2.5 w-2.5 rounded-full ${connection?.healthy ? "bg-emerald-400" : "bg-amber-400"}`} />
                 <h2 className="font-semibold">Voice connection</h2>
               </div>
-              <p className="mt-2 text-sm text-white/55">
+              <p className="mt-2 text-sm text-black/60">
                 {connection?.healthy
                   ? "Incoming calls are routed through the Bubbles & Bros. website before they reach your phone."
                   : connection?.error || "Twilio Voice still needs to be connected."}
               </p>
-              <div className="mt-4 grid gap-2 text-xs text-white/40 sm:grid-cols-2">
-                <p>Business number: <span className="text-white/70">{connection?.businessNumber || "Not configured"}</span></p>
-                <p>Forwards to: <span className="text-white/70">{connection?.forwardNumberMasked || "Not configured"}</span></p>
+              <div className="mt-4 grid gap-2 text-xs text-black/45 sm:grid-cols-2">
+                <p>Business number: <span className="text-black/70">{connection?.businessNumber || "Not configured"}</span></p>
+                <p>Forwards to: <span className="text-black/70">{connection?.forwardNumberMasked || "Not configured"}</span></p>
                 {connection?.expectedUrl && <p className="break-all sm:col-span-2">Voice webhook: {connection.expectedUrl}</p>}
               </div>
             </div>
@@ -265,79 +265,79 @@ export default function OwnerCallsPage() {
                 type="button"
                 onClick={repairConnection}
                 disabled={repairing}
-                className="rounded-full bg-[#5B8CFF] px-5 py-2.5 text-sm font-bold text-[#0D0D0D] disabled:opacity-50"
+                className="rounded-full bg-[#000B3D] px-5 py-2.5 text-sm font-bold text-[#0B0F19] disabled:opacity-50"
               >
                 {repairing ? "Connecting…" : "Repair Voice Connection"}
               </button>
             )}
           </div>
-          <p className="mt-5 rounded-2xl border border-white/10 bg-black/25 p-4 text-xs leading-5 text-white/45">
+          <p className="mt-5 rounded-2xl border border-[#000B3D]/10 bg-[#F6F8FB] p-4 text-xs leading-5 text-black/50">
             Save your Bubbles & Bros. business number as a contact on your iPhone. When you answer, Bubbles & Bros. asks you to press 1 before connecting the customer. If you do not press 1 — including when your personal voicemail answers — the customer is sent to Bubbles & Bros. voicemail instead.
           </p>
         </section>
 
-        {error && <p className="rounded-2xl border border-red-500/20 bg-red-500/[.06] p-4 text-sm text-red-200">{error}</p>}
-        {note && <p className="rounded-2xl border border-emerald-500/20 bg-emerald-500/[.06] p-4 text-sm text-emerald-200">{note}</p>}
+        {error && <p className="rounded-2xl border border-red-500/20 bg-red-500/[.06] p-4 text-sm text-red-700">{error}</p>}
+        {note && <p className="rounded-2xl border border-emerald-500/20 bg-emerald-500/[.06] p-4 text-sm text-emerald-700">{note}</p>}
 
         <section className="grid gap-6 lg:grid-cols-[1fr_.85fr]">
-          <div className="rounded-3xl border border-white/10 bg-white/[.025] p-6">
+          <div className="rounded-3xl border border-[#000B3D]/10 bg-[#F7F9FC] p-6">
             <h2 className="text-xl font-semibold">Block a caller</h2>
-            <p className="mt-1 text-sm text-white/40">Blocked numbers are rejected before the call is forwarded to your phone.</p>
+            <p className="mt-1 text-sm text-black/45">Blocked numbers are rejected before the call is forwarded to your phone.</p>
             <form onSubmit={blockNumber} className="mt-5 space-y-3">
               <input
                 value={phoneNumber}
                 onChange={(event) => setPhoneNumber(event.target.value)}
                 placeholder="Phone number, e.g. (630) 555-1234"
-                className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-sm outline-none focus:border-[#5B8CFF]/60"
+                className="w-full rounded-2xl border border-[#000B3D]/10 bg-[#F3F6FA] px-4 py-3 text-sm outline-none focus:border-[#000B3D]/60"
               />
               <input
                 value={reason}
                 onChange={(event) => setReason(event.target.value)}
                 placeholder="Reason (optional)"
-                className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-sm outline-none focus:border-[#5B8CFF]/60"
+                className="w-full rounded-2xl border border-[#000B3D]/10 bg-[#F3F6FA] px-4 py-3 text-sm outline-none focus:border-[#000B3D]/60"
               />
-              <button disabled={saving} className="rounded-full bg-[#5B8CFF] px-5 py-2.5 text-sm font-bold text-[#0D0D0D] disabled:opacity-50">Block Number</button>
+              <button disabled={saving} className="rounded-full bg-[#000B3D] px-5 py-2.5 text-sm font-bold text-[#0B0F19] disabled:opacity-50">Block Number</button>
             </form>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/[.025] p-6">
+          <div className="rounded-3xl border border-[#000B3D]/10 bg-[#F7F9FC] p-6">
             <div className="flex items-center justify-between gap-3">
               <div>
                 <h2 className="text-xl font-semibold">Blocked numbers</h2>
-                <p className="mt-1 text-sm text-white/40">{blocked.length} blocked</p>
+                <p className="mt-1 text-sm text-black/45">{blocked.length} blocked</p>
               </div>
             </div>
             <div className="mt-5 max-h-64 space-y-2 overflow-y-auto pr-1">
               {blocked.map((entry) => (
-                <div key={entry.id} className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-black/25 p-3">
+                <div key={entry.id} className="flex items-center justify-between gap-3 rounded-2xl border border-[#000B3D]/10 bg-[#F6F8FB] p-3">
                   <div className="min-w-0">
                     <p className="font-medium">{entry.phoneNumber}</p>
-                    <p className="truncate text-xs text-white/35">{entry.reason || "No reason added"}</p>
+                    <p className="truncate text-xs text-black/40">{entry.reason || "No reason added"}</p>
                   </div>
-                  <button type="button" onClick={() => unblock(entry.id)} disabled={saving} className="shrink-0 rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-white/65 hover:text-white disabled:opacity-50">Unblock</button>
+                  <button type="button" onClick={() => unblock(entry.id)} disabled={saving} className="shrink-0 rounded-full border border-[#000B3D]/15 px-3 py-1.5 text-xs font-semibold text-black/70 hover:text-[#0B0F19] disabled:opacity-50">Unblock</button>
                 </div>
               ))}
-              {!blocked.length && <p className="rounded-2xl border border-dashed border-white/10 p-6 text-center text-sm text-white/35">No blocked callers.</p>}
+              {!blocked.length && <p className="rounded-2xl border border-dashed border-[#000B3D]/10 p-6 text-center text-sm text-black/40">No blocked callers.</p>}
             </div>
           </div>
         </section>
 
-        <section className="rounded-3xl border border-white/10 bg-white/[.025] p-6">
+        <section className="rounded-3xl border border-[#000B3D]/10 bg-[#F7F9FC] p-6">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <h2 className="text-xl font-semibold">Call history</h2>
-              <p className="mt-1 text-sm text-white/40">Recent calls to the Bubbles & Bros. business number.</p>
+              <p className="mt-1 text-sm text-black/45">Recent calls to the Bubbles & Bros. business number.</p>
             </div>
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search calls…"
-              className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-2.5 text-sm outline-none focus:border-[#5B8CFF]/60 sm:w-72"
+              className="w-full rounded-2xl border border-[#000B3D]/10 bg-[#F3F6FA] px-4 py-2.5 text-sm outline-none focus:border-[#000B3D]/60 sm:w-72"
             />
           </div>
 
           {loading ? (
-            <div className="grid min-h-48 place-items-center text-sm text-white/40">Loading calls…</div>
+            <div className="grid min-h-48 place-items-center text-sm text-black/45">Loading calls…</div>
           ) : (
             <div className="mt-5 space-y-3">
               {visibleCalls.map((call) => {
@@ -348,21 +348,21 @@ export default function OwnerCallsPage() {
                 const nowBlocked = blockedSet.has(call.fromPhone);
 
                 return (
-                  <div key={call.id} className={`rounded-2xl border p-4 ${call.blocked ? "border-red-500/20 bg-red-500/[.04]" : "border-white/10 bg-black/20"}`}>
+                  <div key={call.id} className={`rounded-2xl border p-4 ${call.blocked ? "border-red-500/20 bg-red-500/[.04]" : "border-[#000B3D]/10 bg-[#F7F9FC]"}`}>
                     <div className="flex flex-wrap items-start justify-between gap-4">
                       <div>
                         <div className="flex flex-wrap items-center gap-2">
                           <p className="font-semibold">{customer?.customerName || call.fromPhone}</p>
-                          <span className={`rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[.08em] ${call.blocked ? "border-red-500/25 text-red-300" : "border-white/10 text-white/45"}`}>
+                          <span className={`rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[.08em] ${call.blocked ? "border-red-500/25 text-red-700" : "border-[#000B3D]/10 text-black/50"}`}>
                             {call.blocked ? "Blocked" : statusLabel(call.status)}
                           </span>
                         </div>
-                        <p className="mt-1 text-xs text-white/35">{call.fromPhone}{customer ? ` · ${customer.serviceName}${vehicle ? ` · ${vehicle}` : ""}` : ""}</p>
-                        <p className="mt-2 text-xs text-white/35">{new Date(call.startedAt).toLocaleString()} · Duration {formatDuration(call.durationSeconds)}</p>
+                        <p className="mt-1 text-xs text-black/40">{call.fromPhone}{customer ? ` · ${customer.serviceName}${vehicle ? ` · ${vehicle}` : ""}` : ""}</p>
+                        <p className="mt-2 text-xs text-black/40">{new Date(call.startedAt).toLocaleString()} · Duration {formatDuration(call.durationSeconds)}</p>
                         {call.voicemailRecordingSid && (
-                          <div className="mt-3 rounded-xl border border-white/10 bg-black/30 p-3">
-                            <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-white/45">
-                              <span className="font-semibold text-white/75">Bubbles & Bros. voicemail</span>
+                          <div className="mt-3 rounded-xl border border-[#000B3D]/10 bg-[#F5F7FB] p-3">
+                            <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-black/50">
+                              <span className="font-semibold text-black/75">Bubbles & Bros. voicemail</span>
                               <span>· {formatDuration(call.voicemailDurationSeconds)}</span>
                               {call.voicemailAt && <span>· {new Date(call.voicemailAt).toLocaleString()}</span>}
                             </div>
@@ -371,14 +371,14 @@ export default function OwnerCallsPage() {
                         )}
                       </div>
                       {!call.blocked && !nowBlocked && call.fromPhone.startsWith("+") && (
-                        <button type="button" onClick={() => blockFromCall(call.fromPhone)} disabled={saving} className="rounded-full border border-red-500/25 px-3 py-1.5 text-xs font-semibold text-red-200 hover:bg-red-500/10 disabled:opacity-50">Block</button>
+                        <button type="button" onClick={() => blockFromCall(call.fromPhone)} disabled={saving} className="rounded-full border border-red-500/25 px-3 py-1.5 text-xs font-semibold text-red-700 hover:bg-red-500/10 disabled:opacity-50">Block</button>
                       )}
-                      {nowBlocked && !call.blocked && <span className="text-xs text-red-300/70">Now blocked</span>}
+                      {nowBlocked && !call.blocked && <span className="text-xs text-red-700/70">Now blocked</span>}
                     </div>
                   </div>
                 );
               })}
-              {!visibleCalls.length && <p className="rounded-2xl border border-dashed border-white/10 p-10 text-center text-sm text-white/35">{query ? "No calls match that search." : "No calls yet."}</p>}
+              {!visibleCalls.length && <p className="rounded-2xl border border-dashed border-[#000B3D]/10 p-10 text-center text-sm text-black/40">{query ? "No calls match that search." : "No calls yet."}</p>}
             </div>
           )}
         </section>
