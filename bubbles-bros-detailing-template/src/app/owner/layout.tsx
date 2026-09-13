@@ -8,7 +8,6 @@ type AccessState = "checking" | "allowed" | "redirecting";
 
 const SHARED_OWNER_ROUTES: Array<{ prefix: string; permissions: string[] }> = [
   { prefix: "/owner/calls", permissions: ["businessPhone"] },
-  { prefix: "/owner/warranties", permissions: ["warranties"] },
   { prefix: "/owner/analytics", permissions: ["analytics"] },
   { prefix: "/owner/services", permissions: ["services"] },
   { prefix: "/owner/gallery", permissions: ["gallery"] },

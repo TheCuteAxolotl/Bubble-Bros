@@ -80,7 +80,7 @@ export default function OwnerSettings() {
             <h1 className="text-2xl font-bold">Settings</h1>
             <p className="text-sm text-neutral-600">Manage your account</p>
           </div>
-          <a href="/owner/dashboard" className="px-4 py-2 rounded-lg bg-[#000B3D] hover:bg-[#000B3D] text-[#0B0F19] transition text-sm font-medium">
+          <a href="/owner/dashboard" className="px-4 py-2 rounded-lg bg-[#000B3D] hover:bg-[#000B3D] text-white transition text-sm font-medium">
             Back
           </a>
         </div>
@@ -125,7 +125,7 @@ export default function OwnerSettings() {
 
             <button
               type="submit"
-              className="w-full bg-[#000B3D] hover:bg-[#000B3D] text-[#0B0F19] py-3 rounded-lg font-semibold transition"
+              className="w-full bg-[#000B3D] hover:bg-[#000B3D] text-white py-3 rounded-lg font-semibold transition"
             >
               Save Changes
             </button>

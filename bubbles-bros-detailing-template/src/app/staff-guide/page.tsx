@@ -14,9 +14,9 @@ const sections: StaffGuideSection[] = [
     title: "Rules",
     summary: "The non-negotiables for anyone representing Bubbles & Bros.",
     points: [
-      "Be clear, respectful, and accurate. Never guess about pricing, availability, completion time, warranties, or what a service includes.",
+      "Be clear, respectful, and accurate. Never guess about pricing, availability, completion time, service guarantees, or what a service includes.",
       "Protect customer information. Do not share addresses, phone numbers, vehicle information, messages, photos, or account details outside the work needed to help that customer.",
-      "Do not promise discounts, refunds, free add-ons, warranty coverage, or special exceptions unless you have permission to do so.",
+      "Do not promise discounts, refunds, free add-ons, service coverage, or special exceptions unless you have permission to do so.",
       "Exact quotes should be honored when the customer accurately represented the vehicle. If the condition is materially different, stop and escalate before changing the price.",
       "Never argue with a customer. If the conversation becomes tense, acknowledge the concern, document the facts, and move it to the owner when needed.",
       "Keep internal notes factual. Do not insult customers, joke about them, or write anything you would not want shown back to them.",
@@ -51,11 +51,11 @@ const sections: StaffGuideSection[] = [
     summary: "Acknowledge, understand, solve, confirm. Keep the customer updated while you work through the issue.",
     points: [
       "Read the full ticket and any previous messages before replying.",
-      "Identify the actual request: booking help, pricing, website/account issue, service concern, refund/payment issue, warranty question, or something else.",
+      "Identify the actual request: booking help, pricing, website/account issue, service concern, refund/payment issue, or something else.",
       "Ask only for information you actually need. Do not make the customer repeat details already visible in the ticket or account.",
       "If you can solve it, explain what you changed and what happens next. If you cannot, tell them you are escalating it instead of inventing an answer.",
       "Use Waiting only when you genuinely need something from the customer. Close the ticket only when the issue is resolved or the customer clearly no longer needs help.",
-      "Escalate complaints involving damage, threats, refunds, chargebacks, legal claims, privacy concerns, warranty disputes, or anything that could materially affect the business.",
+      "Escalate complaints involving damage, threats, refunds, chargebacks, legal claims, privacy concerns, or anything that could materially affect the business.",
     ],
     scripts: [
       { label: "First reply", text: "Hi [Customer Name], this is [Your Name] with Bubbles & Bros. Thanks for reaching out — I’m reviewing this for you now." },
@@ -112,7 +112,7 @@ const sections: StaffGuideSection[] = [
       "Use the arrival update when the detailer is actually leaving or when an accurate arrival time is known.",
       "If running late, communicate before the appointment time whenever possible and give a realistic new ETA.",
       "Keep price changes out of casual conversation. If extra work is discovered, explain the reason and get agreement before proceeding.",
-      "After completion, note anything the customer should know about curing, first wash timing, maintenance, or warranty requirements when applicable.",
+      "After completion, note anything the customer should know about drying time, first wash timing, or recommended maintenance when applicable.",
     ],
     scripts: [
       { label: "Confirmed", text: "You’re confirmed for [Date] at [Time] for [Service]. We have your [Vehicle] on the booking." },
@@ -148,7 +148,7 @@ const sections: StaffGuideSection[] = [
       "Vehicle damage claims or allegations that Bubbles & Bros. caused damage.",
       "Refunds, chargebacks, disputed payments, large discounts, or requests for free corrective work.",
       "Threats, harassment, unsafe locations, aggressive behavior, or situations where a staff member does not feel safe.",
-      "Warranty disputes, coating failure claims, or requests outside the written warranty terms.",
+      "Damage claims, disputed service results, or requests outside the written service terms.",
       "Legal threats, privacy/data requests, police/insurance requests, or requests for customer information from someone other than that customer.",
       "A customer asking for something you cannot confidently authorize or explain.",
     ],

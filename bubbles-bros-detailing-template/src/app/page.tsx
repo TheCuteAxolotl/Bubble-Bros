@@ -8,18 +8,18 @@ import { getSiteContent } from "@/lib/site-content";
 const locationSuffix = SERVICE_AREA ? ` in ${SERVICE_AREA}` : "";
 
 export const metadata: Metadata = pageMetadata({
-  title: `Mobile Detailing${locationSuffix}`,
-  description: `${BUSINESS_NAME} provides mobile interior and exterior detailing, paint correction, ceramic protection, and marine detailing${locationSuffix}.`,
+  title: `Mobile Car Detailing${locationSuffix}`,
+  description: `${BUSINESS_NAME} provides mobile interior, exterior, and full-car detailing${locationSuffix}.`,
   path: "/",
   keywords: SERVICE_AREA
     ? [
-        `mobile detailing ${SERVICE_AREA}`,
+        `mobile car detailing ${SERVICE_AREA}`,
         `car detailing ${SERVICE_AREA}`,
         `interior detailing ${SERVICE_AREA}`,
-        `paint correction ${SERVICE_AREA}`,
-        `ceramic coating ${SERVICE_AREA}`,
+        `exterior detailing ${SERVICE_AREA}`,
+        `mobile detailer ${SERVICE_AREA}`,
       ]
-    : ["mobile detailing", "car detailing", "interior detailing", "paint correction", "ceramic coating"],
+    : ["mobile car detailing", "car detailing", "interior detailing", "exterior detailing", "mobile detailer"],
 });
 
 const websiteSchema = {

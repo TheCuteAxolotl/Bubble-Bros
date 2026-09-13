@@ -4,7 +4,7 @@ import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: 'Car Detailing Gallery | Before & After Work',
-  description: 'See recent Bubbles & Bros. work including interior cleanups, exterior details, paint correction, ceramic protection, and vehicle transformations.',
+  description: 'See recent Bubbles & Bros. work including interior cleanups, exterior details, full vehicle details, and vehicle transformations.',
   path: "/gallery",
   keywords: ['car detailing before after', 'detailing gallery'],
 });

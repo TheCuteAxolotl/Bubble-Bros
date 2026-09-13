@@ -132,7 +132,7 @@ export default function OwnerWebsiteEditor() {
 
             <div className="sticky bottom-5 flex items-center justify-between gap-4 rounded-2xl border border-[#000B3D]/10 bg-white/95 p-4 shadow-2xl backdrop-blur">
               <p className="text-sm text-black/55">{message || "Save once when the wording looks right."}</p>
-              <button onClick={save} disabled={saving} className="rounded-full bg-[#000B3D] px-6 py-3 text-sm font-semibold text-[#0B0F19] transition hover:bg-[#000B3D] disabled:opacity-50">{saving ? "Saving…" : "Save Website"}</button>
+              <button onClick={save} disabled={saving} className="rounded-full bg-[#000B3D] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#000B3D] disabled:opacity-50">{saving ? "Saving…" : "Save Website"}</button>
             </div>
           </div>
         )}

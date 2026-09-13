@@ -9,7 +9,6 @@ import { DEFAULT_PRICING_PAGES, VEHICLE_LABELS, getPackagePrice, parsePricingCon
 import {
   DEFAULT_BOOKING_PRICING,
   DISCOUNT_CODES_KEY,
-  STANDALONE_HEADLIGHT_SERVICE_ID,
   calculateDiscount,
   normalizeDiscountCode,
   parseBookingPricingConfig,
@@ -184,26 +183,15 @@ export async function POST(request: NextRequest) {
       baseTotal = selected.price;
       source = `Fixed pricing page: ${pricingPage}/${selected.pkg.id}/${selected.key}`;
       allowAddOns = true;
-    } else if (serviceId === STANDALONE_HEADLIGHT_SERVICE_ID) {
-      serviceName = "Headlight Restoration";
-      baseTotal = bookingPricing.headlightStandalonePrice;
-      source = "Standalone Headlight Restoration";
-      allowAddOns = false;
     } else {
       if (!serviceId) return NextResponse.json({ success: false, message: "Choose a service or pricing package before booking." }, { status: 400 });
       const service = await prisma.service.findUnique({ where: { id: serviceId } });
       if (!service || !service.active) return NextResponse.json({ success: false, message: "That service is not available." }, { status: 404 });
       if (service.pricingType !== "fixed" || !service.price || service.price <= 0) return NextResponse.json({ success: false, message: "This service needs an exact quote before booking. Please use Get an Exact Quote." }, { status: 409 });
 
-      if (service.title.trim().toLowerCase() === "headlight restoration") {
-        serviceName = "Headlight Restoration";
-        baseTotal = bookingPricing.headlightStandalonePrice;
-        source = "Standalone Headlight Restoration";
-      } else {
-        serviceName = service.title;
-        baseTotal = service.price;
-        allowAddOns = !service.category.toLowerCase().includes("marine");
-      }
+      serviceName = service.title;
+      baseTotal = service.price;
+      allowAddOns = true;
     }
 
     if (!baseTotal || baseTotal <= 0) return NextResponse.json({ success: false, message: "This booking no longer has a valid exact price." }, { status: 409 });

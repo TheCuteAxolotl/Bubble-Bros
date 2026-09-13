@@ -1,54 +1,52 @@
 import SitePhoto from "@/components/SitePhoto";
-import PricingMediaStrip from "@/components/PricingMediaStrip";
 
 const productGroups = [
-  ["Interior", "Koch-Chemie Pol Star", "A gentle interior cleaner we use on surfaces that do not need anything overly aggressive."],
-  ["Exterior cleaning", "Koch-Chemie Green Star", "A stronger cleaner we use for exterior pre-cleaning and dirtier areas when needed."],
-  ["Wash chemistry", "Koch-Chemie Gentle Snow Foam", "Our foam and wash soap for maintenance washes and safe contact washing."],
-  ["Wheels", "Koch-Chemie Magic Wheel Cleaner", "A dedicated wheel cleaner for brake dust, road grime, and contamination."],
-  ["Paint correction", "Koch-Chemie polishing system", "We match compounds, polishes, and pads to the paint instead of using one combination on every car."],
-  ["Protection", "GYEON + Gtechniq", "Ceramic coatings and protection products picked for the package and the surface we are working on."],
+  ["Interior", "Gentle interior cleaners", "Interior-safe chemistry for plastics, vinyl, touch points, fabrics, and other cabin surfaces."],
+  ["Carpets + seats", "Extraction and fabric chemistry", "Products chosen around the material, stain type, and how much cleaning the surface can safely handle."],
+  ["Exterior wash", "Foam + contact wash chemistry", "Pre-cleaning, foam, and wash products used to safely lift dirt before and during the hand wash."],
+  ["Wheels + tires", "Dedicated wheel and tire cleaners", "Separate cleaners for brake dust, road grime, tire buildup, and wheel faces."],
+  ["Glass", "Streak-free glass cleaners", "Interior and exterior glass products selected for clean visibility without oily residue."],
+  ["Finishing", "Dressings + simple protection", "Tire dressing, trim finishing, and straightforward paint protection used as part of detailing packages."],
 ] as const;
 
 export default function ProductsWeUsePage() {
   return (
     <div className="min-h-screen bg-white text-[#0B0F19]">
-      <section className="relative isolate min-h-[620px] overflow-hidden border-b border-[#000B3D]/10">
-        <SitePhoto category="products-hero" fallbackCategory="home-showcase-secondary" className="absolute inset-0 -z-30 h-full w-full object-cover opacity-70" />
-        <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(255,255,255,.99)_0%,rgba(255,255,255,.95)_44%,rgba(255,255,255,.70)_72%,rgba(255,255,255,.30)_100%)]" />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.58))]" />
-        <div className="mx-auto flex min-h-[620px] max-w-[1540px] items-end border-x border-[#000B3D]/10 px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
-          <div className="max-w-4xl">
-            <p className="text-[10px] font-bold uppercase tracking-[.3em] text-[#000B3D]">Products We Use</p>
-            <h1 className="mt-5 text-5xl font-semibold leading-[.9] tracking-[-.065em] sm:text-7xl lg:text-[6.5rem]">These are the products we actually use.</h1>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-black/60 sm:text-lg">Koch-Chemie is one of our main product lines, along with GYEON, Gtechniq, and other correction and protection products when a job needs them.</p>
+      <section className="border-b border-[#000B3D]/10 bg-[#F7F9FD]">
+        <div className="mx-auto grid max-w-[1440px] gap-8 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[1fr_1fr] lg:items-center lg:px-10">
+          <div>
+            <p className="inline-flex rounded-full border border-[#000B3D]/12 bg-white px-4 py-2 text-[10px] font-black uppercase tracking-[.25em] text-[#000B3D]">Products + process</p>
+            <h1 className="mt-6 max-w-4xl text-5xl font-black leading-[.9] tracking-[-.06em] text-[#000B3D] sm:text-7xl">The right product for the surface in front of us.</h1>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-black/55">Bubbles & Bros. uses professional detailing chemistry for interiors, exteriors, wheels, tires, glass, fabrics, and finishing work. Product choice changes with the surface and condition.</p>
+          </div>
+          <div className="relative min-h-[380px] sm:min-h-[500px]">
+            <div className="absolute inset-5 rounded-[34px] bg-[#000B3D]" />
+            <div className="absolute inset-0 overflow-hidden rounded-[34px] border-[8px] border-white bg-[#EEF2FA] shadow-[0_28px_75px_rgba(0,11,61,.16)] sm:inset-x-8">
+              <SitePhoto category="products-hero" fallbackCategory="home-showcase-secondary" className="h-full w-full object-cover" />
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1540px] border-x border-[#000B3D]/10 px-5 py-20 sm:px-8 lg:px-10">
-        <div className="grid gap-8 lg:grid-cols-[.55fr_1.45fr]">
-          <div><p className="text-[10px] font-bold uppercase tracking-[.28em] text-[#000B3D]">What we use</p><h2 className="mt-4 text-4xl font-semibold tracking-[-.05em] sm:text-5xl">Different surfaces need different products.</h2><p className="mt-5 text-sm leading-7 text-black/50">We do not use the strongest chemical just because we can. The product, dilution, brush, pad, and process change depending on the surface and how dirty it is.</p></div>
-          <div className="grid gap-4 md:grid-cols-2">
-            {productGroups.map(([category, name, body]) => <article key={name} className="rounded-[26px] border border-[#000B3D]/10 bg-[linear-gradient(145deg,#F8FAFD,#EEF2FA)] p-6"><p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#000B3D]">{category}</p><h3 className="mt-4 text-xl font-semibold">{name}</h3><p className="mt-3 text-sm leading-6 text-black/50">{body}</p></article>)}
+      <section className="mx-auto max-w-[1440px] px-5 py-18 sm:px-8 sm:py-24 lg:px-10">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {productGroups.map(([category, name, body]) => (
+            <article key={category} className="rounded-[26px] border border-[#000B3D]/10 bg-[#F7F9FD] p-7">
+              <p className="text-[10px] font-black uppercase tracking-[.22em] text-[#000B3D]">{category}</p>
+              <h2 className="mt-4 text-2xl font-black tracking-[-.03em] text-[#000B3D]">{name}</h2>
+              <p className="mt-3 text-sm leading-7 text-black/50">{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-t border-[#000B3D]/10 bg-[#EEF2FA]">
+        <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:px-10">
+          <div className="rounded-[30px] bg-[#000B3D] p-8 text-white sm:p-10">
+            <p className="text-sm leading-7 text-white/65">Brand names and exact product choices can change as vehicle needs and professional product lines evolve. The goal stays the same: use the safest effective process for the material being cleaned.</p>
+            <a href="/services" className="mt-6 inline-flex rounded-2xl bg-white px-5 py-3 text-sm font-bold text-[#000B3D]">View detailing services</a>
           </div>
         </div>
-      </section>
-
-      <section className="mx-auto max-w-[1540px] border-x border-[#000B3D]/10 px-5 py-14 sm:px-8 lg:px-10"><PricingMediaStrip category="products-gallery" /></section>
-
-      <section className="bg-white text-[#0B0F19]">
-        <div className="mx-auto grid max-w-[1540px] gap-8 border-x border-black/10 px-5 py-20 sm:px-8 lg:grid-cols-3 lg:px-10">
-          {[
-            ["Clean the right way", "Interior materials, wheels, trim, paint, and boat surfaces all need different cleaners and methods."],
-            ["Match the paint", "Pads, polish, and machine choice change with the paint instead of forcing the same correction setup on every vehicle."],
-            ["Use the right protection", "We pick protection based on the surface, how you plan to maintain it, and how long you want it to last."],
-          ].map(([title, body]) => <article key={title} className="rounded-[24px] border border-black/10 p-6"><div className="h-1 w-10 rounded-full bg-[#000B3D]" /><h3 className="mt-5 text-2xl font-semibold tracking-[-.03em]">{title}</h3><p className="mt-3 text-sm leading-7 text-black/55">{body}</p></article>)}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-[1540px] border-x border-[#000B3D]/10 px-5 py-14 sm:px-8 lg:px-10">
-        <div className="rounded-[28px] border border-[#000B3D]/18 bg-[#000B3D]/[.045] p-6 sm:p-8"><p className="text-sm leading-7 text-black/50">Brand names are shown so customers can see the type of professional products used during service. Product selection can change as techniques, vehicle needs, and professional product lines evolve. Bubbles & Bros. does not imply sponsorship or endorsement by the brands listed.</p><div className="mt-6 flex flex-wrap gap-3"><a href="/ceramic-coatings" className="rounded-full bg-[#000B3D] px-5 py-3 text-sm font-semibold text-[#0B0F19]">Learn about ceramic coatings</a><a href="/services" className="rounded-full border border-[#000B3D]/15 px-5 py-3 text-sm font-semibold">View services</a></div></div>
       </section>
     </div>
   );

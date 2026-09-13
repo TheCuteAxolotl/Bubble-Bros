@@ -4,7 +4,7 @@ import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: 'Professional Detailing Products We Use',
-  description: 'See the professional detailing chemistry and product approach used by Bubbles & Bros. for interiors, exteriors, paint correction, and protection.',
+  description: 'See the professional detailing chemistry and product approach used by Bubbles & Bros. for interior and exterior car detailing.',
   path: "/products-we-use",
   keywords: ['professional detailing products', 'Koch Chemie detailing'],
 });

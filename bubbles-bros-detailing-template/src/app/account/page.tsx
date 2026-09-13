@@ -248,7 +248,7 @@ export default function AccountPage() {
                   {staffAccess ? "Staff Dashboard" : "Dashboard"}
                 </a>
               )}
-              <a href="/contact" className="rounded-full bg-[#000B3D] px-5 py-3 text-sm font-semibold text-[#0B0F19] transition hover:bg-[#000B3D]">
+              <a href="/contact" className="rounded-full bg-[#000B3D] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#000B3D]">
                 Request a Detail
               </a>
               <button
@@ -367,7 +367,7 @@ export default function AccountPage() {
               <h2 className="mt-3 text-2xl font-semibold tracking-[-0.025em]">Delete account</h2>
               <p className="mt-2 text-sm leading-6 text-black/45">
                 Permanently delete your Bubbles & Bros. account and account-linked data, including saved vehicles, booking history,
-                quote conversations, and warranty records. This cannot be undone.
+                and quote conversations. This cannot be undone.
               </p>
 
               <form onSubmit={deleteAccount} className="mt-7 space-y-4">
@@ -442,7 +442,7 @@ export default function AccountPage() {
               })}
             </div>
 
-            <a href="/admin/dashboard" className="mt-7 inline-flex rounded-full bg-[#000B3D] px-5 py-3 text-sm font-semibold text-[#0B0F19]">Open Staff Dashboard</a>
+            <a href="/admin/dashboard" className="mt-7 inline-flex rounded-full bg-[#000B3D] px-5 py-3 text-sm font-semibold text-white">Open Staff Dashboard</a>
           </section>
         ) : (
         <section className="rounded-[28px] border border-[#000B3D]/10 bg-[#F5F7FB] p-6 sm:p-8">
@@ -503,7 +503,7 @@ export default function AccountPage() {
             <div className="mt-8 rounded-3xl border border-dashed border-[#000B3D]/10 px-6 py-12 text-center">
               <p className="text-lg font-semibold">No detail requests yet.</p>
               <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-black/40">When you request a service while signed in, its status will appear here.</p>
-              <a href="/contact" className="mt-6 inline-block rounded-full bg-[#000B3D] px-5 py-3 text-sm font-semibold text-[#0B0F19] transition hover:bg-[#000B3D]">Request a Detail</a>
+              <a href="/contact" className="mt-6 inline-block rounded-full bg-[#000B3D] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#000B3D]">Request a Detail</a>
             </div>
           )}
         </section>

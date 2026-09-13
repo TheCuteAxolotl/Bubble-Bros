@@ -5,14 +5,14 @@ import { breadcrumbSchema, pageMetadata, serviceSchema } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: 'Exterior Car Detailing',
-  description: 'Mobile exterior detailing including hand washing, decontamination, wheel cleaning, gloss enhancement, and paint protection options.',
+  description: 'Mobile exterior detailing including hand washing, wheel cleaning, bug removal, glass, decontamination, and simple paint protection.',
   path: "/exterior-detailing",
-  keywords: ['exterior detailing', 'mobile car wash detailing', 'car paint protection'],
+  keywords: ['exterior detailing', 'mobile car wash detailing', 'mobile exterior detail'],
 });
 
 const schema = serviceSchema({
   name: 'Exterior Car Detailing',
-  description: 'Mobile exterior detailing including safe washing, decontamination, wheel care, gloss enhancement, and protection.',
+  description: 'Mobile exterior detailing including safe washing, wheel care, glass cleaning, decontamination, and simple protection.',
   path: "/exterior-detailing",
   serviceType: 'Exterior detailing',
 });

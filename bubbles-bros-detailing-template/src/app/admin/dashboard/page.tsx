@@ -51,7 +51,6 @@ export default function AdminDashboard() {
     { permission: "quoteChats", href: "/admin/quotes", icon: "💬", title: "Quote Chats", description: "Review photos, talk with customers, and send exact quotes." },
     { permission: "support", href: "/admin/support", icon: "↗", title: "Support", description: "Handle customer support conversations and update ticket status." },
     { permission: "businessPhone", href: "/owner/calls", icon: "☎", title: "Business Phone", description: "Review calls and voicemail, and manage blocked callers." },
-    { permission: "warranties", href: "/owner/warranties", icon: "🛡️", title: "Ceramic Warranties", description: "Create and manage coating warranty records." },
     { permission: "analytics", href: "/owner/analytics", icon: "↗", title: "Analytics", description: "View bookings, customers, quote activity, and booked value." },
     { permission: "services", href: "/owner/services", icon: "⚙️", title: "Services", description: "Edit public services, descriptions, pricing, and availability." },
     { permission: "gallery", href: "/owner/gallery", icon: "🖼️", title: "Photos & Media", description: "Manage website photos and placement labels." },
@@ -84,7 +83,7 @@ export default function AdminDashboard() {
           {visible.map((card) => (
             <a key={card.href} href={card.href} className="relative rounded-3xl border border-[#000B3D]/10 bg-[#F7F9FC] p-8 transition hover:border-[#000B3D]/45">
               {(card.badge || 0) > 0 && (
-                <span className="absolute right-5 top-5 rounded-full bg-[#000B3D] px-2.5 py-1 text-xs font-bold text-[#0B0F19]">{card.badge}</span>
+                <span className="absolute right-5 top-5 rounded-full bg-[#000B3D] px-2.5 py-1 text-xs font-bold text-white">{card.badge}</span>
               )}
               <p className="text-3xl">{card.icon}</p>
               <h2 className="mt-5 text-2xl font-semibold">{card.title}</h2>

@@ -93,11 +93,11 @@ export default function AdminBookings() {
       <header className="border-b border-[#000B3D]/10 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
           <div><p className="text-[10px] font-semibold uppercase tracking-[.25em] text-[#000B3D]">Staff</p><h1 className="mt-1 text-2xl font-bold">Bookings</h1><p className="text-sm text-neutral-600">Customer requests, exact totals, status controls, and booking conversations.</p></div>
-          <a href="/admin/dashboard" className="rounded-lg bg-[#000B3D] px-4 py-2 text-sm font-medium text-[#0B0F19]">Back</a>
+          <a href="/admin/dashboard" className="rounded-lg bg-[#000B3D] px-4 py-2 text-sm font-medium text-white">Back</a>
         </div>
       </header>
       <main className="mx-auto max-w-7xl px-6 py-10">
-        <div className="mb-8 flex flex-wrap gap-2">{["all","pending","confirmed","completed","cancelled"].map((s)=><button key={s} onClick={()=>setFilter(s)} className={`rounded-lg px-4 py-2 text-sm font-medium ${filter===s?"bg-[#000B3D] text-[#0B0F19]":"bg-[#EEF2F7]"}`}>{s[0].toUpperCase()+s.slice(1)}</button>)}</div>
+        <div className="mb-8 flex flex-wrap gap-2">{["all","pending","confirmed","completed","cancelled"].map((s)=><button key={s} onClick={()=>setFilter(s)} className={`rounded-lg px-4 py-2 text-sm font-medium ${filter===s?"bg-[#000B3D] text-white":"bg-[#EEF2F7]"}`}>{s[0].toUpperCase()+s.slice(1)}</button>)}</div>
         {message && <p className="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 text-red-700">{message}</p>}
         <div className="space-y-5">
           {visible.map((b)=>(

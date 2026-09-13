@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     default: `${BUSINESS_NAME} | Mobile Detailing${locationSuffix}`,
     template: `%s | ${BUSINESS_NAME}`,
   },
-  description: `Mobile auto and marine detailing${locationSuffix}. Interior detailing, exterior detailing, paint correction, ceramic coatings, and condition-based exact quotes.`,
+  description: `Mobile car detailing${locationSuffix}. Interior detailing, exterior detailing, full-car detailing, and condition-based exact quotes.`,
   applicationName: BUSINESS_NAME,
   category: "automotive detailing",
   openGraph: {

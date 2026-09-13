@@ -230,7 +230,7 @@ export default function OwnerBookings() {
           <div className="flex flex-wrap gap-2">
             <a href="/owner/booking-settings" className="rounded-lg border border-[#000B3D]/15 px-4 py-2 text-sm font-medium">Availability</a>
             <button type="button" onClick={() => setShowManual((value) => !value)} className="rounded-lg border border-[#000B3D]/30 bg-[#000B3D]/10 px-4 py-2 text-sm font-semibold text-[#000B3D]">{showManual ? "Close form" : "+ Add outside booking"}</button>
-            <a href="/owner/dashboard" className="rounded-lg bg-[#000B3D] px-4 py-2 text-sm font-medium text-[#0B0F19]">Back</a>
+            <a href="/owner/dashboard" className="rounded-lg bg-[#000B3D] px-4 py-2 text-sm font-medium text-white">Back</a>
           </div>
         </div>
       </header>
@@ -260,7 +260,7 @@ export default function OwnerBookings() {
             </div>
             <label className="mt-4 block text-sm text-black/60">Notes<textarea className={`${input} mt-2 min-h-24`} value={manual.notes} onChange={(e) => setManual((current) => ({ ...current, notes: e.target.value }))} placeholder="Anything you want saved with this booking" /></label>
             <div className="mt-5 flex flex-wrap gap-3">
-              <button type="submit" disabled={manualSaving} className="rounded-full bg-[#000B3D] px-6 py-3 font-semibold text-[#0B0F19] disabled:opacity-50">{manualSaving ? "Adding…" : "Add & Block Time"}</button>
+              <button type="submit" disabled={manualSaving} className="rounded-full bg-[#000B3D] px-6 py-3 font-semibold text-white disabled:opacity-50">{manualSaving ? "Adding…" : "Add & Block Time"}</button>
               <button type="button" onClick={() => { setShowManual(false); setManual(EMPTY_MANUAL); }} className="rounded-full border border-[#000B3D]/10 px-6 py-3 text-sm text-black/65">Cancel</button>
             </div>
           </form>
@@ -268,7 +268,7 @@ export default function OwnerBookings() {
 
         <div className="mb-8 flex flex-wrap gap-2">
           {["all", "pending", "confirmed", "completed", "cancelled"].map((status) => (
-            <button key={status} onClick={() => setFilter(status)} className={`rounded-lg px-4 py-2 text-sm font-medium ${filter === status ? "bg-[#000B3D] text-[#0B0F19]" : "bg-[#EEF2F7]"}`}>
+            <button key={status} onClick={() => setFilter(status)} className={`rounded-lg px-4 py-2 text-sm font-medium ${filter === status ? "bg-[#000B3D] text-white" : "bg-[#EEF2F7]"}`}>
               {status[0].toUpperCase() + status.slice(1)}
             </button>
           ))}
@@ -307,7 +307,7 @@ export default function OwnerBookings() {
                           <label className="text-xs text-black/55">Time<input type="time" className={`${input} mt-1`} value={scheduleDraft.time} onChange={(e) => setScheduleDraft((current) => ({ ...current, time: e.target.value }))} /></label>
                         </div>
                         <div className="mt-3 flex gap-2">
-                          <button type="button" disabled={scheduleSaving} onClick={() => saveSchedule(booking)} className="rounded-full bg-[#000B3D] px-4 py-2 text-sm font-semibold text-[#0B0F19] disabled:opacity-50">{scheduleSaving ? "Saving…" : "Save time"}</button>
+                          <button type="button" disabled={scheduleSaving} onClick={() => saveSchedule(booking)} className="rounded-full bg-[#000B3D] px-4 py-2 text-sm font-semibold text-white disabled:opacity-50">{scheduleSaving ? "Saving…" : "Save time"}</button>
                           <button type="button" onClick={() => setScheduleEditingId(null)} className="rounded-full border border-[#000B3D]/10 px-4 py-2 text-sm text-black/65">Cancel</button>
                         </div>
                       </div>

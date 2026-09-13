@@ -66,7 +66,7 @@ export default function RegisterPage() {
             <div><label className="mb-2 block text-sm font-medium text-black/75">Email</label><input type="email" value={email} onChange={(event) => setEmail(event.target.value)} className={inputClass} placeholder="your@email.com" required /></div>
             <div><label className="mb-2 block text-sm font-medium text-black/75">Password</label><input type="password" value={password} onChange={(event) => setPassword(event.target.value)} className={inputClass} placeholder="••••••••" required /></div>
             <div><label className="mb-2 block text-sm font-medium text-black/75">Confirm Password</label><input type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} className={inputClass} placeholder="••••••••" required /></div>
-            <button type="submit" disabled={loading} className="w-full rounded-2xl bg-[#000B3D] py-3.5 font-semibold text-[#0B0F19] shadow-[0_0_30px_rgba(0,11,61,.12)] hover:bg-[#000B3D] disabled:cursor-not-allowed disabled:opacity-45">
+            <button type="submit" disabled={loading} className="w-full rounded-2xl bg-[#000B3D] py-3.5 font-semibold text-white shadow-[0_0_30px_rgba(0,11,61,.12)] hover:bg-[#000B3D] disabled:cursor-not-allowed disabled:opacity-45">
               {loading ? "Creating account..." : "Create Account"}
             </button>
           </form>

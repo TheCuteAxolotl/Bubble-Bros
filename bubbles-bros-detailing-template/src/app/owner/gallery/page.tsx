@@ -52,19 +52,12 @@ const staticPlacements: Placement[] = [
   { value: "pricing-interior-results", label: "Interior Detailing → Recent Results", group: "Interior Detailing" },
 
   { value: "services-hero", label: "Services Hub → Hero Background", group: "Services Hub" },
-  { value: "marine-hero", label: "Marine Detailing → Hero Background", group: "Marine Detailing" },
-  { value: "marine-services", label: "Marine Detailing → Services Photos", group: "Marine Detailing" },
-  { value: "marine-results", label: "Marine Detailing → Results Photos", group: "Marine Detailing" },
   { value: "gallery-hero", label: "Gallery → Hero Background", group: "Other Pages" },
   { value: "reviews-hero", label: "Reviews → Hero Background", group: "Other Pages" },
   { value: "contact-hero", label: "Booking / Contact → Hero Background", group: "Other Pages" },
   { value: "about-hero", label: "About Bubbles & Bros. → Hero Background", group: "Explore Pages" },
   { value: "about-story", label: "About Bubbles & Bros. → Story Photos", group: "Explore Pages" },
   { value: "about-values-bg", label: "About Bubbles & Bros. → Values Section", group: "Explore Pages" },
-  { value: "paint-correction-hero", label: "Paint Correction → Hero Background", group: "Explore Pages" },
-  { value: "paint-correction-results", label: "Paint Correction → Results Photos", group: "Explore Pages" },
-  { value: "ceramic-coatings-hero", label: "Ceramic Coatings → Hero Background", group: "Explore Pages" },
-  { value: "ceramic-results", label: "Ceramic Coatings → Results Photos", group: "Explore Pages" },
   { value: "products-hero", label: "Products We Use → Hero Background", group: "Explore Pages" },
   { value: "products-gallery", label: "Products We Use → Product Photos", group: "Explore Pages" },
   { value: "faq-hero", label: "FAQ → Hero Background", group: "Other Pages" },
@@ -177,7 +170,7 @@ export default function OwnerGallery() {
       <header className="border-b border-[#000B3D]/10 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-6">
           <div><h1 className="text-2xl font-bold">Photos & Media</h1><p className="mt-1 text-sm text-neutral-600">Every placement is labeled by page → section → exact destination, so you know where each photo goes.</p></div>
-          <div className="flex gap-2"><a href="/owner/pricing-pages" className="rounded-lg border border-[#000B3D]/10 px-4 py-2 text-sm">Pricing Pages</a><a href="/owner/dashboard" className="rounded-lg bg-[#000B3D] px-4 py-2 text-sm font-medium text-[#0B0F19]">Back</a></div>
+          <div className="flex gap-2"><a href="/owner/pricing-pages" className="rounded-lg border border-[#000B3D]/10 px-4 py-2 text-sm">Pricing Pages</a><a href="/owner/dashboard" className="rounded-lg bg-[#000B3D] px-4 py-2 text-sm font-medium text-white">Back</a></div>
         </div>
       </header>
 
@@ -194,10 +187,10 @@ export default function OwnerGallery() {
           </div>
           <div><label className="mb-2 block text-sm font-medium">Photo label</label><input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="2026 Charger after correction" className="w-full rounded-xl border border-[#000B3D]/10 bg-[#F7F9FC] p-3 text-sm" /></div>
           <div><label className="mb-2 block text-sm font-medium">Where should this photo appear?</label><PlacementSelect value={category} onChange={setCategory} /><p className="mt-2 text-[11px] leading-4 text-neutral-500">Current destination: {placementByValue.get(category)?.label || category}</p></div>
-          <div className="md:col-span-4"><button disabled={saving} className="rounded-xl bg-[#000B3D] px-6 py-3 font-semibold text-[#0B0F19] disabled:opacity-50">{saving ? "Processing photo…" : "Add Photo"}</button>{message && <span className="ml-4 text-sm text-neutral-700">{message}</span>}</div>
+          <div className="md:col-span-4"><button disabled={saving} className="rounded-xl bg-[#000B3D] px-6 py-3 font-semibold text-white disabled:opacity-50">{saving ? "Processing photo…" : "Add Photo"}</button>{message && <span className="ml-4 text-sm text-neutral-700">{message}</span>}</div>
         </form>
 
-        <div className="mt-8 flex flex-wrap items-center gap-2"><button onClick={() => setFilter("all")} className={`rounded-full px-4 py-2 text-xs ${filter === "all" ? "bg-[#000B3D] text-[#0B0F19]" : "border border-[#000B3D]/10 text-black/60"}`}>All Photos</button>{groups.map((group) => <button key={group} onClick={() => setFilter(group)} className={`rounded-full px-4 py-2 text-xs ${filter === group ? "bg-[#000B3D] text-[#0B0F19]" : "border border-[#000B3D]/10 text-black/60"}`}>{group}</button>)}</div>
+        <div className="mt-8 flex flex-wrap items-center gap-2"><button onClick={() => setFilter("all")} className={`rounded-full px-4 py-2 text-xs ${filter === "all" ? "bg-[#000B3D] text-white" : "border border-[#000B3D]/10 text-black/60"}`}>All Photos</button>{groups.map((group) => <button key={group} onClick={() => setFilter(group)} className={`rounded-full px-4 py-2 text-xs ${filter === group ? "bg-[#000B3D] text-white" : "border border-[#000B3D]/10 text-black/60"}`}>{group}</button>)}</div>
 
         {loading ? <p className="py-12 text-neutral-600">Loading…</p> : (
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

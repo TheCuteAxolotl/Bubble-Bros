@@ -59,7 +59,7 @@ export default function TermsAndConditionsPage() {
           <section>
             <h2 className="text-xl font-semibold text-[#0B0F19]">Results</h2>
             <p className="mt-3">
-              Detailing, stain removal, odor treatment, paint correction, oxidation correction, scratch reduction, and similar
+              Detailing, stain removal, odor treatment, decontamination, interior extraction, and similar
               services improve appearance but do not guarantee complete removal of every defect. Results depend on material,
               condition, age, previous repairs, contamination, and other factors outside our control.
             </p>

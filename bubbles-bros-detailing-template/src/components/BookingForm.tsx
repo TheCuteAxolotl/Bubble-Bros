@@ -12,7 +12,6 @@ import {
   BookingPricingConfig,
   DEFAULT_BOOKING_PRICING,
   DiscountCode,
-  STANDALONE_HEADLIGHT_SERVICE_ID,
   calculateDiscount,
   parseBookingPricingConfig,
 } from "@/lib/booking-pricing";
@@ -159,20 +158,16 @@ export default function BookingForm({ prefill, onClose, initialSiteContent }: { 
     [services, form.serviceId]
   );
 
-  const isStandaloneHeadlight = form.serviceId === STANDALONE_HEADLIGHT_SERVICE_ID || selectedService?.title.trim().toLowerCase() === "headlight restoration";
   const quoteLocked = Boolean(quote);
 
   const baseTotal = useMemo(() => {
     if (packageSelection) return packageSelection.price;
     if (quote?.quotedPrice && quote.quotedPrice > 0) return quote.quotedPrice;
-    if (isStandaloneHeadlight) return bookingPricing.headlightStandalonePrice;
     if (selectedService?.pricingType === "fixed" && selectedService.price > 0) return selectedService.price;
     return null;
-  }, [packageSelection, quote?.quotedPrice, isStandaloneHeadlight, bookingPricing.headlightStandalonePrice, selectedService]);
+  }, [packageSelection, quote?.quotedPrice, selectedService]);
 
-  const allowCarAddOns = Boolean(baseTotal) && !quoteLocked && !isStandaloneHeadlight && (
-    Boolean(packageSelection) || !String(selectedService?.category || "").toLowerCase().includes("marine")
-  );
+  const allowCarAddOns = Boolean(baseTotal) && !quoteLocked;
 
   const activeAddOns = useMemo(() => bookingPricing.addOns.filter((item) => item.active), [bookingPricing.addOns]);
   const selectedAddOns = useMemo(
@@ -228,16 +223,6 @@ export default function BookingForm({ prefill, onClose, initialSiteContent }: { 
 
     if (parts[0] === "service") {
       const id = parts.slice(1).join(":");
-      if (id === STANDALONE_HEADLIGHT_SERVICE_ID) {
-        setForm((current) => ({
-          ...current,
-          serviceId: STANDALONE_HEADLIGHT_SERVICE_ID,
-          quoteThreadId: "",
-          selectedPackage: "Headlight Restoration",
-          addOns: [],
-        }));
-        return;
-      }
       const service = services.find((item) => item.id === id);
       setForm((current) => ({ ...current, serviceId: id, quoteThreadId: "", selectedPackage: service?.title || "", addOns: [] }));
       if (service && (service.pricingType !== "fixed" || service.price <= 0)) {
@@ -337,10 +322,6 @@ export default function BookingForm({ prefill, onClose, initialSiteContent }: { 
 
       if (requestedService) {
         const requestedLower = requestedService.toLowerCase();
-        if (requestedLower.includes("headlight restoration")) {
-          if (!cancelled) setForm((current) => ({ ...current, serviceId: STANDALONE_HEADLIGHT_SERVICE_ID, selectedPackage: "Headlight Restoration", addOns: [] }));
-          return;
-        }
         const match = loadedServices.find((service) => service.id === requestedService || service.title.toLowerCase() === requestedLower);
         if (!match) return;
         if (!cancelled) {
@@ -473,7 +454,6 @@ export default function BookingForm({ prefill, onClose, initialSiteContent }: { 
             <optgroup label="Car Detailing Packages">{pricingConfigs.packages.packages.map((pkg) => <option key={`packages-${pkg.id}`} value={`package:packages:${pkg.id}`}>{pkg.name}</option>)}</optgroup>
             <optgroup label="Exterior Detailing">{pricingConfigs.exterior.packages.map((pkg) => <option key={`exterior-${pkg.id}`} value={`package:exterior:${pkg.id}`}>{pkg.name}</option>)}</optgroup>
             <optgroup label="Interior Detailing">{pricingConfigs.interior.packages.map((pkg) => <option key={`interior-${pkg.id}`} value={`package:interior:${pkg.id}`}>{pkg.name}</option>)}</optgroup>
-            <optgroup label="Standalone Services"><option value={`service:${STANDALONE_HEADLIGHT_SERVICE_ID}`}>Headlight Restoration — ${bookingPricing.headlightStandalonePrice.toFixed(2)}</option></optgroup>
             {databaseServices.length > 0 && <optgroup label="Other Services">{databaseServices.map((service) => <option key={service.id} value={`service:${service.id}`}>{service.title} — {formatPricingType(service)}</option>)}</optgroup>}
           </select>
         </label>
@@ -507,7 +487,7 @@ export default function BookingForm({ prefill, onClose, initialSiteContent }: { 
 
       {allowCarAddOns && (
         <section className="rounded-[26px] border border-[#000B3D]/10 bg-[#F7F9FC] p-5">
-          <div><p className="text-sm font-semibold">Car Detailing Add-Ons</p><p className="mt-1 text-xs text-black/40">Add-ons are added to the total as you select them. Headlight Restoration is ${bookingPricing.addOns.find((item) => item.id === "headlight-restoration")?.price.toFixed(0) || "80"} with a detail, or ${bookingPricing.headlightStandalonePrice.toFixed(0)} by itself.</p></div>
+          <div><p className="text-sm font-semibold">Car Detailing Add-Ons</p><p className="mt-1 text-xs text-black/40">Optional interior and exterior detailing extras are added to the total as you select them.</p></div>
           <div className="mt-4 grid gap-2 sm:grid-cols-2">{activeAddOns.map((item) => <label key={item.id} className={`flex cursor-pointer items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-sm transition ${form.addOns.includes(item.id) ? "border-[#000B3D]/35 bg-[#000B3D]/8 text-[#0B0F19]" : "border-[#000B3D]/10 bg-[#F7F9FC] text-black/60"}`}><span className="flex items-center gap-3"><input type="checkbox" checked={form.addOns.includes(item.id)} onChange={() => toggleAddOn(item.id)} />{item.name}</span><strong className="text-[#000B3D]">+${item.price.toFixed(2)}</strong></label>)}</div>
         </section>
       )}
@@ -539,7 +519,7 @@ export default function BookingForm({ prefill, onClose, initialSiteContent }: { 
       {status !== "idle" && <div className={`rounded-2xl border p-4 text-sm ${status === "success" ? "border-green-200 bg-green-50 text-green-700" : "border-red-200 bg-red-50 text-red-700"}`}><p>{message}</p>{status === "success" && chatUrl && <a href={chatUrl} className="mt-3 inline-flex rounded-full bg-white px-4 py-2 text-xs font-semibold text-black">Open booking chat</a>}</div>}
 
       <div className="flex gap-3">
-        <button disabled={status === "submitting" || status === "success" || quote?.status === "booked" || !form.policyAgreed || !form.preferredDate || !form.preferredTime || bookingTotal == null || !baseTotal || Boolean(setupMessage)} className="rounded-full bg-[#000B3D] px-6 py-3 font-semibold text-[#0B0F19] disabled:cursor-not-allowed disabled:opacity-50">{status === "submitting" ? "Sending…" : status === "success" ? "Booking submitted" : bookingTotal != null ? `Submit $${bookingTotal.toFixed(2)} booking` : "Choose a service"}</button>
+        <button disabled={status === "submitting" || status === "success" || quote?.status === "booked" || !form.policyAgreed || !form.preferredDate || !form.preferredTime || bookingTotal == null || !baseTotal || Boolean(setupMessage)} className="rounded-full bg-[#000B3D] px-6 py-3 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50">{status === "submitting" ? "Sending…" : status === "success" ? "Booking submitted" : bookingTotal != null ? `Submit $${bookingTotal.toFixed(2)} booking` : "Choose a service"}</button>
         {onClose && <button type="button" onClick={onClose} className="rounded-full border border-[#000B3D]/15 px-6 py-3">Close</button>}
       </div>
     </form>

@@ -121,7 +121,7 @@ export default function OwnerPricingPages() {
         </div>
 
         <div className="mt-8 flex flex-wrap gap-2 rounded-[22px] border border-[#000B3D]/10 bg-[#F7F9FC] p-2">
-          {(Object.keys(labels) as Kind[]).map((kind) => <button key={kind} onClick={() => setActive(kind)} className={`rounded-[16px] px-5 py-3 text-sm font-semibold transition ${active === kind ? "bg-[#000B3D] text-[#0B0F19]" : "text-black/60 hover:bg-[#F4F7FB] hover:text-[#0B0F19]"}`}>{labels[kind]}</button>)}
+          {(Object.keys(labels) as Kind[]).map((kind) => <button key={kind} onClick={() => setActive(kind)} className={`rounded-[16px] px-5 py-3 text-sm font-semibold transition ${active === kind ? "bg-[#000B3D] text-white" : "text-black/60 hover:bg-[#F4F7FB] hover:text-white"}`}>{labels[kind]}</button>)}
         </div>
 
         <section className="mt-7 rounded-[28px] border border-[#000B3D]/10 bg-[#F7F9FC] p-5 sm:p-7">
@@ -162,7 +162,7 @@ export default function OwnerPricingPages() {
         <button onClick={addPackage} className="mt-6 rounded-full border border-[#000B3D]/30 bg-[#000B3D]/8 px-5 py-3 text-sm font-semibold text-[#000B3D]">+ Add another package</button>
 
         <div className="sticky bottom-4 z-20 mt-10 flex flex-wrap items-center gap-4 rounded-[22px] border border-[#000B3D]/20 bg-white/95 p-4 shadow-2xl backdrop-blur-xl">
-          <button onClick={save} disabled={saving} className="rounded-full bg-[#000B3D] px-7 py-3 font-semibold text-[#0B0F19] disabled:opacity-50">{saving ? "Saving…" : "Save All Pricing Pages"}</button>
+          <button onClick={save} disabled={saving} className="rounded-full bg-[#000B3D] px-7 py-3 font-semibold text-white disabled:opacity-50">{saving ? "Saving…" : "Save All Pricing Pages"}</button>
           {message && <p className="text-sm text-black/60">{message}</p>}
         </div>
       </div>

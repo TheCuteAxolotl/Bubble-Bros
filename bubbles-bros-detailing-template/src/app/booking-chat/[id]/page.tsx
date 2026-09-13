@@ -143,7 +143,7 @@ export default function BookingChatPage() {
           <p className="text-xs font-semibold uppercase tracking-[.24em] text-[#000B3D]">Booking chat</p>
           <h1 className="mt-3 text-2xl font-semibold">Conversation unavailable</h1>
           <p className="mt-3 text-sm leading-6 text-black/50">{error || "This booking chat could not be opened."}</p>
-          <a href="/login" className="mt-6 inline-block rounded-full bg-[#000B3D] px-5 py-3 text-sm font-semibold text-[#0B0F19]">Sign in</a>
+          <a href="/login" className="mt-6 inline-block rounded-full bg-[#000B3D] px-5 py-3 text-sm font-semibold text-white">Sign in</a>
         </div>
       </main>
     );
@@ -215,7 +215,7 @@ export default function BookingChatPage() {
                   return (
                     <div
                       key={message.id}
-                      className={`max-w-[86%] rounded-2xl px-4 py-3 ${mine ? "ml-auto bg-[#000B3D] text-[#0B0F19]" : "bg-[#F1F4F8]"}`}
+                      className={`max-w-[86%] rounded-2xl px-4 py-3 ${mine ? "ml-auto bg-[#000B3D] text-white" : "bg-[#F1F4F8]"}`}
                     >
                       <p className="whitespace-pre-wrap text-sm leading-6">{message.body}</p>
                       <div className="mt-2 flex items-center gap-2 text-[10px] opacity-45">
@@ -253,7 +253,7 @@ export default function BookingChatPage() {
               />
               <button
                 disabled={sending || !reply.trim()}
-                className="self-end rounded-full bg-[#000B3D] px-5 py-3 text-sm font-semibold text-[#0B0F19] disabled:cursor-not-allowed disabled:opacity-50"
+                className="self-end rounded-full bg-[#000B3D] px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {sending ? "Sending…" : "Send"}
               </button>

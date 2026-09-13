@@ -228,7 +228,7 @@ export default function StaffQuoteInbox({ backHref, canDelete = false }: { backH
                         return <p key={message.id} className="text-center text-[10px] uppercase tracking-[.16em] text-black/25">{message.body}</p>;
                       }
                       return (
-                        <div key={message.id} className={`max-w-[85%] rounded-2xl px-4 py-3 ${message.sender === "team" ? "ml-auto bg-[#000B3D] text-[#0B0F19]" : "bg-[#F1F4F8]"}`}>
+                        <div key={message.id} className={`max-w-[85%] rounded-2xl px-4 py-3 ${message.sender === "team" ? "ml-auto bg-[#000B3D] text-white" : "bg-[#F1F4F8]"}`}>
                           <p className="text-sm leading-6">{message.body}</p>
                           {message.attachmentsJson && (
                             <div className="mt-3 grid grid-cols-2 gap-2">
@@ -249,7 +249,7 @@ export default function StaffQuoteInbox({ backHref, canDelete = false }: { backH
                   ) : (
                     <form onSubmit={send} className="flex gap-2 border-t border-[#000B3D]/10 pt-4">
                       <input className={input} value={reply} onChange={(event) => setReply(event.target.value)} placeholder="Reply to customer…" />
-                      <button className="rounded-full bg-[#000B3D] px-5 text-[#0B0F19]">Send</button>
+                      <button className="rounded-full bg-[#000B3D] px-5 text-white">Send</button>
                     </form>
                   )}
                 </div>
@@ -268,7 +268,7 @@ export default function StaffQuoteInbox({ backHref, canDelete = false }: { backH
                   <button
                     onClick={saveQuote}
                     disabled={active.status === "closed" || active.status === "booked"}
-                    className="mt-4 w-full rounded-full bg-[#000B3D] px-5 py-3 font-semibold text-[#0B0F19] disabled:cursor-not-allowed disabled:opacity-40"
+                    className="mt-4 w-full rounded-full bg-[#000B3D] px-5 py-3 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     {active.status === "accepted" ? "Send revised quote" : "Send / update quote"}
                   </button>

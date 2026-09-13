@@ -188,7 +188,7 @@ export default function StaffSmsInbox({
             <div className="flex items-center gap-3">
               <h1 className="text-2xl font-bold">SMS Inbox</h1>
               {data.totalUnread > 0 && (
-                <span className="rounded-full bg-[#000B3D] px-2.5 py-1 text-xs font-bold text-[#0B0F19]">
+                <span className="rounded-full bg-[#000B3D] px-2.5 py-1 text-xs font-bold text-white">
                   {data.totalUnread} unread
                 </span>
               )}
@@ -238,7 +238,7 @@ export default function StaffSmsInbox({
                   type="button"
                   onClick={repairConnection}
                   disabled={repairing}
-                  className="rounded-full bg-[#000B3D] px-4 py-2 text-sm font-bold text-[#0B0F19] disabled:opacity-50"
+                  className="rounded-full bg-[#000B3D] px-4 py-2 text-sm font-bold text-white disabled:opacity-50"
                 >
                   {repairing ? "Connecting…" : "Repair SMS Connection"}
                 </button>
@@ -293,7 +293,7 @@ export default function StaffSmsInbox({
                       <div className="flex flex-wrap items-center gap-2">
                         <h2 className="font-semibold">{booking.customerName}</h2>
                         {row.unreadCount > 0 && (
-                          <span className="rounded-full bg-[#000B3D] px-2 py-0.5 text-[10px] font-bold text-[#0B0F19]">
+                          <span className="rounded-full bg-[#000B3D] px-2 py-0.5 text-[10px] font-bold text-white">
                             {row.unreadCount} new
                           </span>
                         )}

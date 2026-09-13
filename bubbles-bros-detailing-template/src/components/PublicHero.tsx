@@ -16,16 +16,25 @@ export default async function PublicHero({ imageCategory, eyebrowKey, titleKey, 
   const resolvedContent = content ?? (await getSiteContent());
 
   return (
-    <section className="relative isolate min-h-[560px] overflow-hidden border-b border-[#000B3D]/10 bg-white text-[#0B0F19] sm:min-h-[620px]">
-      <SitePhoto category={imageCategory} fallbackCategory="hero" className="absolute inset-0 -z-30 h-full w-full object-cover object-center opacity-70" />
-      <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(255,255,255,.99)_0%,rgba(255,255,255,.96)_38%,rgba(255,255,255,.78)_66%,rgba(255,255,255,.34)_100%)]" />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.64))]" />
-      <div className="mx-auto flex min-h-[560px] max-w-[1540px] items-end border-x border-[#000B3D]/10 px-5 py-14 sm:min-h-[620px] sm:px-8 sm:py-20 lg:px-10">
-        <div className="max-w-4xl">
-          <p className="text-[10px] font-semibold uppercase tracking-[.3em] text-[#000B3D]">{resolvedContent[eyebrowKey]}</p>
-          <h1 className="mt-5 text-5xl font-semibold leading-[.9] tracking-[-.065em] sm:text-7xl lg:text-[6.5rem]">{resolvedContent[titleKey]}</h1>
-          <p className="mt-6 max-w-2xl text-base leading-8 text-black/60 sm:text-lg">{resolvedContent[bodyKey]}</p>
+    <section className="border-b border-[#000B3D]/10 bg-[#F7F9FD] text-[#0B0F19]">
+      <div className="mx-auto grid max-w-[1440px] gap-8 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-[1.04fr_.96fr] lg:items-center lg:px-10 lg:py-20">
+        <div className="py-4 lg:py-10">
+          <p className="inline-flex rounded-full border border-[#000B3D]/12 bg-white px-4 py-2 text-[10px] font-bold uppercase tracking-[.25em] text-[#000B3D]">
+            {resolvedContent[eyebrowKey]}
+          </p>
+          <h1 className="mt-6 max-w-4xl text-5xl font-black leading-[.9] tracking-[-.06em] text-[#000B3D] sm:text-7xl lg:text-[6.4rem]">
+            {resolvedContent[titleKey]}
+          </h1>
+          <p className="mt-6 max-w-2xl text-base leading-8 text-black/55 sm:text-lg">{resolvedContent[bodyKey]}</p>
           {action && <div className="mt-8">{action}</div>}
+        </div>
+
+        <div className="relative min-h-[360px] sm:min-h-[500px]">
+          <div className="absolute inset-4 rounded-[34px] bg-[#000B3D]" />
+          <div className="absolute inset-0 overflow-hidden rounded-[34px] border-[8px] border-white bg-[#EEF2FA] shadow-[0_26px_70px_rgba(0,11,61,.16)] sm:inset-x-8">
+            <SitePhoto category={imageCategory} fallbackCategory="hero" className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#000B3D]/42 via-transparent to-transparent" />
+          </div>
         </div>
       </div>
     </section>

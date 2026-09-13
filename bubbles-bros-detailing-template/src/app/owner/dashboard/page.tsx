@@ -90,7 +90,7 @@ export default function OwnerDashboard() {
           </div>
           <button
             onClick={handleLogout}
-            className="px-4 py-2 rounded-lg bg-[#000B3D] text-[#0B0F19] hover:bg-[#000B3D] transition text-sm font-medium"
+            className="px-4 py-2 rounded-lg bg-[#000B3D] text-white hover:bg-[#000B3D] transition text-sm font-medium"
           >
             Logout
           </button>
@@ -171,7 +171,7 @@ export default function OwnerDashboard() {
           <a href="/owner/messages">
             <div className="relative rounded-3xl border border-[#000B3D]/10 bg-white p-8 hover:border-[#000B3D]/45 transition cursor-pointer">
               {smsUnread > 0 && (
-                <span className="absolute right-5 top-5 rounded-full bg-[#000B3D] px-2.5 py-1 text-xs font-bold text-[#0B0F19]">
+                <span className="absolute right-5 top-5 rounded-full bg-[#000B3D] px-2.5 py-1 text-xs font-bold text-white">
                   {smsUnread}
                 </span>
               )}
@@ -206,14 +206,6 @@ export default function OwnerDashboard() {
               <div className="rounded-2xl bg-[#000B3D]/10 p-4 w-12 h-12 flex items-center justify-center mb-4"><span className="text-2xl">💬</span></div>
               <h2 className="text-xl font-semibold mb-2">Quote Chats</h2>
               <p className="text-neutral-600 text-sm">Talk with customers, review photos, and send exact quotes</p>
-            </div>
-          </a>
-
-          <a href="/owner/warranties">
-            <div className="rounded-3xl border border-[#000B3D]/10 bg-white p-8 hover:border-[#000B3D]/45 transition cursor-pointer">
-              <div className="rounded-2xl bg-[#000B3D]/10 p-4 w-12 h-12 flex items-center justify-center mb-4"><span className="text-2xl">🛡️</span></div>
-              <h2 className="text-xl font-semibold mb-2">Ceramic Warranties</h2>
-              <p className="text-neutral-600 text-sm">Create and manage customer coating warranty records</p>
             </div>
           </a>
 

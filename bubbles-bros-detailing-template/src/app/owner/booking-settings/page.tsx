@@ -205,7 +205,6 @@ export default function BookingSettingsPage() {
       let cleanedPricing = pricing;
       if (canManagePricing) {
         cleanedPricing = {
-          headlightStandalonePrice: Math.max(0, Number(pricing.headlightStandalonePrice || 0)),
           addOns: pricing.addOns.map((item, index) => ({
             ...item,
             id: item.id || makeId(`addon-${index + 1}`),
@@ -358,11 +357,10 @@ export default function BookingSettingsPage() {
         {canManagePricing && (
           <>
             <section className="mt-8 rounded-[30px] border border-[#000B3D]/10 bg-[#F7F9FC] p-6">
-              <div className="flex flex-wrap items-end justify-between gap-4">
-                <div><p className="text-xs font-bold uppercase tracking-[.22em] text-[#000B3D]">Car Detailing Add-Ons</p><h2 className="mt-2 text-2xl font-semibold">Booking add-ons</h2><p className="mt-2 text-sm text-black/45">These prices appear in the booking form and are added to the exact total.</p></div>
-                <label className="text-sm text-black/60">Headlight Restoration booked alone
-                  <input type="number" min="0" step="1" className={`${input} mt-2 w-56`} value={pricing.headlightStandalonePrice} onChange={(e) => setPricing((current) => ({ ...current, headlightStandalonePrice: Number(e.target.value) }))} />
-                </label>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[.22em] text-[#000B3D]">Car Detailing Add-Ons</p>
+                <h2 className="mt-2 text-2xl font-semibold">Booking add-ons</h2>
+                <p className="mt-2 text-sm text-black/45">These optional interior and exterior detailing extras appear in the booking form and are added to the exact total.</p>
               </div>
 
               <div className="mt-6 grid gap-3">
@@ -423,7 +421,7 @@ export default function BookingSettingsPage() {
         )}
 
         <div className="sticky bottom-4 z-20 mt-8 flex flex-wrap items-center gap-4 rounded-[22px] border border-[#000B3D]/20 bg-white/95 p-4 shadow-2xl backdrop-blur-xl">
-          <button type="button" onClick={save} disabled={saving} className="rounded-full bg-[#000B3D] px-7 py-3 font-semibold text-[#0B0F19] disabled:opacity-50">{saving ? "Saving…" : "Save Booking Settings"}</button>
+          <button type="button" onClick={save} disabled={saving} className="rounded-full bg-[#000B3D] px-7 py-3 font-semibold text-white disabled:opacity-50">{saving ? "Saving…" : "Save Booking Settings"}</button>
           {message && <p className="text-sm text-black/60">{message}</p>}
         </div>
       </div>

@@ -101,9 +101,9 @@ export default function AdminSupportPage() {
             {selected ? <>
               <div className="flex flex-wrap items-start justify-between gap-4 border-b border-[#000B3D]/10 pb-5">
                 <div><h2 className="text-2xl font-semibold">{selected.subject}</h2><p className="mt-2 text-sm text-black/45">{selected.name} · {selected.contactPreference}{selected.email ? ` · ${selected.email}` : ""}{selected.phone ? ` · ${selected.phone}` : ""}</p></div>
-                <div className="flex gap-2">{["open","waiting","closed"].map((status) => <button key={status} onClick={() => setStatus(status)} className={`rounded-full px-3 py-2 text-xs capitalize ${selected.status === status ? "bg-[#000B3D] text-[#0B0F19]" : "border border-[#000B3D]/10 text-black/55"}`}>{status}</button>)}</div>
+                <div className="flex gap-2">{["open","waiting","closed"].map((status) => <button key={status} onClick={() => setStatus(status)} className={`rounded-full px-3 py-2 text-xs capitalize ${selected.status === status ? "bg-[#000B3D] text-white" : "border border-[#000B3D]/10 text-black/55"}`}>{status}</button>)}</div>
               </div>
-              <div className="space-y-3 py-6">{selected.messages.map((item) => <div key={item.id} className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-6 ${item.sender === "team" ? "ml-auto bg-[#000B3D] text-[#0B0F19]" : "bg-[#F2F5F9] text-black/75"}`}>{item.body}</div>)}</div>
+              <div className="space-y-3 py-6">{selected.messages.map((item) => <div key={item.id} className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-6 ${item.sender === "team" ? "ml-auto bg-[#000B3D] text-white" : "bg-[#F2F5F9] text-black/75"}`}>{item.body}</div>)}</div>
               <form onSubmit={sendReply} className="mt-auto flex gap-2 border-t border-[#000B3D]/10 pt-5"><input value={reply} onChange={(e) => setReply(e.target.value)} placeholder="Reply to customer…" className="support-input"/><button className="rounded-full bg-white px-5 text-sm font-semibold text-black">Send</button></form>
             </> : <div className="grid h-full place-items-center text-black/35">Choose a conversation.</div>}
           </section>

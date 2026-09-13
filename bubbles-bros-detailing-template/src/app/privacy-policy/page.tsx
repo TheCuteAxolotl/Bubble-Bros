@@ -44,7 +44,7 @@ export default function PrivacyPolicyPage() {
             <p className="mt-3">
               We use information to provide and improve our detailing services, respond to quote and support requests, manage
               customer accounts and saved vehicles, schedule and manage bookings, communicate about appointments, maintain service
-              and warranty records, prevent abuse, troubleshoot the website, and comply with legal obligations.
+              and service records, prevent abuse, troubleshoot the website, and comply with legal obligations.
             </p>
           </section>
 
@@ -85,7 +85,7 @@ export default function PrivacyPolicyPage() {
           <section>
             <h2 className="text-xl font-semibold text-[#0B0F19]">Data retention and security</h2>
             <p className="mt-3">
-              We retain information for as long as reasonably necessary to provide services, maintain business and warranty records,
+              We retain information for as long as reasonably necessary to provide services, maintain business and service records,
               resolve disputes, enforce agreements, and meet legal obligations. We use reasonable administrative and technical
               safeguards, but no internet service or storage system can be guaranteed to be completely secure.
             </p>

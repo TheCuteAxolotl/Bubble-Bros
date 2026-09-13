@@ -4,7 +4,7 @@ import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: 'Mobile Detailing Services',
-  description: 'Explore Bubbles & Bros. services for full car detailing, interior and exterior detailing, paint correction, ceramic protection, add-ons, and marine detailing.',
+  description: 'Explore Bubbles & Bros. mobile auto detailing services for full-car, interior, and exterior cleaning, plus detailing add-ons.',
   path: "/services",
   keywords: ['detailing services', 'mobile detailer', 'car detailing services'],
 });

@@ -30,7 +30,7 @@ const ROLE_TEMPLATES = [
   { name: "Detailer", description: "Booking operations and day-of-service customer communication.", permissions: ["staffGuide", "bookings", ...(SMS_FEATURE_ENABLED ? ["smsInbox"] : [])] },
   { name: "Support Agent", description: "Customer support without pricing or website access.", permissions: ["staffGuide", "support", ...(SMS_FEATURE_ENABLED ? ["smsInbox"] : [])] },
   { name: "Quote Specialist", description: "Review quote requests, customer photos, and send exact quotes.", permissions: ["staffGuide", "quoteChats", ...(SMS_FEATURE_ENABLED ? ["smsInbox"] : [])] },
-  { name: "Manager", description: "Operational access across bookings, support, warranties, quotes, and analytics.", permissions: ["staffGuide", "bookings", ...(SMS_FEATURE_ENABLED ? ["smsInbox"] : []), "quoteChats", "support", ...(PHONE_FEATURE_ENABLED ? ["businessPhone"] : []), "warranties", "analytics"] },
+  { name: "Manager", description: "Operational access across bookings, support, quotes, and analytics.", permissions: ["staffGuide", "bookings", ...(SMS_FEATURE_ENABLED ? ["smsInbox"] : []), "quoteChats", "support", ...(PHONE_FEATURE_ENABLED ? ["businessPhone"] : []), "analytics"] },
   { name: "Content Manager", description: "Maintain services, website content, media, package pricing, and discounts.", permissions: ["staffGuide", "services", "gallery", "website", "pricing"] },
 ] as const;
 
@@ -83,6 +83,7 @@ export default function StaffAccountsPage() {
     setCatalog((rolePayload.permissionCatalog || []).filter((permission: PermissionDef) => {
       if (permission.key === "smsInbox" && !SMS_FEATURE_ENABLED) return false;
       if (permission.key === "businessPhone" && !PHONE_FEATURE_ENABLED) return false;
+      if (permission.key === "warranties") return false;
       return true;
     }));
     if (!selectedId && accountPayload.accounts?.[0]) setSelectedId(accountPayload.accounts[0].id);
@@ -172,7 +173,7 @@ export default function StaffAccountsPage() {
   };
   const deleteAccount = async () => {
     if (!selected || selected.protected) return;
-    const okay = window.confirm(`Permanently delete ${selected.name} (${selected.email})? Their account-linked bookings, vehicles, quote chats, and warranties may also be deleted. This cannot be undone.`);
+    const okay = window.confirm(`Permanently delete ${selected.name} (${selected.email})? Their account-linked bookings, vehicles, and quote chats may also be deleted. This cannot be undone.`);
     if (!okay) return;
     const response = await fetch(`/api/owner/accounts/${selected.id}`, { method: "DELETE" });
     const payload = await response.json().catch(() => ({}));
@@ -306,7 +307,7 @@ export default function StaffAccountsPage() {
                     </div>
 
                     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                      {[["Bookings", selected.counts.bookings], ["Vehicles", selected.counts.vehicles], ["Quote chats", selected.counts.quoteThreads], ["Warranties", selected.counts.warranties]].map(([label, value]) => <div key={String(label)} className="rounded-2xl border border-[#000B3D]/10 bg-[#F7F9FC] p-4"><p className="text-xs text-black/35">{label}</p><p className="mt-2 text-xl font-semibold">{value}</p></div>)}
+                      {[["Bookings", selected.counts.bookings], ["Vehicles", selected.counts.vehicles], ["Quote chats", selected.counts.quoteThreads]].map(([label, value]) => <div key={String(label)} className="rounded-2xl border border-[#000B3D]/10 bg-[#F7F9FC] p-4"><p className="text-xs text-black/35">{label}</p><p className="mt-2 text-xl font-semibold">{value}</p></div>)}
                     </div>
 
                     {selected.latestBooking && (
@@ -378,7 +379,7 @@ export default function StaffAccountsPage() {
                     )}
 
                     <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[#000B3D]/10 pt-6">
-                      <button onClick={saveAccount} disabled={saving} className="rounded-full bg-[#000B3D] px-6 py-3 text-sm font-bold text-[#0B0F19] disabled:opacity-50">{saving ? "Saving…" : "Save account & access"}</button>
+                      <button onClick={saveAccount} disabled={saving} className="rounded-full bg-[#000B3D] px-6 py-3 text-sm font-bold text-white disabled:opacity-50">{saving ? "Saving…" : "Save account & access"}</button>
                       {!selected.protected && (
                         <div className="flex flex-wrap gap-2">
                           {selected.staffAccess && <button onClick={removeAllStaffAccess} disabled={saving} className="rounded-full border border-amber-400/25 bg-amber-400/[.06] px-5 py-3 text-sm font-semibold text-amber-800 disabled:opacity-50">Remove all staff access</button>}
@@ -432,7 +433,7 @@ export default function StaffAccountsPage() {
               )}
               <div className="mt-6 grid gap-4 md:grid-cols-2"><label><span className="mb-2 block text-xs uppercase tracking-[.15em] text-black/35">Role name</span><input className={input} value={roleName} onChange={(event) => setRoleName(event.target.value)} placeholder="Example: Detailer, Support Agent, Manager" required /></label><label><span className="mb-2 block text-xs uppercase tracking-[.15em] text-black/35">Description</span><input className={input} value={roleDescription} onChange={(event) => setRoleDescription(event.target.value)} placeholder="What this role is for" /></label></div>
               <div className="mt-6"><p className="text-xs font-semibold uppercase tracking-[.18em] text-black/35">Role permissions</p><div className="mt-4 grid gap-3 md:grid-cols-2">{catalog.map((permission) => <label key={permission.key} className={`cursor-pointer rounded-2xl border p-4 transition ${rolePermissions.includes(permission.key) ? "border-[#000B3D]/35 bg-[#000B3D]/[.06]" : "border-[#000B3D]/10 bg-[#F7F9FC]"}`}><div className="flex gap-3"><input type="checkbox" className="mt-1" checked={rolePermissions.includes(permission.key)} onChange={(event) => setRolePermissions((current) => event.target.checked ? [...current, permission.key] : current.filter((key) => key !== permission.key))} /><div><p className="text-sm font-semibold">{permission.label}</p><p className="mt-1 text-xs leading-5 text-black/35">{permission.description}</p></div></div></label>)}</div></div>
-              <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-[#000B3D]/10 pt-6"><button disabled={saving} className="rounded-full bg-[#000B3D] px-6 py-3 text-sm font-bold text-[#0B0F19] disabled:opacity-50">{saving ? "Saving…" : roleId ? "Save role" : "Create role"}</button>{roleId && (() => { const current = roles.find((role) => role.id === roleId); return current ? <button type="button" onClick={() => deleteRole(current)} className="rounded-full border border-red-500/25 bg-red-500/[.06] px-5 py-3 text-sm font-semibold text-red-700">Delete role</button> : null; })()}</div>
+              <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-[#000B3D]/10 pt-6"><button disabled={saving} className="rounded-full bg-[#000B3D] px-6 py-3 text-sm font-bold text-white disabled:opacity-50">{saving ? "Saving…" : roleId ? "Save role" : "Create role"}</button>{roleId && (() => { const current = roles.find((role) => role.id === roleId); return current ? <button type="button" onClick={() => deleteRole(current)} className="rounded-full border border-red-500/25 bg-red-500/[.06] px-5 py-3 text-sm font-semibold text-red-700">Delete role</button> : null; })()}</div>
             </form>
           </div>
         )}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   BUSINESS_EMAIL,
   BUSINESS_NAME,
@@ -10,30 +11,65 @@ import SocialLinks from "@/components/SocialLinks";
 
 export default function SiteFooter({ blurb }: { blurb: string }) {
   return (
-    <footer className="border-t border-[#000B3D]/10 bg-white text-[#0B0F19]">
-      <div className="mx-auto grid max-w-[1540px] gap-12 border-x border-[#000B3D]/10 px-5 py-14 sm:px-8 lg:grid-cols-[1.15fr_.85fr] lg:px-10">
-        <div>
-          <div className="flex items-center gap-3"><span className="h-2 w-2 rounded-full bg-[#000B3D] shadow-[0_0_14px_rgba(0,11,61,.55)]" /><p className="text-3xl font-semibold tracking-[-.045em]">{BUSINESS_NAME}</p></div>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-black/45">{blurb}</p>
-          <div className="mt-7"><SocialLinks /></div>
-        </div>
+    <footer className="border-t border-[#000B3D]/10 bg-[#F7F9FD] text-[#0B0F19]">
+      <div className="mx-auto max-w-[1440px] px-5 py-14 sm:px-8 lg:px-10 lg:py-16">
+        <div className="grid gap-10 lg:grid-cols-[1.15fr_.85fr]">
+          <div className="max-w-xl">
+            <div className="flex items-center gap-4">
+              <Image src="/bubbles-bros-logo.png" alt={BUSINESS_NAME} width={110} height={110} className="h-16 w-16 object-contain" />
+              <div>
+                <p className="text-lg font-extrabold uppercase tracking-[.04em] text-[#000B3D]">{BUSINESS_NAME}</p>
+                <p className="mt-1 text-[10px] font-semibold uppercase tracking-[.22em] text-black/35">Interior + exterior auto detailing</p>
+              </div>
+            </div>
+            <p className="mt-6 max-w-lg text-sm leading-7 text-black/50">{blurb}</p>
+            <div className="mt-6 flex flex-wrap gap-3 text-sm">
+              <a href={`mailto:${BUSINESS_EMAIL}`} className="rounded-full border border-[#000B3D]/12 bg-white px-4 py-2.5 font-semibold text-[#000B3D]">{BUSINESS_EMAIL}</a>
+              {PHONE_FEATURE_ENABLED && BUSINESS_PHONE && (
+                <a href={`tel:${BUSINESS_PHONE}`} className="rounded-full border border-[#000B3D]/12 bg-white px-4 py-2.5 font-semibold text-[#000B3D]">{BUSINESS_PHONE_DISPLAY}</a>
+              )}
+            </div>
+            <div className="mt-5"><SocialLinks /></div>
+          </div>
 
-        <div className="grid grid-cols-2 gap-8 text-sm sm:grid-cols-3">
-          <div>
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[.23em] text-black/35">Explore</p>
-            <div className="space-y-2 text-black/70"><a href="/about" className="block hover:text-[#000B3D]">About {BUSINESS_NAME}</a><a href="/paint-correction" className="block hover:text-[#000B3D]">Paint Correction</a><a href="/ceramic-coatings" className="block hover:text-[#000B3D]">Ceramic Coatings</a><a href="/products-we-use" className="block hover:text-[#000B3D]">Products We Use</a><a href="/gallery" className="block hover:text-[#000B3D]">Gallery</a></div>
-          </div>
-          <div>
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[.23em] text-black/35">Services + Help</p>
-            <div className="space-y-2 text-black/70"><a href="/car-detailing-packages" className="block hover:text-[#000B3D]">Car Packages</a><a href="/exterior-detailing" className="block hover:text-[#000B3D]">Exterior Detailing</a><a href="/interior-detailing" className="block hover:text-[#000B3D]">Interior Detailing</a><a href="/services#car-add-ons" className="block hover:text-[#000B3D]">Car Add-Ons</a><a href="/marine-detailing" className="block hover:text-[#000B3D]">Marine Detailing</a><a href="/faq" className="block hover:text-[#000B3D]">FAQ</a><a href="/contact" className="block hover:text-[#000B3D]">Book</a></div>
-          </div>
-          <div className="col-span-2 sm:col-span-1">
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[.23em] text-black/35">Contact + Legal</p>
-            <div className="space-y-2 text-black/70">{PHONE_FEATURE_ENABLED && BUSINESS_PHONE && <a href={`tel:${BUSINESS_PHONE}`} className="block hover:text-[#000B3D]">{BUSINESS_PHONE_DISPLAY}</a>}<a href={`mailto:${BUSINESS_EMAIL}`} className="block break-all hover:text-[#000B3D]">{BUSINESS_EMAIL}</a><a href="/privacy-policy" className="block hover:text-[#000B3D]">Privacy Policy</a><a href="/terms-and-conditions" className="block hover:text-[#000B3D]">Terms and Conditions</a></div>
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[.22em] text-[#000B3D]">Detailing</p>
+              <div className="mt-4 space-y-3 text-sm text-black/55">
+                <a href="/car-detailing-packages" className="block hover:text-[#000B3D]">Full Detail</a>
+                <a href="/interior-detailing" className="block hover:text-[#000B3D]">Interior</a>
+                <a href="/exterior-detailing" className="block hover:text-[#000B3D]">Exterior</a>
+                <a href="/services#car-add-ons" className="block hover:text-[#000B3D]">Add-Ons</a>
+              </div>
+            </div>
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[.22em] text-[#000B3D]">Company</p>
+              <div className="mt-4 space-y-3 text-sm text-black/55">
+                <a href="/about" className="block hover:text-[#000B3D]">About</a>
+                <a href="/gallery" className="block hover:text-[#000B3D]">Gallery</a>
+                <a href="/faq" className="block hover:text-[#000B3D]">FAQ</a>
+                <a href="/contact" className="block hover:text-[#000B3D]">Contact</a>
+              </div>
+            </div>
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[.22em] text-[#000B3D]">Book</p>
+              <div className="mt-4 space-y-3 text-sm text-black/55">
+                <a href="/quote" className="block hover:text-[#000B3D]">Exact Quote</a>
+                <a href="/estimate" className="block hover:text-[#000B3D]">Estimate</a>
+                <a href="/login" className="block hover:text-[#000B3D]">Login</a>
+                <a href="/privacy-policy" className="block hover:text-[#000B3D]">Privacy</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div className="mx-auto flex max-w-[1540px] flex-col gap-2 border-x border-t border-[#000B3D]/10 bg-[#000B3D] px-5 py-5 text-[10px] uppercase tracking-[.2em] text-white/70 sm:flex-row sm:justify-between sm:px-8 lg:px-10"><span>{SERVICE_AREA || "Mobile detailing"}</span><span>Auto + marine detailing</span></div>
+
+      <div className="border-t border-white/10 bg-[#000B3D] text-white/65">
+        <div className="mx-auto flex max-w-[1440px] flex-col gap-2 px-5 py-5 text-[10px] font-semibold uppercase tracking-[.18em] sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
+          <span>{SERVICE_AREA || "Mobile auto detailing"}</span>
+          <span>Interior · Exterior · Full Detail</span>
+        </div>
+      </div>
     </footer>
   );
 }

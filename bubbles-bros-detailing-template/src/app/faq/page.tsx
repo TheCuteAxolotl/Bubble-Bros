@@ -15,7 +15,7 @@ export default async function FAQPage() {
 
   return (
     <div className="min-h-screen bg-white text-[#0B0F19]">
-      <PublicHero content={content} imageCategory="faq-hero" eyebrowKey="faqEyebrow" titleKey="faqTitle" bodyKey="faqBody" action={<a href="/contact" className="inline-flex rounded-full bg-[#000B3D] px-6 py-3.5 text-sm font-semibold text-[#0B0F19] hover:bg-[#000B3D]">Still need help?</a>} />
+      <PublicHero content={content} imageCategory="faq-hero" eyebrowKey="faqEyebrow" titleKey="faqTitle" bodyKey="faqBody" action={<a href="/contact" className="inline-flex rounded-full bg-[#000B3D] px-6 py-3.5 text-sm font-semibold text-white hover:bg-[#000B3D]">Still need help?</a>} />
       <main className="mx-auto max-w-[1180px] px-5 py-14 sm:px-8 lg:py-20">
         <div className="overflow-hidden rounded-[30px] border border-[#000B3D]/10 bg-white">
           {items.map((item, index) => (

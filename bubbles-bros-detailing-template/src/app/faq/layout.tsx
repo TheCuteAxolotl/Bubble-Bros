@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = pageMetadata({
   title: "Mobile Detailing FAQ",
   description:
-    "Answers about mobile detailing appointments, pricing by condition, ceramic-coated vehicles, appointment prep, and booking with Bubbles & Bros.",
+    "Answers about mobile detailing appointments, pricing by condition, interior and exterior services, appointment prep, and booking with Bubbles & Bros.",
   path: "/faq",
   keywords: ["detailing FAQ", "mobile detailing questions", "Bubbles & Bros. FAQ"],
 });

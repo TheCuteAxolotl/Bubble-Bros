@@ -81,7 +81,7 @@ export default function ReviewCards() {
           href={GOOGLE_REVIEW_URL || GOOGLE_BUSINESS_URL || "#"}
           target="_blank"
           rel="noreferrer"
-          className="mt-5 inline-flex rounded-full bg-[#000B3D] px-5 py-2.5 text-sm font-black text-[#0B0F19] transition hover:bg-[#000B3D]"
+          className="mt-5 inline-flex rounded-full bg-[#000B3D] px-5 py-2.5 text-sm font-black text-white transition hover:bg-[#000B3D]"
         >
           Open Google Reviews
         </a>
@@ -116,7 +116,7 @@ export default function ReviewCards() {
             href={data.reviewUrl || GOOGLE_REVIEW_URL || data.googleMapsUri || "#"}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex rounded-full bg-[#000B3D] px-5 py-2.5 text-sm font-black text-[#0B0F19] transition hover:bg-[#000B3D]"
+            className="inline-flex rounded-full bg-[#000B3D] px-5 py-2.5 text-sm font-black text-white transition hover:bg-[#000B3D]"
           >
             Leave a Google Review
           </a>

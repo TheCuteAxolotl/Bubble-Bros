@@ -5,36 +5,36 @@ import type { SiteContent } from "@/lib/site-defaults";
 import SitePhoto from "@/components/SitePhoto";
 import DynamicGallery from "@/components/DynamicGallery";
 import ReviewCards from "@/components/ReviewCards";
-import { FACEBOOK_URL, GOOGLE_REVIEWS_ENABLED, INSTAGRAM_URL } from "@/lib/constants";
 import SocialLinks from "@/components/SocialLinks";
+import { FACEBOOK_URL, GOOGLE_REVIEWS_ENABLED, INSTAGRAM_URL } from "@/lib/constants";
 
-const SERVICE_GROUPS = [
+const services = [
   {
-    eyebrow: "Car detailing",
-    title: "Interior + exterior detailing",
-    body: "Full details, interior cleaning, exterior work, and maintenance options for cars, SUVs, trucks, and weekend vehicles.",
+    number: "01",
+    label: "Full detail",
+    title: "Interior + exterior in one visit.",
+    body: "A complete reset for the cabin and exterior, with package options based on the vehicle size and condition.",
     href: "/car-detailing-packages",
-    link: "View car detailing",
     category: "pricing-car-packages-hero",
-    fallbackCategory: "home-showcase-primary",
+    fallback: "home-showcase-primary",
   },
   {
-    eyebrow: "Paint + protection",
-    title: "Correction + ceramic protection",
-    body: "Paint enhancement, swirl and defect correction, and ceramic coating when you want the paint to look better and stay protected longer.",
-    href: "/paint-correction",
-    link: "View paint + protection",
-    category: "paint-correction-hero",
-    fallbackCategory: "home-showcase-secondary",
+    number: "02",
+    label: "Interior",
+    title: "A cleaner cabin from top to bottom.",
+    body: "Vacuuming, surfaces, seats, carpets, vents, glass, crevices, stain-focused cleaning, and deeper resets when needed.",
+    href: "/interior-detailing",
+    category: "pricing-interior-hero",
+    fallback: "home-showcase-secondary",
   },
   {
-    eyebrow: "Marine detailing",
-    title: "Boat cleaning + protection",
-    body: "Interior, hull, deck, oxidation, maintenance, and protection work based on the boat and what it needs.",
-    href: "/marine-detailing",
-    link: "View marine detailing",
-    category: "marine-hero",
-    fallbackCategory: "home-services-bg",
+    number: "03",
+    label: "Exterior",
+    title: "A careful wash with a finished look.",
+    body: "Hand washing, wheels, tires, bugs, glass, decontamination when needed, and simple protection for a clean glossy finish.",
+    href: "/exterior-detailing",
+    category: "pricing-exterior-hero",
+    fallback: "home-services-bg",
   },
 ] as const;
 
@@ -43,103 +43,119 @@ export default function HomeExperience({ initialContent }: { initialContent: Sit
   const [showFloatingQuote, setShowFloatingQuote] = useState(false);
 
   useEffect(() => {
-    const updateFloatingQuote = () => {
-      const revealPoint = Math.max(520, window.innerHeight * 0.68);
-      setShowFloatingQuote(window.scrollY > revealPoint);
-    };
-
-    updateFloatingQuote();
-    window.addEventListener("scroll", updateFloatingQuote, { passive: true });
-    window.addEventListener("resize", updateFloatingQuote);
-
-    return () => {
-      window.removeEventListener("scroll", updateFloatingQuote);
-      window.removeEventListener("resize", updateFloatingQuote);
-    };
+    const update = () => setShowFloatingQuote(window.scrollY > Math.max(500, window.innerHeight * 0.7));
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
   }, []);
 
   return (
-    <div className="bg-white text-[#0B0F19]">
+    <main className="overflow-hidden bg-white text-[#0B0F19]">
       <a
         href="/quote"
-        aria-label="Get an Exact Quote"
-        className={`fixed bottom-5 right-[8.65rem] z-[69] rounded-full border border-[#000B3D]/10 bg-white px-4 py-3 text-xs font-semibold text-[#0B0F19] shadow-[0_18px_50px_rgba(0,11,61,.12)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#000B3D] hover:text-white sm:right-[9.35rem] sm:px-5 sm:text-sm ${
-          showFloatingQuote
-            ? "translate-y-0 opacity-100"
-            : "pointer-events-none translate-y-3 opacity-0"
+        className={`fixed bottom-5 right-[8.5rem] z-[69] rounded-full border border-white/15 bg-[#000B3D] px-5 py-3 text-xs font-bold text-white shadow-[0_18px_45px_rgba(0,11,61,.25)] transition-all sm:right-[9.2rem] sm:text-sm ${
+          showFloatingQuote ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
         }`}
       >
-        <span className="sm:hidden">Exact Quote</span>
-        <span className="hidden sm:inline">Get an Exact Quote</span>
+        Exact Quote
       </a>
 
-      <section className="relative isolate min-h-[88vh] overflow-hidden border-b border-[#000B3D]/10">
-        <SitePhoto category="hero" className="absolute inset-0 -z-30 h-full w-full object-cover object-center opacity-75" />
-        <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(255,255,255,.99)_0%,rgba(255,255,255,.95)_38%,rgba(255,255,255,.72)_66%,rgba(255,255,255,.24)_100%)]" />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(255,255,255,.20)_0%,rgba(255,255,255,.34)_55%,rgba(255,255,255,.72)_100%)]" />
+      <section className="relative border-b border-[#000B3D]/10 bg-[#F7F9FD]">
+        <div className="pointer-events-none absolute -right-24 top-16 h-80 w-80 rounded-full bg-[#000B3D]/[.05] blur-3xl" />
+        <div className="mx-auto grid max-w-[1440px] gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[1.02fr_.98fr] lg:items-center lg:px-10 lg:py-24">
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#000B3D]/12 bg-white px-4 py-2 text-[10px] font-bold uppercase tracking-[.22em] text-[#000B3D] shadow-sm">
+              <span className="h-2 w-2 rounded-full bg-[#000B3D]" />
+              {content.heroEyebrow}
+            </div>
 
-        <div className="mx-auto flex min-h-[88vh] max-w-[1540px] flex-col justify-between border-x border-[#000B3D]/10 px-5 py-10 sm:px-8 lg:px-10 lg:py-14">
-          <div className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[.3em] text-black/50">
-            <span className="h-2 w-2 rounded-full bg-[#000B3D]" />
-            {content.heroEyebrow}
-          </div>
-
-          <div className="max-w-6xl py-16 lg:py-24">
-            <h1 className="max-w-5xl text-[clamp(4.6rem,9vw,10.5rem)] font-semibold leading-[.78] tracking-[-.078em]">
+            <h1 className="mt-7 max-w-3xl text-[clamp(3.7rem,7.4vw,7.6rem)] font-black leading-[.86] tracking-[-.07em] text-[#000B3D]">
               {content.heroTitle}
             </h1>
-            <p className="mt-8 max-w-2xl text-base leading-8 text-black/60 sm:text-lg">
-              {content.heroBody}
-            </p>
+            <p className="mt-7 max-w-xl text-base leading-8 text-black/55 sm:text-lg">{content.heroBody}</p>
+
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="/quote" className="rounded-full bg-[#000B3D] px-6 py-3.5 text-sm font-semibold text-[#0B0F19] transition hover:bg-[#000B3D]">
-                {["book a detail", "get a quote"].includes(content.heroPrimaryCta.trim().toLowerCase()) ? "Get an Exact Quote" : content.heroPrimaryCta}
+              <a href="/quote" className="rounded-2xl bg-[#000B3D] px-6 py-4 text-sm font-bold text-white shadow-[0_16px_34px_rgba(0,11,61,.18)]">
+                {content.heroPrimaryCta}
               </a>
-              <a href="/services" className="rounded-full border border-[#000B3D]/20 bg-white/85 px-6 py-3.5 text-sm font-semibold text-[#000B3D] shadow-sm backdrop-blur transition hover:border-[#000B3D]/45 hover:bg-white">
-                {content.heroSecondaryCta}
+              <a href="/car-detailing-packages" className="rounded-2xl border border-[#000B3D]/15 bg-white px-6 py-4 text-sm font-bold text-[#000B3D]">
+                View detailing packages
               </a>
+            </div>
+
+            <div className="mt-10 grid max-w-xl grid-cols-3 overflow-hidden rounded-[22px] border border-[#000B3D]/10 bg-white shadow-sm">
+              {[
+                ["Full", "Inside + out"],
+                ["Interior", "Cabin reset"],
+                ["Exterior", "Wash + finish"],
+              ].map(([title, subtitle], index) => (
+                <div key={title} className={`px-4 py-4 ${index ? "border-l border-[#000B3D]/10" : ""}`}>
+                  <p className="text-sm font-extrabold text-[#000B3D]">{title}</p>
+                  <p className="mt-1 text-[10px] uppercase tracking-[.16em] text-black/35">{subtitle}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="border-t border-[#000B3D]/10 pt-5 text-xs text-black/40">
-            <span>Interior · Exterior · Paint Correction · Protection</span>
+          <div className="relative min-h-[520px] sm:min-h-[640px]">
+            <div className="absolute inset-5 rounded-[38px] bg-[#000B3D]" />
+            <div className="absolute inset-x-0 bottom-0 top-0 overflow-hidden rounded-[38px] border-[10px] border-white bg-[#EEF2FA] shadow-[0_32px_90px_rgba(0,11,61,.18)] sm:inset-x-6">
+              <SitePhoto category="hero" fallbackCategory="home-showcase-primary" className="h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_48%,rgba(0,11,61,.55)_100%)]" />
+              <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4 text-white">
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[.24em] text-white/70">Bubbles & Bros.</p>
+                  <p className="mt-2 max-w-xs text-2xl font-bold leading-tight">Clean car. Cleaner process. We come to you.</p>
+                </div>
+                <div className="hidden h-14 w-14 items-center justify-center rounded-full border border-white/30 bg-white/10 text-xl backdrop-blur sm:flex">↗</div>
+              </div>
+            </div>
+            <div className="absolute -left-2 top-10 rounded-2xl border border-[#000B3D]/10 bg-white px-5 py-4 shadow-[0_16px_40px_rgba(0,11,61,.12)] sm:left-0">
+              <p className="text-[10px] font-bold uppercase tracking-[.22em] text-black/35">Service focus</p>
+              <p className="mt-1 text-sm font-extrabold text-[#000B3D]">Cars · SUVs · Trucks</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#F7F9FC] text-black">
-        <div className="mx-auto max-w-[1540px] border-x border-black/10 px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <section className="border-b border-[#000B3D]/10 bg-white">
+        <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-4 px-5 py-5 text-[11px] font-bold uppercase tracking-[.18em] text-black/35 sm:px-8 lg:px-10">
+          <span>Mobile detailing</span><span className="text-[#000B3D]">•</span><span>Interior cleaning</span><span className="text-[#000B3D]">•</span><span>Exterior cleaning</span><span className="text-[#000B3D]">•</span><span>Exact quotes</span><span className="text-[#000B3D]">•</span><span>Easy booking</span>
+        </div>
+      </section>
+
+      <section className="bg-white">
+        <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
+          <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-end">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[.3em] text-[#000B3D]">{content.servicesEyebrow}</p>
-              <h2 className="mt-4 max-w-4xl text-4xl font-semibold leading-[.94] tracking-[-.055em] sm:text-6xl">{content.servicesTitle}</h2>
+              <p className="text-[10px] font-bold uppercase tracking-[.28em] text-[#000B3D]">{content.servicesEyebrow}</p>
+              <h2 className="mt-4 text-4xl font-black leading-[.95] tracking-[-.055em] text-[#000B3D] sm:text-6xl">Three ways to get the car cleaned.</h2>
             </div>
-            <p className="max-w-lg text-sm leading-7 text-black/52">{content.servicesBody}</p>
+            <p className="max-w-2xl text-base leading-8 text-black/50">{content.servicesBody}</p>
           </div>
 
-          <div className="mt-12 grid gap-5 lg:grid-cols-3">
-            {SERVICE_GROUPS.map((service) => (
+          <div className="mt-12 space-y-5">
+            {services.map((service, index) => (
               <a
-                key={service.title}
+                key={service.href}
                 href={service.href}
-                className="group overflow-hidden rounded-[30px] border border-black/10 bg-white shadow-[0_16px_50px_rgba(0,0,0,.05)] transition duration-300 hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_24px_70px_rgba(0,0,0,.10)]"
+                className="group grid overflow-hidden rounded-[30px] border border-[#000B3D]/10 bg-[#F8FAFD] transition hover:border-[#000B3D]/25 hover:shadow-[0_24px_70px_rgba(0,11,61,.08)] md:grid-cols-[.76fr_1.24fr]"
               >
-                <div className="relative h-64 overflow-hidden bg-[#EEF2FA] sm:h-72">
-                  <SitePhoto
-                    category={service.category}
-                    fallbackCategory={service.fallbackCategory}
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.035]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent" />
-                  <p className="absolute bottom-5 left-5 text-[10px] font-semibold uppercase tracking-[.25em] text-[#FFFFFF]">{service.eyebrow}</p>
+                <div className={`relative min-h-[280px] overflow-hidden ${index % 2 === 1 ? "md:order-2" : ""}`}>
+                  <SitePhoto category={service.category} fallbackCategory={service.fallback} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#000B3D]/45 via-transparent to-transparent" />
+                  <span className="absolute left-5 top-5 rounded-full bg-white/92 px-3 py-2 text-[10px] font-black tracking-[.18em] text-[#000B3D] backdrop-blur">{service.number}</span>
                 </div>
-                <div className="p-7 sm:p-8">
-                  <h3 className="text-3xl font-semibold leading-[1] tracking-[-.045em]">{service.title}</h3>
-                  <p className="mt-5 text-sm leading-7 text-black/52">{service.body}</p>
-                  <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-black">
-                    {service.link}
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                  </span>
+                <div className={`flex flex-col justify-between p-7 sm:p-10 ${index % 2 === 1 ? "md:order-1" : ""}`}>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[.25em] text-[#000B3D]">{service.label}</p>
+                    <h3 className="mt-4 max-w-xl text-3xl font-black leading-[.98] tracking-[-.045em] text-[#0B0F19] sm:text-5xl">{service.title}</h3>
+                    <p className="mt-5 max-w-xl text-sm leading-7 text-black/50 sm:text-base">{service.body}</p>
+                  </div>
+                  <div className="mt-8 flex items-center justify-between border-t border-[#000B3D]/10 pt-5">
+                    <span className="text-sm font-bold text-[#000B3D]">See packages & pricing</span>
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#000B3D] text-white transition group-hover:translate-x-1">→</span>
+                  </div>
                 </div>
               </a>
             ))}
@@ -147,92 +163,116 @@ export default function HomeExperience({ initialContent }: { initialContent: Sit
         </div>
       </section>
 
-      <section className="bg-[#FFFFFF] text-black">
-        <div className="mx-auto max-w-[1540px] border-x border-black/10 px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
-          <div className="grid gap-10 lg:grid-cols-[.35fr_1.65fr]">
-            <p className="text-[10px] font-semibold uppercase tracking-[.3em] text-[#000B3D]">{content.introEyebrow}</p>
+      <section className="bg-[#000B3D] text-white">
+        <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
+          <div className="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
             <div>
-              <h2 className="max-w-6xl text-4xl font-semibold leading-[.94] tracking-[-.058em] sm:text-6xl lg:text-7xl">{content.introTitle}</h2>
-              <p className="mt-7 max-w-3xl text-base leading-8 text-black/52">{content.introBody}</p>
+              <p className="text-[10px] font-bold uppercase tracking-[.28em] text-white/55">How it works</p>
+              <h2 className="mt-4 max-w-md text-4xl font-black leading-[.95] tracking-[-.05em] sm:text-6xl">Simple from quote to clean car.</h2>
             </div>
-          </div>
-
-          <div className="mt-16 grid gap-4 lg:grid-cols-[1.28fr_.72fr]">
-            <div className="group relative overflow-hidden rounded-[30px] bg-black">
-              <SitePhoto category="home-showcase-primary" className="h-[520px] w-full object-cover transition duration-700 group-hover:scale-[1.02] sm:h-[690px]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
-              <p className="absolute bottom-6 left-6 text-xs font-medium uppercase tracking-[.2em] text-[#FFFFFF]">Recent work</p>
-            </div>
-            <div className="grid gap-4">
-              <div className="group relative overflow-hidden rounded-[30px] bg-black">
-                <SitePhoto category="home-showcase-secondary" className="h-[330px] w-full object-cover transition duration-700 group-hover:scale-[1.03]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-              </div>
-              <div className="rounded-[30px] bg-[#F5F7FB] p-8 text-[#0B0F19]">
-                <p className="text-[10px] uppercase tracking-[.27em] text-[#000B3D]">Clear communication</p>
-                <p className="mt-6 text-3xl font-semibold leading-[1.02] tracking-[-.045em]">Send us the car info and a few photos. We’ll tell you what makes sense.</p>
-                <p className="mt-5 text-sm leading-7 text-black/50">A clean SUV should not be priced like one full of pet hair and stains. Size still matters, but the condition and the work you want done are what help us give you a fair quote.</p>
-              </div>
+            <div className="grid gap-px overflow-hidden rounded-[28px] bg-white/15 sm:grid-cols-3">
+              {[
+                ["01", "Tell us about the car", "Send the year, make, model, condition, and what you want cleaned."],
+                ["02", "Get the right price", "Choose a standard package or send photos when the condition needs a closer look."],
+                ["03", "We come to you", "Pick an available day and time. We bring the detailing setup to your location."],
+              ].map(([number, title, body]) => (
+                <article key={number} className="bg-[#07134D] p-7 sm:p-8">
+                  <span className="text-xs font-black tracking-[.2em] text-white/40">{number}</span>
+                  <h3 className="mt-14 text-2xl font-bold tracking-[-.03em]">{title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-white/58">{body}</p>
+                </article>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#FFFFFF] text-black">
-        <div className="mx-auto grid max-w-[1540px] border-x border-black/10 lg:grid-cols-2">
-          <div className="min-h-[520px]"><SitePhoto category="home-story" className="h-full min-h-[520px] w-full object-cover" /></div>
-          <div className="flex flex-col justify-center border-t border-black/10 px-5 py-16 sm:px-8 lg:border-l lg:border-t-0 lg:px-12">
-            <p className="text-[10px] uppercase tracking-[.28em] text-[#000B3D]">{content.storyEyebrow}</p>
-            <h2 className="mt-5 text-4xl font-semibold leading-[.96] tracking-[-.055em] sm:text-6xl">{content.storyTitle}</h2>
-            <p className="mt-7 max-w-xl text-base leading-8 text-black/52">{content.storyBody}</p>
-            <div className="mt-8 flex gap-3">
-              <a href="/about" className="rounded-full bg-[#000B3D] px-5 py-3 text-sm font-semibold text-white">About Bubbles & Bros.</a>
-              <a href="/faq" className="rounded-full border border-black/15 px-5 py-3 text-sm font-semibold">FAQ</a>
+      <section className="bg-[#F7F9FD]">
+        <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
+          <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[.28em] text-[#000B3D]">{content.introEyebrow}</p>
+              <h2 className="mt-4 text-4xl font-black leading-[.96] tracking-[-.05em] text-[#000B3D] sm:text-6xl">{content.introTitle}</h2>
+            </div>
+            <div className="rounded-[28px] border border-[#000B3D]/10 bg-white p-7 shadow-sm sm:p-9">
+              <p className="text-base leading-8 text-black/55">{content.introBody}</p>
+              <div className="mt-7 flex flex-wrap gap-2 text-xs font-semibold text-[#000B3D]">
+                <span className="rounded-full bg-[#EEF2FA] px-4 py-2">Vehicle size</span>
+                <span className="rounded-full bg-[#EEF2FA] px-4 py-2">Interior condition</span>
+                <span className="rounded-full bg-[#EEF2FA] px-4 py-2">Exterior condition</span>
+                <span className="rounded-full bg-[#EEF2FA] px-4 py-2">Add-ons</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="bg-white">
-        <div className="mx-auto max-w-[1540px] border-x border-[#000B3D]/10 px-5 py-20 sm:px-8 lg:px-10">
-          <div className="flex items-end justify-between gap-6">
+        <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-[10px] uppercase tracking-[.28em] text-[#000B3D]">{content.galleryEyebrow}</p>
-              <h2 className="mt-4 max-w-4xl text-4xl font-semibold tracking-[-.05em] sm:text-6xl">{content.galleryTitle}</h2>
+              <p className="text-[10px] font-bold uppercase tracking-[.28em] text-[#000B3D]">{content.galleryEyebrow}</p>
+              <h2 className="mt-4 max-w-3xl text-4xl font-black tracking-[-.05em] text-[#000B3D] sm:text-6xl">{content.galleryTitle}</h2>
             </div>
-            <a href="/gallery" className="hidden text-sm text-black/50 transition hover:text-[#0B0F19] sm:block">Full gallery →</a>
+            <a href="/gallery" className="w-fit rounded-full border border-[#000B3D]/15 px-5 py-3 text-sm font-bold text-[#000B3D]">Open gallery →</a>
           </div>
           <div className="mt-10"><DynamicGallery limit={6} /></div>
         </div>
       </section>
 
-      {GOOGLE_REVIEWS_ENABLED && (
-        <section className="border-t border-[#000B3D]/10 bg-white">
-          <div className="mx-auto max-w-[1540px] border-x border-[#000B3D]/10 px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
-            <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-              <div>
-                <p className="text-[10px] uppercase tracking-[.28em] text-[#000B3D]">{content.reviewsEyebrow}</p>
-                <h2 className="mt-4 max-w-4xl text-4xl font-semibold tracking-[-.05em] sm:text-6xl">{content.reviewsTitle}</h2>
-                <p className="mt-5 max-w-2xl text-sm leading-7 text-black/50">{content.reviewsBody}</p>
+      <section className="border-y border-[#000B3D]/10 bg-[#EEF2FA]">
+        <div className="mx-auto grid max-w-[1440px] gap-8 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[1.1fr_.9fr] lg:px-10">
+          <div className="rounded-[32px] bg-white p-8 sm:p-12">
+            <p className="text-[10px] font-bold uppercase tracking-[.28em] text-[#000B3D]">Because we care</p>
+            <h2 className="mt-4 max-w-2xl text-4xl font-black leading-[.95] tracking-[-.05em] text-[#000B3D] sm:text-6xl">The detail should fit the car, not the other way around.</h2>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-black/52">We keep the service focused on what actually needs attention. That means straightforward recommendations, sensible add-ons, and no unrelated services pushed into the appointment.</p>
+          </div>
+          <div className="grid gap-4">
+            {[
+              ["Mobile", "No shop drop-off. We bring the setup to you."],
+              ["Focused", "Interior, exterior, or both — that is the whole service menu."],
+              ["Clear", "You see the package price or get an exact quote before the work starts."],
+            ].map(([title, body]) => (
+              <div key={title} className="rounded-[26px] border border-[#000B3D]/10 bg-white p-7">
+                <p className="text-sm font-extrabold text-[#000B3D]">{title}</p>
+                <p className="mt-2 text-sm leading-7 text-black/50">{body}</p>
               </div>
-              <a href="/reviews" className="text-sm text-black/50 transition hover:text-[#0B0F19]">See the review page →</a>
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {GOOGLE_REVIEWS_ENABLED && (
+        <section className="bg-white">
+          <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
+            <p className="mb-8 text-[10px] font-bold uppercase tracking-[.28em] text-[#000B3D]">Customer feedback</p>
             <ReviewCards />
           </div>
         </section>
       )}
 
-      {(FACEBOOK_URL || INSTAGRAM_URL) && (
-        <section className="bg-[#FFFFFF] text-black">
-          <div className="mx-auto flex max-w-[1540px] flex-col gap-6 border-x border-black/10 px-5 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[.25em] text-black/35">Follow Bubbles & Bros.</p>
-              <p className="mt-2 text-lg font-semibold">Recent work, updates, and customer reviews.</p>
+      <section className="bg-white">
+        <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
+          <div className="relative overflow-hidden rounded-[38px] bg-[#000B3D] px-7 py-12 text-white sm:px-12 sm:py-16 lg:px-16">
+            <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full border-[45px] border-white/[.05]" />
+            <div className="relative grid gap-8 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[.28em] text-white/50">Ready when you are</p>
+                <h2 className="mt-4 max-w-4xl text-4xl font-black leading-[.95] tracking-[-.05em] sm:text-6xl">{content.contactTitle}</h2>
+                <p className="mt-5 max-w-2xl text-sm leading-7 text-white/60 sm:text-base">{content.contactBody}</p>
+              </div>
+              <div className="flex flex-wrap gap-3 lg:justify-end">
+                <a href="/quote" className="rounded-2xl bg-white px-6 py-4 text-sm font-bold text-[#000B3D]">Get an Exact Quote</a>
+                <a href="/contact" className="rounded-2xl border border-white/20 px-6 py-4 text-sm font-bold text-white">Book a Detail</a>
+              </div>
             </div>
-            <SocialLinks light />
           </div>
-        </section>
-      )}
-    </div>
+
+          {(INSTAGRAM_URL || FACEBOOK_URL) && (
+            <div className="mt-8 flex justify-center"><SocialLinks /></div>
+          )}
+        </div>
+      </section>
+    </main>
   );
 }

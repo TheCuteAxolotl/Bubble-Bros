@@ -74,7 +74,7 @@ export default function LoginPage() {
               <label className="mb-2 block text-sm font-medium text-black/75">Password</label>
               <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} className="w-full rounded-2xl border border-[#000B3D]/10 bg-white px-4 py-3 text-[#0B0F19] placeholder:text-black/30 outline-none transition focus:border-[#000B3D]/65 focus:bg-white focus:shadow-[0_0_0_3px_rgba(0,11,61,.07)]" placeholder="••••••••" required />
             </div>
-            <button type="submit" disabled={loading} className="w-full rounded-2xl bg-[#000B3D] py-3.5 font-semibold text-[#0B0F19] shadow-[0_0_30px_rgba(0,11,61,.12)] hover:bg-[#000B3D] disabled:cursor-not-allowed disabled:opacity-45">
+            <button type="submit" disabled={loading} className="w-full rounded-2xl bg-[#000B3D] py-3.5 font-semibold text-white shadow-[0_0_30px_rgba(0,11,61,.12)] hover:bg-[#000B3D] disabled:cursor-not-allowed disabled:opacity-45">
               {loading ? "Signing in..." : "Sign In"}
             </button>
           </form>

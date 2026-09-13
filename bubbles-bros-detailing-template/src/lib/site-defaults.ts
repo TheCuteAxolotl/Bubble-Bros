@@ -3,99 +3,111 @@ import { DEFAULT_BOOKING_PRICING } from "@/lib/booking-pricing";
 import { BUSINESS_NAME, SERVICE_AREA } from "@/lib/business-config";
 
 export const SITE_DEFAULTS = {
-  heroEyebrow: SERVICE_AREA ? `Mobile detailing · ${SERVICE_AREA}` : "Mobile detailing · We come to you",
-  heroTitle: "Mobile detailing that comes to you.",
-  heroBody: SERVICE_AREA ? `We’re fully mobile and serve ${SERVICE_AREA}. Interior, exterior, paint correction, ceramic coating, and marine detailing — we bring the setup to you.` : "We’re fully mobile. Interior, exterior, paint correction, ceramic coating, and marine detailing — we bring the setup to you.",
+  heroEyebrow: SERVICE_AREA ? `Mobile auto detailing · ${SERVICE_AREA}` : "Mobile auto detailing · We come to you",
+  heroTitle: "A cleaner car, without the shop drop-off.",
+  heroBody: SERVICE_AREA
+    ? `Bubbles & Bros. brings interior, exterior, and full-car detailing to ${SERVICE_AREA}. Pick the level of clean you need and we bring the setup to you.`
+    : "Bubbles & Bros. brings interior, exterior, and full-car detailing to you. Pick the level of clean you need and we bring the setup to your location.",
   heroPrimaryCta: "Get an Exact Quote",
-  heroSecondaryCta: "See Services",
+  heroSecondaryCta: "See Detailing Packages",
 
-  introEyebrow: "How pricing works",
-  introTitle: "We price the work your vehicle actually needs.",
-  introBody: "Size matters, but condition matters too. Send us the vehicle, what you want done, and a few photos if you can. We’ll look it over and quote the work instead of automatically charging the biggest package.",
+  introEyebrow: "Simple pricing",
+  introTitle: "Choose a package or send photos for an exact quote.",
+  introBody: "Vehicle size matters, but condition matters too. If the car needs more than a standard package, send us a few photos and we’ll price the cleaning before the appointment.",
 
   storyEyebrow: "Why mobile",
-  storyTitle: "No shop drop-off. We come to you.",
-  storyBody: "You do not have to arrange a ride or leave the vehicle somewhere all day. We bring the detailing setup to your home or location and handle the service there.",
+  storyTitle: "No shop drop-off. We come to the car.",
+  storyBody: "You do not have to arrange a ride or leave the vehicle somewhere all day. We bring the detailing setup to your home or location and handle the interior, exterior, or both there.",
 
-  servicesEyebrow: "Services",
-  servicesTitle: "What do you need done?",
-  servicesBody: "Start with car detailing, paint and ceramic protection, or marine detailing. From there you can compare the services, prices, and what is included.",
+  servicesEyebrow: "Auto detailing",
+  servicesTitle: "Interior, exterior, or the full car.",
+  servicesBody: "Bubbles & Bros. stays focused on car detailing. Choose a full interior + exterior detail, an interior-only service, or exterior-only detailing.",
 
-  galleryEyebrow: "Recent work",
-  galleryTitle: "Some of our recent work.",
-  galleryBody: "Interiors, exterior details, paint correction, ceramic coatings, and cleanup work we have recently completed.",
+  galleryEyebrow: "Recent details",
+  galleryTitle: "Clean cars. Real results.",
+  galleryBody: "Recent interior, exterior, and full-detail work completed by Bubbles & Bros.",
 
   reviewsEyebrow: "Google reviews",
   reviewsTitle: "See what customers have said.",
   reviewsBody: `Customer feedback for ${BUSINESS_NAME}.`,
 
   contactEyebrow: "Book a detail",
-  contactTitle: "Tell us what you drive and what you want done.",
-  contactBody: "Pick the service, vehicle, date, and time that work for you. We’ll review the request and confirm everything before the appointment.",
+  contactTitle: "Tell us what you drive and what needs cleaning.",
+  contactBody: "Choose interior, exterior, or a full detail, then pick the vehicle, date, and time that work for you. We’ll review the request and confirm the appointment.",
 
   aboutEyebrow: `About ${BUSINESS_NAME}`,
-  aboutTitle: "Mobile detailing without the shop drop-off.",
-  aboutIntro: SERVICE_AREA ? `${BUSINESS_NAME} is fully mobile and serves ${SERVICE_AREA}. We do interior and exterior detailing, paint correction, ceramic coating, and marine detailing.` : `${BUSINESS_NAME} is fully mobile. We do interior and exterior detailing, paint correction, ceramic coating, and marine detailing.`,
+  aboutTitle: "Straightforward mobile car detailing.",
+  aboutIntro: SERVICE_AREA
+    ? `${BUSINESS_NAME} is fully mobile and serves ${SERVICE_AREA}. We focus on interior, exterior, and complete vehicle detailing.`
+    : `${BUSINESS_NAME} is fully mobile. We focus on interior, exterior, and complete vehicle detailing.`,
   aboutStoryTitle: `Why ${BUSINESS_NAME}`,
-  aboutStoryBody: `${BUSINESS_NAME} was started to make detailing easier to fit into the day. We come to the vehicle, explain what we recommend, and keep the service focused on what the vehicle actually needs.`,
+  aboutStoryBody: `${BUSINESS_NAME} was built around a simple idea: make it easier to keep the car clean. We come to the vehicle, explain what level of cleaning makes sense, and keep the service focused on detailing rather than unnecessary upgrades.`,
   aboutValuesTitle: "What you can expect from us",
   aboutValue1Title: "Straight answers",
-  aboutValue1Body: "We’ll tell you what we recommend, what it costs, and if something extra is actually worth doing before we add it.",
+  aboutValue1Body: "We’ll tell you what level of cleaning makes sense, what it costs, and when an add-on is actually useful.",
   aboutValue2Title: "We come to you",
   aboutValue2Body: "No shop drop-off or waiting around. We bring the detailing setup to your vehicle and do the work there.",
-  aboutValue3Title: "Fair pricing for the condition",
-  aboutValue3Body: "A vehicle that is already pretty clean should not automatically cost the same as one that needs hours of extra work.",
+  aboutValue3Title: "Care for the whole car",
+  aboutValue3Body: "Whether you book interior, exterior, or both, the goal is the same: a clean vehicle and a clear process from quote to finish.",
 
   faqEyebrow: "FAQ",
   faqTitle: "A few things people ask us a lot.",
-  faqBody: "Quick answers about mobile service, timing, pricing, ceramic coatings, and getting ready for the appointment.",
+  faqBody: "Quick answers about mobile detailing, timing, pricing, interior cleaning, exterior cleaning, and getting ready for the appointment.",
   faq1Question: "Do you come to me?",
-  faq1Answer: SERVICE_AREA ? `Yes. We’re completely mobile and serve ${SERVICE_AREA}. Availability depends on the service, your location, and the date you want.` : "Yes. We’re completely mobile. Availability depends on the service, your location, and the date you want.",
+  faq1Answer: SERVICE_AREA
+    ? `Yes. We’re completely mobile and serve ${SERVICE_AREA}. Availability depends on your location, the service, and the date you want.`
+    : "Yes. We’re completely mobile. Availability depends on your location, the service, and the date you want.",
   faq2Question: "How long will the detail take?",
-  faq2Answer: "It depends on the vehicle, condition, and service. A lighter detail may take a few hours. Deep interior work, paint correction, or ceramic coating prep can take much longer.",
+  faq2Answer: "It depends on the vehicle, condition, and service. A maintenance clean may take a few hours, while a deep interior or full detail can take longer.",
   faq3Question: "Can my quote be lower than the listed SUV or truck price?",
-  faq3Answer: "Yes. Size is only part of the job. If your SUV or truck is already pretty clean and needs less work, your exact quote can be lower than the standard package price. Heavy pet hair, stains, buildup, or restoration work can raise it.",
-  faq4Question: "Can you detail a car that already has ceramic coating?",
-  faq4Answer: "Yes. We can use coating-safe wash methods and compatible protection products to clean it without unnecessarily stripping the coating.",
+  faq3Answer: "Yes. Size is only part of the job. If your SUV or truck is already pretty clean and needs less work, your exact quote can be lower than the standard package price. Heavy pet hair, stains, buildup, or extra cleaning can raise it.",
+  faq4Question: "What detailing services do you offer?",
+  faq4Answer: "Bubbles & Bros. focuses on interior cleaning, exterior cleaning, full interior + exterior details, and practical detailing add-ons.",
   faq5Question: "What should I take out of the car before the appointment?",
   faq5Answer: "Please take out valuables, personal items, and anything that blocks the areas you want cleaned when you can. If you have child seats or larger items, just let us know first.",
   faq6Question: "How does the exact quote work?",
-  faq6Answer: "Send us your contact info, vehicle, condition, the service you want, and photos if you have them. You do not need an account. We’ll look over the job and send the quote or ask anything else we need to price it correctly.",
+  faq6Answer: "Send us your contact info, vehicle, condition, the detailing service you want, and photos if you have them. You do not need an account. We’ll look over the job and send the quote or ask anything else we need to price it correctly.",
 
   pricingPackagesConfig: JSON.stringify(DEFAULT_PRICING_PAGES.packages),
   pricingExteriorConfig: JSON.stringify(DEFAULT_PRICING_PAGES.exterior),
   pricingInteriorConfig: JSON.stringify(DEFAULT_PRICING_PAGES.interior),
   bookingPricingConfig: JSON.stringify(DEFAULT_BOOKING_PRICING),
 
-  footerBlurb: SERVICE_AREA ? `Serving ${SERVICE_AREA} with mobile interior, exterior, paint correction, ceramic coating, and marine detailing.` : "Completely mobile interior, exterior, paint correction, ceramic coating, and marine detailing.",
+  footerBlurb: SERVICE_AREA
+    ? `Mobile interior, exterior, and full-car detailing throughout ${SERVICE_AREA}.`
+    : "Mobile interior, exterior, and full-car detailing. We bring the setup to you.",
 } as const;
 
 export type SiteContentKey = keyof typeof SITE_DEFAULTS;
 export type SiteContent = Record<SiteContentKey, string>;
 
-// Only replace copy that exactly matches an older Bubbles & Bros. default. Owner-written custom
-// content is left untouched, so upgrading the site never silently overwrites a custom edit.
-const LEGACY_COPY_REPLACEMENTS: Record<string, string> = {};
+// Replace only exact older default copy so owner-written custom text is never overwritten.
+const LEGACY_COPY_REPLACEMENTS: Record<string, string> = {
+  "Mobile detailing that comes to you.": SITE_DEFAULTS.heroTitle,
+  "We’re fully mobile. Interior, exterior, paint correction, ceramic coating, and marine detailing — we bring the setup to you.": SITE_DEFAULTS.heroBody,
+  "What do you need done?": SITE_DEFAULTS.servicesTitle,
+  "Start with car detailing, paint and ceramic protection, or marine detailing. From there you can compare the services, prices, and what is included.": SITE_DEFAULTS.servicesBody,
+  "Interiors, exterior details, paint correction, ceramic coatings, and cleanup work we have recently completed.": SITE_DEFAULTS.galleryBody,
+  "Quick answers about mobile service, timing, pricing, ceramic coatings, and getting ready for the appointment.": SITE_DEFAULTS.faqBody,
+  "Completely mobile interior, exterior, paint correction, ceramic coating, and marine detailing.": SITE_DEFAULTS.footerBlurb,
+};
 
 const LEGACY_PRICING_COPY_REPLACEMENTS: Record<string, string> = {
-  "Complete detailing packages with a clear price before you book.": "Pick a full-detail package and your vehicle size.",
-  "Pick your vehicle type, compare what is included, and book the package that matches the level of reset you want.": "Choose your vehicle size, compare what is included, and pick the package that fits what you want done.",
-  "A straightforward inside-and-out reset for a regularly maintained vehicle.": "A basic inside-and-out clean for a vehicle that is already kept up pretty well.",
-  "A deeper full-vehicle detail with added decontamination and protection.": "A more complete interior + exterior detail with extra cleaning and paint protection.",
-  "The full reset plus a light machine paint enhancement for extra gloss and clarity.": "Everything in the full detail plus a light machine polish for more gloss and clarity.",
-  "Reserve Signature Detail": "Book Signature Detail",
-  "Exterior packages built around the finish you want.": "Exterior detailing from a maintenance wash to paint enhancement.",
-  "Choose the vehicle type first, then select a fixed-price exterior service from maintenance washing through paint enhancement.": "Choose your vehicle size, then pick anything from a maintenance wash to a full exterior detail or paint enhancement.",
-  "A safe exterior refresh for vehicles that are already in good condition.": "A maintenance wash for vehicles that are already in good condition.",
-  "A deeper exterior clean with chemical decontamination and paint protection.": "A deeper exterior clean with decontamination and paint protection.",
-  "Exterior decontamination plus a single-stage machine enhancement for added gloss and clarity.": "Full exterior prep plus a one-step machine polish for more gloss and clarity.",
-  "Reserve Paint Enhancement": "Book Paint Enhancement",
-  "Interior packages from a clean refresh to a deep reset.": "Interior detailing from a quick refresh to a deep clean.",
-  "Choose the vehicle type, compare the level of cleaning, and book with the exact package price shown.": "Choose your vehicle size and how much cleaning the interior needs.",
-  "A clean-up for regularly maintained interiors that need the basics handled well.": "A lighter clean for interiors that are already kept up pretty well.",
-  "A thorough interior detail for vehicles that need more than a maintenance clean.": "A full interior detail when the cabin needs more than a quick cleanup.",
-  "A more intensive reset for neglected interiors, stains, and heavier buildup.": "A deeper clean for stains, neglected interiors, and heavier buildup.",
-  "Reserve Deep Interior Reset": "Book Deep Interior Reset",
+  "Everything in the full detail plus a light machine polish for more gloss and clarity.": "A deeper inside-and-out detail for vehicles that need more time and more cleaning.",
+  "Clay decontamination as needed": "Extra exterior decontamination as needed",
+  "Single-stage paint enhancement": "Detailed exterior hand cleaning",
+  "Gloss refinement": "Hand-applied paint protection",
+  "Final paint inspection": "Final exterior inspection",
+  "Signature Detail": "Deep Clean Detail",
+  "Book Signature Detail": "Book Deep Clean Detail",
+  "Exterior detailing from a maintenance wash to paint enhancement.": "Exterior detailing from a maintenance wash to a deeper exterior clean.",
+  "Choose your vehicle size, then pick anything from a maintenance wash to a full exterior detail or paint enhancement.": "Choose your vehicle size, then pick a maintenance wash, full exterior detail, or deeper exterior clean.",
+  "Paint Enhancement Detail": "Deep Exterior Detail",
+  "Full exterior prep plus a one-step machine polish for more gloss and clarity.": "A more thorough exterior detail with extra decontamination, hand-applied protection, and finish work.",
+  "Book Paint Enhancement": "Book Deep Exterior Detail",
+  "Single-stage machine polishing": "Detailed hand cleaning",
+  "Gloss enhancement": "Hand-applied gloss protection",
+  "Light swirl reduction": "Extra bug, tar, and bonded-contamination attention",
 };
 
 function normalizeLegacyPricingCopy(value: string) {

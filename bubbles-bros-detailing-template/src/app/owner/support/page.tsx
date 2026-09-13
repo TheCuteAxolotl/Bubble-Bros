@@ -219,7 +219,7 @@ export default function OwnerSupportPage() {
                       <button
                         key={status}
                         onClick={() => setStatus(status)}
-                        className={`rounded-full px-3 py-2 text-xs capitalize ${selected.status === status ? "bg-[#000B3D] text-[#0B0F19]" : "border border-[#000B3D]/10 text-black/55"}`}
+                        className={`rounded-full px-3 py-2 text-xs capitalize ${selected.status === status ? "bg-[#000B3D] text-white" : "border border-[#000B3D]/10 text-black/55"}`}
                       >
                         {status}
                       </button>
@@ -241,7 +241,7 @@ export default function OwnerSupportPage() {
                   {selected.messages.map((supportMessage) => (
                     <div
                       key={supportMessage.id}
-                      className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-6 ${supportMessage.sender === "team" ? "ml-auto bg-[#000B3D] text-[#0B0F19]" : "bg-[#F2F5F9] text-black/75"}`}
+                      className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-6 ${supportMessage.sender === "team" ? "ml-auto bg-[#000B3D] text-white" : "bg-[#F2F5F9] text-black/75"}`}
                     >
                       {supportMessage.body}
                     </div>

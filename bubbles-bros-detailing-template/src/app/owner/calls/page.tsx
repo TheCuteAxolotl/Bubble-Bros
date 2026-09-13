@@ -265,7 +265,7 @@ export default function OwnerCallsPage() {
                 type="button"
                 onClick={repairConnection}
                 disabled={repairing}
-                className="rounded-full bg-[#000B3D] px-5 py-2.5 text-sm font-bold text-[#0B0F19] disabled:opacity-50"
+                className="rounded-full bg-[#000B3D] px-5 py-2.5 text-sm font-bold text-white disabled:opacity-50"
               >
                 {repairing ? "Connecting…" : "Repair Voice Connection"}
               </button>
@@ -296,7 +296,7 @@ export default function OwnerCallsPage() {
                 placeholder="Reason (optional)"
                 className="w-full rounded-2xl border border-[#000B3D]/10 bg-[#F3F6FA] px-4 py-3 text-sm outline-none focus:border-[#000B3D]/60"
               />
-              <button disabled={saving} className="rounded-full bg-[#000B3D] px-5 py-2.5 text-sm font-bold text-[#0B0F19] disabled:opacity-50">Block Number</button>
+              <button disabled={saving} className="rounded-full bg-[#000B3D] px-5 py-2.5 text-sm font-bold text-white disabled:opacity-50">Block Number</button>
             </form>
           </div>
 

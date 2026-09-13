@@ -6,7 +6,6 @@ export type BookingAddOn = {
 };
 
 export type BookingPricingConfig = {
-  headlightStandalonePrice: number;
   addOns: BookingAddOn[];
 };
 
@@ -22,11 +21,9 @@ export type DiscountCode = {
   expiresAt: string | null;
 };
 
-export const STANDALONE_HEADLIGHT_SERVICE_ID = "__headlight_restoration__";
 export const DISCOUNT_CODES_KEY = "discountCodesConfig";
 
 export const DEFAULT_BOOKING_PRICING: BookingPricingConfig = {
-  headlightStandalonePrice: 99,
   addOns: [
     { id: "pet-hair", name: "Pet Hair Removal", price: 39, active: true },
     { id: "seat-shampoo", name: "Seat Shampoo", price: 49, active: true },
@@ -38,12 +35,9 @@ export const DEFAULT_BOOKING_PRICING: BookingPricingConfig = {
     { id: "iron-decon", name: "Iron Decontamination", price: 45, active: true },
     { id: "clay-bar", name: "Clay Bar Treatment", price: 59, active: true },
     { id: "hand-wax", name: "Hand Wax", price: 49, active: true },
-    { id: "ceramic-sealant", name: "Ceramic Sealant", price: 79, active: true },
-    { id: "wheel-coating", name: "Wheel Coating", price: 89, active: true },
     { id: "trim-protection", name: "Exterior Trim Protection", price: 45, active: true },
     { id: "bug-tar", name: "Bug & Tar Removal", price: 35, active: true },
     { id: "underbody", name: "Underbody Cleaning", price: 30, active: true },
-    { id: "headlight-restoration", name: "Headlight Restoration", price: 80, active: true },
   ],
 };
 
@@ -63,12 +57,10 @@ export function parseBookingPricingConfig(value: string | null | undefined): Boo
         price: safeNumber(item?.price, 0),
         active: item?.active !== false,
       }))
-      .filter((item) => item.name && item.price >= 0);
+      .filter((item) => item.name && item.price >= 0)
+      .filter((item) => !/(headlight restoration|ceramic|coating|paint correction|paint enhancement|machine polish)/i.test(item.name));
 
-    return {
-      headlightStandalonePrice: safeNumber(parsed.headlightStandalonePrice, DEFAULT_BOOKING_PRICING.headlightStandalonePrice),
-      addOns,
-    };
+    return { addOns };
   } catch {
     return DEFAULT_BOOKING_PRICING;
   }

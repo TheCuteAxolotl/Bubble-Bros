@@ -68,8 +68,8 @@ export const localBusinessSchema = {
   email: BUSINESS_EMAIL,
   priceRange: "$$",
   description: SERVICE_AREA
-    ? `Mobile auto and marine detailing serving ${SERVICE_AREA}, including interior detailing, exterior detailing, paint correction, ceramic coatings, and marine detailing.`
-    : "Mobile auto and marine detailing, including interior detailing, exterior detailing, paint correction, ceramic coatings, and marine detailing.",
+    ? `Mobile car detailing serving ${SERVICE_AREA}, including interior detailing, exterior detailing, and complete vehicle detailing.`
+    : "Mobile car detailing including interior detailing, exterior detailing, and complete vehicle detailing.",
   ...(SERVICE_AREA
     ? {
         areaServed: [{ "@type": "Place", name: SERVICE_AREA }],
@@ -83,9 +83,6 @@ export const localBusinessSchema = {
       "Interior Detailing",
       "Exterior Detailing",
       "Full Car Detailing",
-      "Paint Correction",
-      "Ceramic Coating",
-      "Marine Detailing",
     ].map((name) => ({
       "@type": "Offer",
       itemOffered: { "@type": "Service", name },
